@@ -1,0 +1,475 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FAA8D97019578AEE0090C4ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D96F19578AEE0090C4ED /* Foundation.framework */; };
+		FAA8D97219578AEE0090C4ED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D97119578AEE0090C4ED /* CoreGraphics.framework */; };
+		FAA8D97419578AEE0090C4ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D97319578AEE0090C4ED /* UIKit.framework */; };
+		FAA8D97619578AEE0090C4ED /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D97519578AEE0090C4ED /* CoreData.framework */; };
+		FAA8D97C19578AEF0090C4ED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FAA8D97A19578AEF0090C4ED /* InfoPlist.strings */; };
+		FAA8D97E19578AEF0090C4ED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D97D19578AEF0090C4ED /* main.m */; };
+		FAA8D98219578AEF0090C4ED /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D98119578AEF0090C4ED /* AppDelegate.m */; };
+		FAA8D98519578AEF0090C4ED /* SocialPass.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D98319578AEF0090C4ED /* SocialPass.xcdatamodeld */; };
+		FAA8D98719578AEF0090C4ED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA8D98619578AEF0090C4ED /* Images.xcassets */; };
+		FAA8D98E19578AEF0090C4ED /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D98D19578AEF0090C4ED /* XCTest.framework */; };
+		FAA8D98F19578AEF0090C4ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D96F19578AEE0090C4ED /* Foundation.framework */; };
+		FAA8D99019578AEF0090C4ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D97319578AEE0090C4ED /* UIKit.framework */; };
+		FAA8D99119578AEF0090C4ED /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D97519578AEE0090C4ED /* CoreData.framework */; };
+		FAA8D99919578AEF0090C4ED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FAA8D99719578AEF0090C4ED /* InfoPlist.strings */; };
+		FAA8D99B19578AEF0090C4ED /* SocialPassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D99A19578AEF0090C4ED /* SocialPassTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FAA8D99219578AEF0090C4ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAA8D96419578AEE0090C4ED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAA8D96B19578AEE0090C4ED;
+			remoteInfo = SocialPass;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FAA8D96C19578AEE0090C4ED /* SocialPass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialPass.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAA8D96F19578AEE0090C4ED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FAA8D97119578AEE0090C4ED /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		FAA8D97319578AEE0090C4ED /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FAA8D97519578AEE0090C4ED /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		FAA8D97919578AEF0090C4ED /* SocialPass-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SocialPass-Info.plist"; sourceTree = "<group>"; };
+		FAA8D97B19578AEF0090C4ED /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FAA8D97D19578AEF0090C4ED /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FAA8D97F19578AEF0090C4ED /* SocialPass-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SocialPass-Prefix.pch"; sourceTree = "<group>"; };
+		FAA8D98019578AEF0090C4ED /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FAA8D98119578AEF0090C4ED /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FAA8D98419578AEF0090C4ED /* SocialPass.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SocialPass.xcdatamodel; sourceTree = "<group>"; };
+		FAA8D98619578AEF0090C4ED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FAA8D98C19578AEF0090C4ED /* SocialPassTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocialPassTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAA8D98D19578AEF0090C4ED /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		FAA8D99619578AEF0090C4ED /* SocialPassTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SocialPassTests-Info.plist"; sourceTree = "<group>"; };
+		FAA8D99819578AEF0090C4ED /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FAA8D99A19578AEF0090C4ED /* SocialPassTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocialPassTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAA8D96919578AEE0090C4ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA8D97219578AEE0090C4ED /* CoreGraphics.framework in Frameworks */,
+				FAA8D97619578AEE0090C4ED /* CoreData.framework in Frameworks */,
+				FAA8D97419578AEE0090C4ED /* UIKit.framework in Frameworks */,
+				FAA8D97019578AEE0090C4ED /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA8D98919578AEF0090C4ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA8D98E19578AEF0090C4ED /* XCTest.framework in Frameworks */,
+				FAA8D99119578AEF0090C4ED /* CoreData.framework in Frameworks */,
+				FAA8D99019578AEF0090C4ED /* UIKit.framework in Frameworks */,
+				FAA8D98F19578AEF0090C4ED /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FAA8D96319578AEE0090C4ED = {
+			isa = PBXGroup;
+			children = (
+				FAA8D97719578AEE0090C4ED /* SocialPass */,
+				FAA8D99419578AEF0090C4ED /* SocialPassTests */,
+				FAA8D96E19578AEE0090C4ED /* Frameworks */,
+				FAA8D96D19578AEE0090C4ED /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FAA8D96D19578AEE0090C4ED /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D96C19578AEE0090C4ED /* SocialPass.app */,
+				FAA8D98C19578AEF0090C4ED /* SocialPassTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAA8D96E19578AEE0090C4ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D96F19578AEE0090C4ED /* Foundation.framework */,
+				FAA8D97119578AEE0090C4ED /* CoreGraphics.framework */,
+				FAA8D97319578AEE0090C4ED /* UIKit.framework */,
+				FAA8D97519578AEE0090C4ED /* CoreData.framework */,
+				FAA8D98D19578AEF0090C4ED /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FAA8D97719578AEE0090C4ED /* SocialPass */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D98019578AEF0090C4ED /* AppDelegate.h */,
+				FAA8D98119578AEF0090C4ED /* AppDelegate.m */,
+				FAA8D98619578AEF0090C4ED /* Images.xcassets */,
+				FAA8D98319578AEF0090C4ED /* SocialPass.xcdatamodeld */,
+				FAA8D97819578AEF0090C4ED /* Supporting Files */,
+			);
+			path = SocialPass;
+			sourceTree = "<group>";
+		};
+		FAA8D97819578AEF0090C4ED /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D97919578AEF0090C4ED /* SocialPass-Info.plist */,
+				FAA8D97A19578AEF0090C4ED /* InfoPlist.strings */,
+				FAA8D97D19578AEF0090C4ED /* main.m */,
+				FAA8D97F19578AEF0090C4ED /* SocialPass-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FAA8D99419578AEF0090C4ED /* SocialPassTests */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D99A19578AEF0090C4ED /* SocialPassTests.m */,
+				FAA8D99519578AEF0090C4ED /* Supporting Files */,
+			);
+			path = SocialPassTests;
+			sourceTree = "<group>";
+		};
+		FAA8D99519578AEF0090C4ED /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D99619578AEF0090C4ED /* SocialPassTests-Info.plist */,
+				FAA8D99719578AEF0090C4ED /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FAA8D96B19578AEE0090C4ED /* SocialPass */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAA8D99E19578AEF0090C4ED /* Build configuration list for PBXNativeTarget "SocialPass" */;
+			buildPhases = (
+				FAA8D96819578AEE0090C4ED /* Sources */,
+				FAA8D96919578AEE0090C4ED /* Frameworks */,
+				FAA8D96A19578AEE0090C4ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SocialPass;
+			productName = SocialPass;
+			productReference = FAA8D96C19578AEE0090C4ED /* SocialPass.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FAA8D98B19578AEF0090C4ED /* SocialPassTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAA8D9A119578AEF0090C4ED /* Build configuration list for PBXNativeTarget "SocialPassTests" */;
+			buildPhases = (
+				FAA8D98819578AEF0090C4ED /* Sources */,
+				FAA8D98919578AEF0090C4ED /* Frameworks */,
+				FAA8D98A19578AEF0090C4ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAA8D99319578AEF0090C4ED /* PBXTargetDependency */,
+			);
+			name = SocialPassTests;
+			productName = SocialPassTests;
+			productReference = FAA8D98C19578AEF0090C4ED /* SocialPassTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FAA8D96419578AEE0090C4ED /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Dolo;
+				TargetAttributes = {
+					FAA8D98B19578AEF0090C4ED = {
+						TestTargetID = FAA8D96B19578AEE0090C4ED;
+					};
+				};
+			};
+			buildConfigurationList = FAA8D96719578AEE0090C4ED /* Build configuration list for PBXProject "SocialPass" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = FAA8D96319578AEE0090C4ED;
+			productRefGroup = FAA8D96D19578AEE0090C4ED /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAA8D96B19578AEE0090C4ED /* SocialPass */,
+				FAA8D98B19578AEF0090C4ED /* SocialPassTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FAA8D96A19578AEE0090C4ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA8D97C19578AEF0090C4ED /* InfoPlist.strings in Resources */,
+				FAA8D98719578AEF0090C4ED /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA8D98A19578AEF0090C4ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA8D99919578AEF0090C4ED /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAA8D96819578AEE0090C4ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA8D98519578AEF0090C4ED /* SocialPass.xcdatamodeld in Sources */,
+				FAA8D98219578AEF0090C4ED /* AppDelegate.m in Sources */,
+				FAA8D97E19578AEF0090C4ED /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA8D98819578AEF0090C4ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA8D99B19578AEF0090C4ED /* SocialPassTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FAA8D99319578AEF0090C4ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAA8D96B19578AEE0090C4ED /* SocialPass */;
+			targetProxy = FAA8D99219578AEF0090C4ED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FAA8D97A19578AEF0090C4ED /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAA8D97B19578AEF0090C4ED /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FAA8D99719578AEF0090C4ED /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAA8D99819578AEF0090C4ED /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FAA8D99C19578AEF0090C4ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		FAA8D99D19578AEF0090C4ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FAA8D99F19578AEF0090C4ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SocialPass/SocialPass-Prefix.pch";
+				INFOPLIST_FILE = "SocialPass/SocialPass-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		FAA8D9A019578AEF0090C4ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SocialPass/SocialPass-Prefix.pch";
+				INFOPLIST_FILE = "SocialPass/SocialPass-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		FAA8D9A219578AEF0090C4ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SocialPass.app/SocialPass";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SocialPass/SocialPass-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SocialPassTests/SocialPassTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		FAA8D9A319578AEF0090C4ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SocialPass.app/SocialPass";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SocialPass/SocialPass-Prefix.pch";
+				INFOPLIST_FILE = "SocialPassTests/SocialPassTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FAA8D96719578AEE0090C4ED /* Build configuration list for PBXProject "SocialPass" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAA8D99C19578AEF0090C4ED /* Debug */,
+				FAA8D99D19578AEF0090C4ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAA8D99E19578AEF0090C4ED /* Build configuration list for PBXNativeTarget "SocialPass" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAA8D99F19578AEF0090C4ED /* Debug */,
+				FAA8D9A019578AEF0090C4ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FAA8D9A119578AEF0090C4ED /* Build configuration list for PBXNativeTarget "SocialPassTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAA8D9A219578AEF0090C4ED /* Debug */,
+				FAA8D9A319578AEF0090C4ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FAA8D98319578AEF0090C4ED /* SocialPass.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FAA8D98419578AEF0090C4ED /* SocialPass.xcdatamodel */,
+			);
+			currentVersion = FAA8D98419578AEF0090C4ED /* SocialPass.xcdatamodel */;
+			path = SocialPass.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = FAA8D96419578AEE0090C4ED /* Project object */;
+}
