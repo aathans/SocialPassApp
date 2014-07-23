@@ -7,6 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA0929A01960A2140010DB1C /* SPNewEventCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = FA09299F1960A2140010DB1C /* SPNewEventCanvas.m */; };
+		FA0929A41960A5420010DB1C /* SPAdvancedOptionsCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0929A31960A5420010DB1C /* SPAdvancedOptionsCanvas.m */; };
+		FA0929A71960ACAC0010DB1C /* SPFriendsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0929A61960ACAC0010DB1C /* SPFriendsTable.m */; };
+		FA0929AD1960ADCB0010DB1C /* SPFriendsTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0929AC1960ADCB0010DB1C /* SPFriendsTableDataSource.m */; };
+		FA0BF742195B7D3F00CBE8AB /* SPSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0BF73C195B7D3F00CBE8AB /* SPSignUpViewController.m */; };
+		FA0BF743195B7D3F00CBE8AB /* SPForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0BF73D195B7D3F00CBE8AB /* SPForgotPasswordViewController.m */; };
+		FA0BF744195B7D3F00CBE8AB /* SPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0BF73E195B7D3F00CBE8AB /* SPLoginViewController.m */; };
+		FA0BF74A195B844300CBE8AB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0BF749195B844300CBE8AB /* Social.framework */; };
+		FA0BF74C195B846000CBE8AB /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0BF74B195B846000CBE8AB /* Accounts.framework */; };
+		FA0BF74E195B847600CBE8AB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0BF74D195B847600CBE8AB /* MobileCoreServices.framework */; };
+		FA0BF750195B84BD00CBE8AB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0BF74F195B84BD00CBE8AB /* SystemConfiguration.framework */; };
+		FA0BF753195C9F9B00CBE8AB /* SPFriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0BF752195C9F9B00CBE8AB /* SPFriendsListViewController.m */; };
+		FA1D7409197DCB9C005ADF36 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1D7407197DCB9C005ADF36 /* FacebookSDK.framework */; };
+		FA1D740A197DCB9C005ADF36 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1D7408197DCB9C005ADF36 /* Parse.framework */; };
+		FA1D740C197DCD7E005ADF36 /* SPMainViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA941A1B197DC7A40093479C /* SPMainViewControllerTests.m */; };
+		FA1D7412197F397F005ADF36 /* SPAdvancedOptionsAttendeeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1D7411197F397F005ADF36 /* SPAdvancedOptionsAttendeeTextField.m */; };
+		FA284C41195CCAD900A09AF9 /* SPFriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA284C40195CCAD900A09AF9 /* SPFriendsTableViewCell.m */; };
+		FA284C46195CD8D400A09AF9 /* UIColor+themeColors.m in Sources */ = {isa = PBXBuildFile; fileRef = FA284C45195CD8D400A09AF9 /* UIColor+themeColors.m */; };
+		FA284C51195CF36D00A09AF9 /* SPProfileFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA284C50195CF36D00A09AF9 /* SPProfileFeedDataSource.m */; };
+		FA284C54195CF4F500A09AF9 /* SPProfileFeedCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA284C53195CF4F500A09AF9 /* SPProfileFeedCellTableViewCell.m */; };
+		FA3ADA03196DF15500E7795C /* SocialPassAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3ADA02196DF15500E7795C /* SocialPassAppIcon.png */; };
+		FA3ADA05196DFAAE00E7795C /* SocialPassLaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3ADA04196DFAAE00E7795C /* SocialPassLaunchImage.png */; };
+		FA3ADA07196DFBB400E7795C /* SocialPassLaunchImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3ADA06196DFBB400E7795C /* SocialPassLaunchImage@2x.png */; };
+		FA3ADA09196ED05700E7795C /* SocialPassAppIconV2.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3ADA08196ED05700E7795C /* SocialPassAppIconV2.png */; };
+		FA3ADA0C196F1A5D00E7795C /* SPEventDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3ADA0B196F1A5D00E7795C /* SPEventDetailView.m */; };
+		FA3ADA0E196F254900E7795C /* SPEventDetailControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9CA1958DF0A0090C4ED /* SPEventDetailControllerViewController.m */; };
+		FA4A5A94195AAAD900C016EC /* SPProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4A5A93195AAAD900C016EC /* SPProfileViewController.m */; };
+		FA4A5A98195B6E6E00C016EC /* SPTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4A5A97195B6E6E00C016EC /* SPTransitionManager.m */; };
 		FAA8D97019578AEE0090C4ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D96F19578AEE0090C4ED /* Foundation.framework */; };
 		FAA8D97219578AEE0090C4ED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D97119578AEE0090C4ED /* CoreGraphics.framework */; };
 		FAA8D97419578AEE0090C4ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D97319578AEE0090C4ED /* UIKit.framework */; };
@@ -22,6 +50,15 @@
 		FAA8D99119578AEF0090C4ED /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D97519578AEE0090C4ED /* CoreData.framework */; };
 		FAA8D99919578AEF0090C4ED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FAA8D99719578AEF0090C4ED /* InfoPlist.strings */; };
 		FAA8D99B19578AEF0090C4ED /* SocialPassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D99A19578AEF0090C4ED /* SocialPassTests.m */; };
+		FAA8D9A619578B150090C4ED /* SPCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9A519578B150090C4ED /* SPCoreDataStack.m */; };
+		FAA8D9A919578B900090C4ED /* SPHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9A819578B900090C4ED /* SPHomeViewController.m */; };
+		FAA8D9B519578D450090C4ED /* SPNewEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9B419578D450090C4ED /* SPNewEventViewController.m */; };
+		FAA8D9BD195795670090C4ED /* SPMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9BC195795670090C4ED /* SPMainViewController.m */; };
+		FAA8D9C0195797C30090C4ED /* SPEventCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9BF195797C30090C4ED /* SPEventCanvas.m */; };
+		FAA8D9C61957C3AE0090C4ED /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9C21957C3AD0090C4ED /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
+		FAA8D9C71957C3AE0090C4ED /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9C41957C3AE0090C4ED /* TPKeyboardAvoidingScrollView.m */; };
+		FAC81B981960B591006C2904 /* SPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC81B971960B591006C2904 /* SPUser.m */; };
+		FAC81B9B1960B592006C2904 /* SPEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC81B9A1960B592006C2904 /* SPEvent.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +72,49 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA09299E1960A2140010DB1C /* SPNewEventCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPNewEventCanvas.h; sourceTree = "<group>"; };
+		FA09299F1960A2140010DB1C /* SPNewEventCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPNewEventCanvas.m; sourceTree = "<group>"; };
+		FA0929A21960A5420010DB1C /* SPAdvancedOptionsCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAdvancedOptionsCanvas.h; sourceTree = "<group>"; };
+		FA0929A31960A5420010DB1C /* SPAdvancedOptionsCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAdvancedOptionsCanvas.m; sourceTree = "<group>"; };
+		FA0929A51960ACAC0010DB1C /* SPFriendsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFriendsTable.h; sourceTree = "<group>"; };
+		FA0929A61960ACAC0010DB1C /* SPFriendsTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFriendsTable.m; sourceTree = "<group>"; };
+		FA0929AB1960ADCB0010DB1C /* SPFriendsTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFriendsTableDataSource.h; sourceTree = "<group>"; };
+		FA0929AC1960ADCB0010DB1C /* SPFriendsTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFriendsTableDataSource.m; sourceTree = "<group>"; };
+		FA0BF73C195B7D3F00CBE8AB /* SPSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSignUpViewController.m; sourceTree = "<group>"; };
+		FA0BF73D195B7D3F00CBE8AB /* SPForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPForgotPasswordViewController.m; sourceTree = "<group>"; };
+		FA0BF73E195B7D3F00CBE8AB /* SPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLoginViewController.m; sourceTree = "<group>"; };
+		FA0BF73F195B7D3F00CBE8AB /* SPForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPForgotPasswordViewController.h; sourceTree = "<group>"; };
+		FA0BF740195B7D3F00CBE8AB /* SPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLoginViewController.h; sourceTree = "<group>"; };
+		FA0BF741195B7D3F00CBE8AB /* SPSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSignUpViewController.h; sourceTree = "<group>"; };
+		FA0BF749195B844300CBE8AB /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		FA0BF74B195B846000CBE8AB /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		FA0BF74D195B847600CBE8AB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		FA0BF74F195B84BD00CBE8AB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		FA0BF751195C9F9B00CBE8AB /* SPFriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFriendsListViewController.h; sourceTree = "<group>"; };
+		FA0BF752195C9F9B00CBE8AB /* SPFriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFriendsListViewController.m; sourceTree = "<group>"; };
+		FA1D7407197DCB9C005ADF36 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = SocialPass/FacebookSDK.framework; sourceTree = "<group>"; };
+		FA1D7408197DCB9C005ADF36 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = SocialPass/Parse.framework; sourceTree = "<group>"; };
+		FA1D7410197F397F005ADF36 /* SPAdvancedOptionsAttendeeTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAdvancedOptionsAttendeeTextField.h; sourceTree = "<group>"; };
+		FA1D7411197F397F005ADF36 /* SPAdvancedOptionsAttendeeTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAdvancedOptionsAttendeeTextField.m; sourceTree = "<group>"; };
+		FA284C3F195CCAD900A09AF9 /* SPFriendsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFriendsTableViewCell.h; sourceTree = "<group>"; };
+		FA284C40195CCAD900A09AF9 /* SPFriendsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFriendsTableViewCell.m; sourceTree = "<group>"; };
+		FA284C44195CD8D400A09AF9 /* UIColor+themeColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+themeColors.h"; sourceTree = "<group>"; };
+		FA284C45195CD8D400A09AF9 /* UIColor+themeColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+themeColors.m"; sourceTree = "<group>"; };
+		FA284C4F195CF36D00A09AF9 /* SPProfileFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPProfileFeedDataSource.h; sourceTree = "<group>"; };
+		FA284C50195CF36D00A09AF9 /* SPProfileFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPProfileFeedDataSource.m; sourceTree = "<group>"; };
+		FA284C52195CF4F500A09AF9 /* SPProfileFeedCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPProfileFeedCellTableViewCell.h; sourceTree = "<group>"; };
+		FA284C53195CF4F500A09AF9 /* SPProfileFeedCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPProfileFeedCellTableViewCell.m; sourceTree = "<group>"; };
+		FA3ADA02196DF15500E7795C /* SocialPassAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SocialPassAppIcon.png; path = Images.xcassets/SocialPassAppIcon.png; sourceTree = "<group>"; };
+		FA3ADA04196DFAAE00E7795C /* SocialPassLaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialPassLaunchImage.png; sourceTree = "<group>"; };
+		FA3ADA06196DFBB400E7795C /* SocialPassLaunchImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SocialPassLaunchImage@2x.png"; sourceTree = "<group>"; };
+		FA3ADA08196ED05700E7795C /* SocialPassAppIconV2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialPassAppIconV2.png; sourceTree = "<group>"; };
+		FA3ADA0A196F1A5D00E7795C /* SPEventDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPEventDetailView.h; sourceTree = "<group>"; };
+		FA3ADA0B196F1A5D00E7795C /* SPEventDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPEventDetailView.m; sourceTree = "<group>"; };
+		FA4A5A92195AAAD900C016EC /* SPProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPProfileViewController.h; sourceTree = "<group>"; };
+		FA4A5A93195AAAD900C016EC /* SPProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPProfileViewController.m; sourceTree = "<group>"; };
+		FA4A5A96195B6E6E00C016EC /* SPTransitionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTransitionManager.h; sourceTree = "<group>"; };
+		FA4A5A97195B6E6E00C016EC /* SPTransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTransitionManager.m; sourceTree = "<group>"; };
+		FA941A1B197DC7A40093479C /* SPMainViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMainViewControllerTests.m; sourceTree = "<group>"; };
 		FAA8D96C19578AEE0090C4ED /* SocialPass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialPass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA8D96F19578AEE0090C4ED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FAA8D97119578AEE0090C4ED /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +133,26 @@
 		FAA8D99619578AEF0090C4ED /* SocialPassTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SocialPassTests-Info.plist"; sourceTree = "<group>"; };
 		FAA8D99819578AEF0090C4ED /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FAA8D99A19578AEF0090C4ED /* SocialPassTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocialPassTests.m; sourceTree = "<group>"; };
+		FAA8D9A419578B150090C4ED /* SPCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCoreDataStack.h; sourceTree = "<group>"; };
+		FAA8D9A519578B150090C4ED /* SPCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCoreDataStack.m; sourceTree = "<group>"; };
+		FAA8D9A719578B900090C4ED /* SPHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPHomeViewController.h; sourceTree = "<group>"; };
+		FAA8D9A819578B900090C4ED /* SPHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHomeViewController.m; sourceTree = "<group>"; };
+		FAA8D9B319578D450090C4ED /* SPNewEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPNewEventViewController.h; sourceTree = "<group>"; };
+		FAA8D9B419578D450090C4ED /* SPNewEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPNewEventViewController.m; sourceTree = "<group>"; };
+		FAA8D9BB195795670090C4ED /* SPMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMainViewController.h; sourceTree = "<group>"; };
+		FAA8D9BC195795670090C4ED /* SPMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMainViewController.m; sourceTree = "<group>"; };
+		FAA8D9BE195797C30090C4ED /* SPEventCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPEventCanvas.h; sourceTree = "<group>"; };
+		FAA8D9BF195797C30090C4ED /* SPEventCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPEventCanvas.m; sourceTree = "<group>"; };
+		FAA8D9C21957C3AD0090C4ED /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		FAA8D9C31957C3AE0090C4ED /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		FAA8D9C41957C3AE0090C4ED /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		FAA8D9C51957C3AE0090C4ED /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		FAA8D9C91958DF090090C4ED /* SPEventDetailControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPEventDetailControllerViewController.h; sourceTree = "<group>"; };
+		FAA8D9CA1958DF0A0090C4ED /* SPEventDetailControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPEventDetailControllerViewController.m; sourceTree = "<group>"; };
+		FAC81B961960B591006C2904 /* SPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUser.h; sourceTree = "<group>"; };
+		FAC81B971960B591006C2904 /* SPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUser.m; sourceTree = "<group>"; };
+		FAC81B991960B592006C2904 /* SPEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPEvent.h; sourceTree = "<group>"; };
+		FAC81B9A1960B592006C2904 /* SPEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPEvent.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +160,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA0BF750195B84BD00CBE8AB /* SystemConfiguration.framework in Frameworks */,
+				FA0BF74E195B847600CBE8AB /* MobileCoreServices.framework in Frameworks */,
+				FA0BF74C195B846000CBE8AB /* Accounts.framework in Frameworks */,
+				FA0BF74A195B844300CBE8AB /* Social.framework in Frameworks */,
+				FA1D740A197DCB9C005ADF36 /* Parse.framework in Frameworks */,
 				FAA8D97219578AEE0090C4ED /* CoreGraphics.framework in Frameworks */,
+				FA1D7409197DCB9C005ADF36 /* FacebookSDK.framework in Frameworks */,
 				FAA8D97619578AEE0090C4ED /* CoreData.framework in Frameworks */,
 				FAA8D97419578AEE0090C4ED /* UIKit.framework in Frameworks */,
 				FAA8D97019578AEE0090C4ED /* Foundation.framework in Frameworks */,
@@ -81,6 +187,111 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA0929A11960A2170010DB1C /* New Event Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA09299E1960A2140010DB1C /* SPNewEventCanvas.h */,
+				FA09299F1960A2140010DB1C /* SPNewEventCanvas.m */,
+				FA0929A21960A5420010DB1C /* SPAdvancedOptionsCanvas.h */,
+				FA0929A31960A5420010DB1C /* SPAdvancedOptionsCanvas.m */,
+				FA1D7410197F397F005ADF36 /* SPAdvancedOptionsAttendeeTextField.h */,
+				FA1D7411197F397F005ADF36 /* SPAdvancedOptionsAttendeeTextField.m */,
+			);
+			name = "New Event Views";
+			sourceTree = "<group>";
+		};
+		FA0BF745195B7D4700CBE8AB /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FA0BF740195B7D3F00CBE8AB /* SPLoginViewController.h */,
+				FA0BF73E195B7D3F00CBE8AB /* SPLoginViewController.m */,
+				FA0BF73F195B7D3F00CBE8AB /* SPForgotPasswordViewController.h */,
+				FA0BF73D195B7D3F00CBE8AB /* SPForgotPasswordViewController.m */,
+				FA0BF746195B7D5B00CBE8AB /* Signup */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		FA0BF746195B7D5B00CBE8AB /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				FA0BF741195B7D3F00CBE8AB /* SPSignUpViewController.h */,
+				FA0BF73C195B7D3F00CBE8AB /* SPSignUpViewController.m */,
+			);
+			name = Signup;
+			sourceTree = "<group>";
+		};
+		FA284C42195CCADE00A09AF9 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				FA0BF751195C9F9B00CBE8AB /* SPFriendsListViewController.h */,
+				FA0BF752195C9F9B00CBE8AB /* SPFriendsListViewController.m */,
+				FA284C43195CCAE800A09AF9 /* Friends Table */,
+			);
+			name = Friends;
+			sourceTree = "<group>";
+		};
+		FA284C43195CCAE800A09AF9 /* Friends Table */ = {
+			isa = PBXGroup;
+			children = (
+				FA0929A51960ACAC0010DB1C /* SPFriendsTable.h */,
+				FA0929A61960ACAC0010DB1C /* SPFriendsTable.m */,
+				FA284C3F195CCAD900A09AF9 /* SPFriendsTableViewCell.h */,
+				FA284C40195CCAD900A09AF9 /* SPFriendsTableViewCell.m */,
+				FA0929AB1960ADCB0010DB1C /* SPFriendsTableDataSource.h */,
+				FA0929AC1960ADCB0010DB1C /* SPFriendsTableDataSource.m */,
+			);
+			name = "Friends Table";
+			sourceTree = "<group>";
+		};
+		FA284C47195CD8DC00A09AF9 /* SPColors */ = {
+			isa = PBXGroup;
+			children = (
+				FA284C44195CD8D400A09AF9 /* UIColor+themeColors.h */,
+				FA284C45195CD8D400A09AF9 /* UIColor+themeColors.m */,
+			);
+			name = SPColors;
+			sourceTree = "<group>";
+		};
+		FA284C4B195CEFB000A09AF9 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				FA284C4F195CF36D00A09AF9 /* SPProfileFeedDataSource.h */,
+				FA284C50195CF36D00A09AF9 /* SPProfileFeedDataSource.m */,
+				FA284C52195CF4F500A09AF9 /* SPProfileFeedCellTableViewCell.h */,
+				FA284C53195CF4F500A09AF9 /* SPProfileFeedCellTableViewCell.m */,
+			);
+			name = Feed;
+			sourceTree = "<group>";
+		};
+		FA3ADA0D196F1A6100E7795C /* Event Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA3ADA0A196F1A5D00E7795C /* SPEventDetailView.h */,
+				FA3ADA0B196F1A5D00E7795C /* SPEventDetailView.m */,
+			);
+			name = "Event Views";
+			sourceTree = "<group>";
+		};
+		FA4A5A95195AAADE00C016EC /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FA4A5A92195AAAD900C016EC /* SPProfileViewController.h */,
+				FA4A5A93195AAAD900C016EC /* SPProfileViewController.m */,
+				FA284C4B195CEFB000A09AF9 /* Feed */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		FA4A5A99195B71CA00C016EC /* Transition Animations */ = {
+			isa = PBXGroup;
+			children = (
+				FA4A5A96195B6E6E00C016EC /* SPTransitionManager.h */,
+				FA4A5A97195B6E6E00C016EC /* SPTransitionManager.m */,
+			);
+			name = "Transition Animations";
+			sourceTree = "<group>";
+		};
 		FAA8D96319578AEE0090C4ED = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +314,12 @@
 		FAA8D96E19578AEE0090C4ED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA1D7407197DCB9C005ADF36 /* FacebookSDK.framework */,
+				FA1D7408197DCB9C005ADF36 /* Parse.framework */,
+				FA0BF74F195B84BD00CBE8AB /* SystemConfiguration.framework */,
+				FA0BF74D195B847600CBE8AB /* MobileCoreServices.framework */,
+				FA0BF74B195B846000CBE8AB /* Accounts.framework */,
+				FA0BF749195B844300CBE8AB /* Social.framework */,
 				FAA8D96F19578AEE0090C4ED /* Foundation.framework */,
 				FAA8D97119578AEE0090C4ED /* CoreGraphics.framework */,
 				FAA8D97319578AEE0090C4ED /* UIKit.framework */,
@@ -117,8 +334,22 @@
 			children = (
 				FAA8D98019578AEF0090C4ED /* AppDelegate.h */,
 				FAA8D98119578AEF0090C4ED /* AppDelegate.m */,
+				FA0BF745195B7D4700CBE8AB /* Login */,
+				FAA8D9B219578C650090C4ED /* Home */,
+				FAA8D9BA1957951E0090C4ED /* Main Page */,
+				FAA8D9B619578D510090C4ED /* New Event */,
+				FA284C42195CCADE00A09AF9 /* Friends */,
+				FA4A5A95195AAADE00C016EC /* Profile */,
+				FAA8D9CC1958DF100090C4ED /* Event Details */,
 				FAA8D98619578AEF0090C4ED /* Images.xcassets */,
-				FAA8D98319578AEF0090C4ED /* SocialPass.xcdatamodeld */,
+				FA3ADA06196DFBB400E7795C /* SocialPassLaunchImage@2x.png */,
+				FA3ADA04196DFAAE00E7795C /* SocialPassLaunchImage.png */,
+				FA3ADA02196DF15500E7795C /* SocialPassAppIcon.png */,
+				FA3ADA08196ED05700E7795C /* SocialPassAppIconV2.png */,
+				FAA8D9C81957C3B50090C4ED /* Keyboard */,
+				FA4A5A99195B71CA00C016EC /* Transition Animations */,
+				FA284C47195CD8DC00A09AF9 /* SPColors */,
+				FAA8D9B019578C550090C4ED /* Core Data */,
 				FAA8D97819578AEF0090C4ED /* Supporting Files */,
 			);
 			path = SocialPass;
@@ -139,6 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				FAA8D99A19578AEF0090C4ED /* SocialPassTests.m */,
+				FA941A1B197DC7A40093479C /* SPMainViewControllerTests.m */,
 				FAA8D99519578AEF0090C4ED /* Supporting Files */,
 			);
 			path = SocialPassTests;
@@ -151,6 +383,87 @@
 				FAA8D99719578AEF0090C4ED /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FAA8D9B019578C550090C4ED /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D98319578AEF0090C4ED /* SocialPass.xcdatamodeld */,
+				FAA8D9A419578B150090C4ED /* SPCoreDataStack.h */,
+				FAA8D9A519578B150090C4ED /* SPCoreDataStack.m */,
+				FAA8D9B119578C5D0090C4ED /* Entities */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		FAA8D9B119578C5D0090C4ED /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				FAC81B991960B592006C2904 /* SPEvent.h */,
+				FAC81B9A1960B592006C2904 /* SPEvent.m */,
+				FAC81B961960B591006C2904 /* SPUser.h */,
+				FAC81B971960B591006C2904 /* SPUser.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		FAA8D9B219578C650090C4ED /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D9A719578B900090C4ED /* SPHomeViewController.h */,
+				FAA8D9A819578B900090C4ED /* SPHomeViewController.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		FAA8D9B619578D510090C4ED /* New Event */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D9B319578D450090C4ED /* SPNewEventViewController.h */,
+				FAA8D9B419578D450090C4ED /* SPNewEventViewController.m */,
+				FA0929A11960A2170010DB1C /* New Event Views */,
+			);
+			name = "New Event";
+			sourceTree = "<group>";
+		};
+		FAA8D9BA1957951E0090C4ED /* Main Page */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D9BB195795670090C4ED /* SPMainViewController.h */,
+				FAA8D9BC195795670090C4ED /* SPMainViewController.m */,
+				FAA8D9C1195797C80090C4ED /* Main Views */,
+			);
+			name = "Main Page";
+			sourceTree = "<group>";
+		};
+		FAA8D9C1195797C80090C4ED /* Main Views */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D9BE195797C30090C4ED /* SPEventCanvas.h */,
+				FAA8D9BF195797C30090C4ED /* SPEventCanvas.m */,
+			);
+			name = "Main Views";
+			sourceTree = "<group>";
+		};
+		FAA8D9C81957C3B50090C4ED /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D9C21957C3AD0090C4ED /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
+				FAA8D9C31957C3AE0090C4ED /* TPKeyboardAvoidingScrollView.h */,
+				FAA8D9C41957C3AE0090C4ED /* TPKeyboardAvoidingScrollView.m */,
+				FAA8D9C51957C3AE0090C4ED /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+			);
+			name = Keyboard;
+			sourceTree = "<group>";
+		};
+		FAA8D9CC1958DF100090C4ED /* Event Details */ = {
+			isa = PBXGroup;
+			children = (
+				FAA8D9C91958DF090090C4ED /* SPEventDetailControllerViewController.h */,
+				FAA8D9CA1958DF0A0090C4ED /* SPEventDetailControllerViewController.m */,
+				FA3ADA0D196F1A6100E7795C /* Event Views */,
+			);
+			name = "Event Details";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,7 +541,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA3ADA09196ED05700E7795C /* SocialPassAppIconV2.png in Resources */,
+				FA3ADA05196DFAAE00E7795C /* SocialPassLaunchImage.png in Resources */,
+				FA3ADA03196DF15500E7795C /* SocialPassAppIcon.png in Resources */,
 				FAA8D97C19578AEF0090C4ED /* InfoPlist.strings in Resources */,
+				FA3ADA07196DFBB400E7795C /* SocialPassLaunchImage@2x.png in Resources */,
 				FAA8D98719578AEF0090C4ED /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,9 +565,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAA8D9BD195795670090C4ED /* SPMainViewController.m in Sources */,
+				FA3ADA0E196F254900E7795C /* SPEventDetailControllerViewController.m in Sources */,
+				FA284C46195CD8D400A09AF9 /* UIColor+themeColors.m in Sources */,
+				FA284C51195CF36D00A09AF9 /* SPProfileFeedDataSource.m in Sources */,
+				FA3ADA0C196F1A5D00E7795C /* SPEventDetailView.m in Sources */,
+				FA4A5A94195AAAD900C016EC /* SPProfileViewController.m in Sources */,
+				FA0929A41960A5420010DB1C /* SPAdvancedOptionsCanvas.m in Sources */,
+				FAA8D9A919578B900090C4ED /* SPHomeViewController.m in Sources */,
+				FA0BF743195B7D3F00CBE8AB /* SPForgotPasswordViewController.m in Sources */,
+				FA0929A01960A2140010DB1C /* SPNewEventCanvas.m in Sources */,
+				FA0929A71960ACAC0010DB1C /* SPFriendsTable.m in Sources */,
+				FAA8D9C0195797C30090C4ED /* SPEventCanvas.m in Sources */,
+				FA0BF744195B7D3F00CBE8AB /* SPLoginViewController.m in Sources */,
+				FAA8D9A619578B150090C4ED /* SPCoreDataStack.m in Sources */,
 				FAA8D98519578AEF0090C4ED /* SocialPass.xcdatamodeld in Sources */,
+				FAA8D9C71957C3AE0090C4ED /* TPKeyboardAvoidingScrollView.m in Sources */,
+				FA284C54195CF4F500A09AF9 /* SPProfileFeedCellTableViewCell.m in Sources */,
+				FAC81B981960B591006C2904 /* SPUser.m in Sources */,
+				FAA8D9B519578D450090C4ED /* SPNewEventViewController.m in Sources */,
+				FA0BF753195C9F9B00CBE8AB /* SPFriendsListViewController.m in Sources */,
+				FA4A5A98195B6E6E00C016EC /* SPTransitionManager.m in Sources */,
 				FAA8D98219578AEF0090C4ED /* AppDelegate.m in Sources */,
 				FAA8D97E19578AEF0090C4ED /* main.m in Sources */,
+				FA0929AD1960ADCB0010DB1C /* SPFriendsTableDataSource.m in Sources */,
+				FA0BF742195B7D3F00CBE8AB /* SPSignUpViewController.m in Sources */,
+				FA1D7412197F397F005ADF36 /* SPAdvancedOptionsAttendeeTextField.m in Sources */,
+				FAC81B9B1960B592006C2904 /* SPEvent.m in Sources */,
+				FA284C41195CCAD900A09AF9 /* SPFriendsTableViewCell.m in Sources */,
+				FAA8D9C61957C3AE0090C4ED /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +601,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA1D740C197DCD7E005ADF36 /* SPMainViewControllerTests.m in Sources */,
 				FAA8D99B19578AEF0090C4ED /* SocialPassTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,7 +639,7 @@
 		FAA8D99C19578AEF0090C4ED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -310,6 +654,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/SocialPass";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -333,7 +678,7 @@
 		FAA8D99D19578AEF0090C4ED /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -349,6 +694,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/SocialPass";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -367,6 +713,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/SocialPass";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocialPass/SocialPass-Prefix.pch";
 				INFOPLIST_FILE = "SocialPass/SocialPass-Info.plist";
@@ -380,6 +727,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/SocialPass";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocialPass/SocialPass-Prefix.pch";
 				INFOPLIST_FILE = "SocialPass/SocialPass-Info.plist";
@@ -396,6 +744,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)/SocialPass",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocialPass/SocialPass-Prefix.pch";
@@ -418,6 +767,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)/SocialPass",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocialPass/SocialPass-Prefix.pch";
@@ -447,6 +797,7 @@
 				FAA8D9A019578AEF0090C4ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FAA8D9A119578AEF0090C4ED /* Build configuration list for PBXNativeTarget "SocialPassTests" */ = {
 			isa = XCConfigurationList;
@@ -455,6 +806,7 @@
 				FAA8D9A319578AEF0090C4ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
