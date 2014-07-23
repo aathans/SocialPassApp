@@ -196,35 +196,7 @@
         [alertView show];
         
     }else{
-        //*************CORE DATE**************
-        /*
-        SPCoreDataStack *dataStack = [SPCoreDataStack defaultStack];
-        SPEvent *newEvent = [NSEntityDescription insertNewObjectForEntityForName:@"SPEvent" inManagedObjectContext:dataStack.managedObjectContext];
-        
-        NSNumber *organizerID = [[NSNumber alloc] initWithInt:10];
-        NSNumberFormatter *numAttendeeFormatter = [NSNumberFormatter new];
-        NSNumber *maxAttendees = [numAttendeeFormatter numberFromString:self.advancedOptions.numAttendees.text];
-        NSNumber *oneNumber = [NSNumber numberWithInt:1];
-        BOOL isPublic = [self.advancedOptions.publicSwitch isOn];
-        NSNumber *isPublicNum = [NSNumber numberWithBool:[self.advancedOptions.publicSwitch isOn]];
-        
-        newEvent.organizerID = organizerID;
-        newEvent.eventDesc = self.eventNewCanvas.descriptionTF.text;
-        newEvent.startTime = self.eventNewCanvas.startTime.text;
-        newEvent.endTime = self.eventNewCanvas.endTime.text;
-        newEvent.eventPhoto = UIImageJPEGRepresentation(self.pickedImage, 1.0);
-        newEvent.maxAttendees = maxAttendees;
-        newEvent.numAttendees = oneNumber;
-        newEvent.isPublic = isPublic;
-        newEvent.isAttending = YES;
-        
-        [dataStack saveContext];
-        
-         */
-        
-        //***********************************
-        
-        // *********** PARSE *************
+       
         //Initialize attendee information
         NSNumberFormatter *numAttendeeFormatter = [NSNumberFormatter new];
         NSNumber *maxAttendees = [numAttendeeFormatter numberFromString:self.advancedOptions.numAttendees.text];
@@ -338,8 +310,6 @@
     }
 }
 
-//**************************************
-
 #pragma mark - cancel button
 
 - (void)cancelButton:(id)sender {
@@ -347,7 +317,6 @@
         
     }];
 }
-
 
 #pragma mark - Advanced options
 
@@ -358,7 +327,6 @@
         [self.advancedOptions setBackgroundColor:[UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:0.98f]];
         [self.advancedOptions.maxAttendeesLabel setAlpha:1.0];
         } completion:^(BOOL finished) {
-            // this gives us a nice callback when it finishes the animation :)
         }];
 }
 
@@ -368,13 +336,11 @@
         [self.advancedOptions setBackgroundColor:[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:0.9f]];
         [self.advancedOptions.maxAttendeesLabel setAlpha:0.9f];
         } completion:^(BOOL finished) {
-            // this gives us a nice callback when it finishes the animation :)
         }];
 }
 
 -(void)advancedOptionsTapped:(id)sender{
     NSLog(@"DID TAP ADVANCED");
-    
     if(self.advancedIsOpen){
         [self collapseAdvancedOptions];
         self.advancedIsOpen = NO;

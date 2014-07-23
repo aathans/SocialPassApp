@@ -29,7 +29,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
         self.profileDataSource = [SPProfileFeedDataSource new];
     }
 
@@ -51,11 +50,6 @@
     [self.eventFeed setRowHeight:75];
     [self.eventFeed registerClass:[SPProfileFeedCellTableViewCell class] forCellReuseIdentifier:@"Cell"];
     self.imageData = [[NSMutableData alloc] init];
-
-    
-    //[self.background addSubview:self.profilePicture];
-    //[self.background addSubview:self.eventFeed];
-    //[self.view addSubview:self.background];
     
     [self.view addSubview:self.header];
     [self.view addSubview:self.profilePicture];
@@ -67,55 +61,39 @@
     [self setupCharacteristics];
     [self setupConstraints];
     [self.profileDataSource fetchFeedForTable:self.eventFeed];
-    // Do any additional setup after loading the view.
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.profileDataSource fetchFeedForTableInBackground:self.eventFeed];
+    
 }
 
 -(void)getFacebookInfo{
-    
-    // Send request to Facebook
     FBRequest *request = [FBRequest requestForMe];
     [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-        // handle response
         if (!error) {
-            // Parse the data received
             NSDictionary *userData = (NSDictionary *)result;
             
             NSString *facebookID = userData[@"id"];
             
             NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
             
-            
             NSMutableDictionary *userProfile = [NSMutableDictionary dictionaryWithCapacity:7];
             
             if (facebookID) {
                 userProfile[@"facebookId"] = facebookID;
             }
-            
             if (userData[@"name"]) {
                 userProfile[@"name"] = userData[@"name"];
             }
-            
             if (userData[@"location"][@"name"]) {
                 userProfile[@"location"] = userData[@"location"][@"name"];
             }
-            
             if (userData[@"gender"]) {
                 userProfile[@"gender"] = userData[@"gender"];
             }
-            
             if (userData[@"birthday"]) {
                 userProfile[@"birthday"] = userData[@"birthday"];
             }
-            
             if (userData[@"relationship_status"]) {
                 userProfile[@"relationship"] = userData[@"relationship_status"];
             }
-            
             if ([pictureURL absoluteString]) {
                 userProfile[@"pictureURL"] = [pictureURL absoluteString];
                 NSLog(@"%@", [pictureURL absoluteString]);
@@ -125,7 +103,7 @@
             [[PFUser currentUser] saveInBackground];
             
         } else if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"]
-                    isEqualToString: @"OAuthException"]) { // Since the request failed, we can check if it was due to an invalid session
+                    isEqualToString: @"OAuthException"]) {
             NSLog(@"The facebook session was invalidated");
             //[self logoutButtonTouchHandler:nil];
         } else {
@@ -133,8 +111,8 @@
         }
     }];
 }
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    // As chuncks of the image are received, we build our data file
     NSLog(@"Appending Data");
     [self.imageData appendData:data];
 }
@@ -145,18 +123,24 @@
     NSLog(@"Retrieved profile picture");
 }
 
-
 -(void)setupCharacteristics{
-    
+    [self retrieveUsername];
+    [self retrieveProfilePicture];
+    [self setupUsername];
+    [self setupProfilePicture];
+    [self setupEventFeed];
+    [self setupHeader];
+    [self setupLogout];
+}
+
+-(void)retrieveUsername{
     if ([[PFUser currentUser] objectForKey:@"profile"][@"name"]) {
         self.name.text = [[PFUser currentUser] objectForKey:@"profile"][@"name"];
         NSLog(@"NAME GOT");
     }
-    
-    [self.name setFont:[UIFont fontWithName:@"Avenir-Medium" size:18.0f]];
-    [self.name setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    //GET PROFILE PICTURE FROM FACEBOOK
+}
+
+-(void)retrieveProfilePicture{
     if ([[PFUser currentUser] objectForKey:@"profile"][@"pictureURL"]) {
         NSLog(@"Getting profile pic");
         NSURL *pictureURL = [NSURL URLWithString:[[PFUser currentUser] objectForKey:@"profile"][@"pictureURL"]];
@@ -170,23 +154,34 @@
             NSLog(@"Failed to download picture");
         }
     }
-    
+}
+
+
+-(void)setupUsername{
+    [self.name setFont:[UIFont fontWithName:@"Avenir-Medium" size:18.0f]];
+    [self.name setTranslatesAutoresizingMaskIntoConstraints:NO];
+}
+
+-(void)setupProfilePicture{
     self.profilePicture.backgroundColor = [UIColor SPGray];
     [self.profilePicture setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    //FEED SETUP
+}
+
+-(void)setupEventFeed{
     self.eventFeed.backgroundColor = [UIColor clearColor];
     [self.eventFeed setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.eventFeed setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    //HEADER SETUP
+}
+
+-(void)setupHeader{
     self.header.text = @"Profile";
     [self.header setTextAlignment:NSTextAlignmentCenter];
     [self.header setBackgroundColor:[UIColor clearColor]];
     [self.header setFont:[UIFont fontWithName:@"Avenir-Light" size:18.0f]];
     [self.header setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    //LOGOUT BUTTON
+}
+
+-(void)setupLogout{
     [self.logoutButton addTarget:self action:@selector(logoutPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.logoutButton setTitle:@"Log Out" forState:UIControlStateNormal];
     [self.logoutButton.titleLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:16.0f]];
@@ -194,14 +189,7 @@
     [self.logoutButton.layer setBorderColor:[UIColor blackColor].CGColor];
     [self.logoutButton.layer setBorderWidth:1.0f];
     [self.logoutButton.layer setCornerRadius:3.0f];
-
     [self.logoutButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-
-}
-
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80.0f;
 }
 
 -(void)setupConstraints{
@@ -211,7 +199,6 @@
     UIView *profilePicture = self.profilePicture;
     UIView *name = self.name;
     UIView *header = self.header;
-    
     UIView *logout = self.logoutButton;
     
     NSDictionary *views = NSDictionaryOfVariableBindings(background, eventFeed, profilePicture, name, header, logout);
@@ -228,9 +215,19 @@
     
     profileConstraints = [profileConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[header(22)]-5-[profilePicture(60)]-10-[eventFeed]-|" options:0 metrics:nil views:views]];
     
-    
     [self.view addConstraints:profileConstraints];
     
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.profileDataSource fetchFeedForTableInBackground:self.eventFeed];
+}
+
+#pragma mark - Table view delegate methods
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 80.0f;
 }
 
 #pragma mark - Helper methods
@@ -243,15 +240,5 @@
         
     }];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -30,11 +30,6 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    /*
-    id<NSFetchedResultsSectionInfo> sec = self.fetchController.sections[section];
-    NSLog(@"profile has %lu rows", (unsigned long)sec.numberOfObjects);
-    return sec.numberOfObjects;
-     */
     NSLog(@"%lu", (unsigned long)self.events.count);
     return self.events.count;
 }
@@ -43,7 +38,7 @@
 {
     SPProfileFeedCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    PFObject *event = [self.events objectAtIndex:indexPath.row]; //[self.fetchController objectAtIndexPath:indexPath];
+    PFObject *event = [self.events objectAtIndex:indexPath.row];
     
     NSString *description = [event objectForKey:@"Description"];
     NSDate *startTime = [event objectForKey:@"StartTime"];
@@ -76,23 +71,6 @@
 
 - (void)configureFeedFetch
 {
-    //************** CORE DATA *************//
-    /*
-    SPCoreDataStack *stack = [SPCoreDataStack defaultStack];
-
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"SPEvent"];
-    [request setFetchBatchSize:50];
-    request.sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES], nil];
-    //request.predicate = [NSPredicate predicateWithFormat:@"isAttending = YES"];
-    self.fetchController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                               managedObjectContext:stack.managedObjectContext
-                                                                 sectionNameKeyPath:@"organizerID"
-                                                                          cacheName:nil];
-    self.fetchController.delegate = self;
-    */
-    //**********************************
-    
-    //********PARSE ****************
     PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
     [eventQuery whereKey:@"AttendeeList" equalTo:[PFUser currentUser].objectId];
     [eventQuery orderByAscending:@"StartTime"];
@@ -108,20 +86,6 @@
 {
     [self configureFeedFetch];
     NSLog(@"Configuring Feed");
-    /*
-    if (self.fetchController) {
-        [self.fetchController.managedObjectContext performBlockAndWait:^{
-            NSError *error = nil;
-            if (![self.fetchController performFetch:&error]) {
-                NSLog(@"Failed to perform fetch: %@", error);
-            }
-            [table reloadData];
-        }];
-    }
-    else {
-        NSLog(@"Failed to fetch, the fetched results controller is nil.");
-    }
-     */
 }
 
 -(void)fetchFeedForTableInBackground:(UITableView *)table{

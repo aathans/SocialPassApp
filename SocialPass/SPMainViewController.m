@@ -36,7 +36,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
         self.indexCount = 0;
         self.didCreateNewEvent = NO;
     }
@@ -56,14 +55,13 @@
     
     self.transitionManager = [SPTransitionManager new];
     
-    [self setCharacteristics];
+    [self setupCharacteristics];
+    [self setupButtons];
     [self setConstraints];
+    
     if([PFUser currentUser]){
         [self setupEvents];
     }
-    
-    
-    
 }
 
 
@@ -74,46 +72,10 @@
         [self setupEvents];
         self.didCreateNewEvent = NO;
     }
-    
 }
 
+
 -(void)setupEvents{
-    
-    //******** CORE DATE*******
-    /*
-    SPCoreDataStack *dataStack = [SPCoreDataStack defaultStack];
-    
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"SPEvent"];
-    NSError *error;
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isAttending != YES"];
-    [request setPredicate:predicate];
-    
-    self.profiles = [[NSMutableArray alloc] initWithArray:[dataStack.managedObjectContext executeFetchRequest:request error:&error]];
-    
-    if ([self.profiles count] == 0){
-        return;
-    }
-    
-    SPEvent *event = [self.profiles objectAtIndex:self.indexCount];
-    if(event != nil){
-        self.eventCanvas.eventPhoto.image = [UIImage imageWithData:event.eventPhoto];
-        self.eventCanvas.eventDesc.text = event.eventDesc;
-        self.eventCanvas.eventOrganizer.text = [NSString stringWithFormat:@"%@", event.organizerID];
-        self.eventCanvas.attendees.text = [NSString stringWithFormat:@"Attendees: %@", event.numAttendees];
-        
-        if((event.endTime.length != 0) && !([event.startTime isEqualToString:event.endTime])){
-            NSLog(@"End Time found");
-            self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today from %@ to %@", event.startTime, event.endTime];
-        }else{
-            NSLog(@"Start time only");
-            self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today at %@", event.startTime];
-        }
-    }
-    */
-    //******************************
-    
-    //****************PARSE**************
     PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
     [eventQuery whereKey:@"AttendeeList" notEqualTo:[PFUser currentUser].objectId];
     [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -157,29 +119,29 @@
             }
         }
     }];
-    
-    //***********************************
 }
 
--(void)setCharacteristics{
-    
-    //Skip Button
-    [self.eventCanvas.skipButton addTarget:self action:@selector(skipButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    //Join Button
-    [self.eventCanvas.joinButton addTarget:self action:@selector(joinButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    //Add Event Button (Upper Right)
-    [self.addEventbutton setImage:[UIImage imageNamed:@"icon_eventPlus"] forState:UIControlStateNormal];
-    [self.addEventbutton addTarget:self action:@selector(addEventPushed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.addEventbutton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    //Header
+-(void)setupCharacteristics{
+    [self setupHeader];
+}
+
+-(void)setupHeader{
     self.header.backgroundColor = [UIColor clearColor];
     [self.header setFont:[UIFont fontWithName:@"Avenir-Light" size:18]];
     [self.header setText:@"SocialPass"];
     [self.header setTextAlignment:NSTextAlignmentCenter];
     [self.header setTranslatesAutoresizingMaskIntoConstraints:NO];
+}
+
+-(void)setupButtons{
+    [self.eventCanvas.skipButton addTarget:self action:@selector(skipButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.eventCanvas.joinButton addTarget:self action:@selector(joinButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.addEventbutton addTarget:self action:@selector(addEventPushed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.addEventbutton setImage:[UIImage imageNamed:@"icon_eventPlus"] forState:UIControlStateNormal];
+    [self.addEventbutton setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
 -(void)setConstraints{
@@ -191,12 +153,9 @@
     
     NSDictionary *views = NSDictionaryOfVariableBindings(background, addEvent);
     
-    //Header constraints
-    
     NSArray *headerConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[header]-|" options:0 metrics:nil views:headerView];
     headerConstraints = [headerConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[header(22)]" options:0 metrics:nil views:headerView]];
     
-    //Background constraints
     NSArray *backgroundConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[background]-|" options:0 metrics:nil views:views];
     
     backgroundConstraints = [backgroundConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[addEvent(22)]-5-[background]-|" options:0 metrics:nil views:views]];
@@ -207,11 +166,12 @@
     
 }
 
-//Presents the new event view controller, user can create an event from here
 -(void)addEventPushed:(id)sender{
-    
     self.didCreateNewEvent = YES;
-    
+    [self presentNewEventVC];
+}
+
+-(void)presentNewEventVC{
     SPNewEventViewController *newEventVC = [SPNewEventViewController new];
     newEventVC.modalPresentationStyle = UIModalPresentationCustom;
     newEventVC.transitioningDelegate = self;
@@ -221,11 +181,7 @@
     }];
 }
 
-
-
-//Skip to the next event, if there is no more alert them and return to the beginning
 - (void)skipButtonPressed:(id)sender {
-
     [self skipEvent];
 }
 
@@ -257,57 +213,17 @@
         }
     }
 
-    
-    //************ CORE DATA *******
-    /*
-    
-    SPEvent *event = [self.profiles objectAtIndex:self.indexCount];
-    
-    if(event != nil){
-        if (event.eventPhoto != nil){
-            self.eventCanvas.eventPhoto.image = [UIImage imageWithData:event.eventPhoto];
-        }else{
-            self.eventCanvas.eventPhoto.backgroundColor = [UIColor whiteColor];
-        }
-        
-        self.eventCanvas.eventDesc.text = event.eventDesc;
-        self.eventCanvas.eventOrganizer.text = [NSString stringWithFormat:@"%@", event.organizerID];
-        
-        if((event.endTime.length != 0) && !([event.startTime isEqualToString:event.endTime])){
-            self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today from %@ to %@", event.startTime, event.endTime];
-        }else{
-            self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today at %@", event.startTime];
-        }
-    } else {
-        NSLog(@"Error skipping event");
-    }
-    */
-    
-    //***********************************
-    
-    //****************PARSE**************
-
     PFObject *SPEvent = [self.events objectAtIndex:self.indexCount];
     
     if(SPEvent != nil){
-        
-        // *** Retreive event photo ***
         PFFile *eventPhoto = [SPEvent objectForKey:@"EventPhoto"];
         NSURL *imageFileURL = [[NSURL alloc] initWithString:eventPhoto.url];
         NSData *imageData = [NSData dataWithContentsOfURL:imageFileURL];
         self.eventCanvas.eventPhoto.image = [UIImage imageWithData:imageData];
-        // *** *** *** *** *** *** ***
-        
-        
-        //Description
         self.eventCanvas.eventDesc.text = [SPEvent objectForKey:@"Description"];
-        //Organizer Name
         self.eventCanvas.eventOrganizer.text = [NSString stringWithFormat:@"%@",[SPEvent objectForKey:@"organizerName"]];
-        
-        //Number of attendees (Eventually mutual friends)
         self.eventCanvas.attendees.text = [NSString stringWithFormat:@"Attendees: %@", [SPEvent objectForKey:@"NumAttendees"]];
-        
-        // *** Times ***
+
         NSDate *startTime = [SPEvent objectForKey:@"StartTime"];
         NSDate *endTime = nil;
         if(![[SPEvent objectForKey:@"EndTime"] isEqual:[NSNull null]]){
@@ -322,7 +238,6 @@
             NSLog(@"Start time only");
             self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today at %@",[dateFormatter stringFromDate:startTime]];
         }
-        // *** *** *** *** *** *** ***
         
     }
 }
@@ -341,10 +256,6 @@
         
         return;
     }
-    
-    //SPCoreDataStack *dataStack = [SPCoreDataStack defaultStack];
-    
-    //SPEvent *event = [self.profiles objectAtIndex:self.indexCount];
     
     PFObject *event = [self.events objectAtIndex:self.indexCount];
     NSNumber *numAttendees = [event objectForKey:@"NumAttendees"];
@@ -372,11 +283,7 @@
         }
     }
     
-
     [self skipEvent];
-    
-    //[dataStack saveContext];
-    
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate

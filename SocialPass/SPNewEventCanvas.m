@@ -145,7 +145,6 @@
 
     NSDictionary *views = NSDictionaryOfVariableBindings(imageLabel, eventPhoto, descLabel, desc, start, end, to, timeLabel, keyboard, createEvent);
     
-    //Background Constraints: constraints on keyboard view & create event button/advanced options
     NSArray *keyboardConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[keyboard]|" options:0 metrics:nil views:views];
     keyboardConstraints = [keyboardConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[keyboard]|" options:0 metrics:nil views:views]];
     
@@ -172,13 +171,5 @@
 
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end
