@@ -15,24 +15,14 @@
 
 @interface SPNewEventViewController () <UINavigationControllerDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate>
 
-//Cancel
 @property (nonatomic) UIButton *cancelButton;
-
-//Background canvas
 @property (nonatomic) SPNewEventCanvas *eventNewCanvas;
-
-//Advanced Options
 @property (nonatomic) SPAdvancedOptionsCanvas *advancedOptions;
-
-
-
 @property (nonatomic) TPKeyboardAvoidingScrollView *keyboard;
-
 @property (nonatomic) UIImage *pickedImage;
 @property (nonatomic) UIToolbar *keyboardToolbar;
 @property (nonatomic) UIDatePicker *datePicker;
 @property (nonatomic) UITextField *currentTextField;
-
 @property (nonatomic) BOOL advancedIsOpen;
 
 @end
@@ -60,9 +50,9 @@
     [self addAdvancedOptionsGesture];
     
     [self.eventNewCanvas addSubview:self.advancedOptions];
-    [self.eventNewCanvas bringSubviewToFront:self.eventNewCanvas.createEventButton];
+    [self.eventNewCanvas bringSubviewToFront:self.eventNewCanvas.createEvent];
     
-    [self.eventNewCanvas.createEventButton addTarget:self action:@selector(createEventPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.eventNewCanvas.createEvent addTarget:self action:@selector(createEventPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.eventNewCanvas];
     [self.view addSubview:self.cancelButton];
@@ -96,7 +86,7 @@
 }
 
 -(void)setupImageButton{
-    [self.eventNewCanvas.imageButton addTarget:self action:@selector(eventPhotoPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.eventNewCanvas.coverPhoto addTarget:self action:@selector(eventPhotoPressed:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)setupCancelButtonWithTitle:(NSString *)title andFont:(UIFont *)font{
@@ -112,7 +102,7 @@
     UIView *background = self.eventNewCanvas;
     UIView *cancel = self.cancelButton;
     UIView *advanced = self.advancedOptions;
-    UIView *createEvent = self.eventNewCanvas.createEventButton;
+    UIView *createEvent = self.eventNewCanvas.createEvent;
     
     NSDictionary *views = NSDictionaryOfVariableBindings(background, cancel, advanced, createEvent);
     
@@ -299,7 +289,7 @@
     if(_pickedImage == nil){
     }else{
         NSLog(@"Setting photo");
-        [self.eventNewCanvas.imageButton setImage:pickedImage forState:UIControlStateNormal];
+        [self.eventNewCanvas.coverPhoto setImage:pickedImage forState:UIControlStateNormal];
     }
 }
 - (void)eventPhotoPressed:(id)sender {
@@ -322,7 +312,7 @@
 
 -(void)expandAdvancedOptions{
     [UIView animateWithDuration:0.8f animations:^{
-        [self.advancedOptions setFrame:CGRectMake(0, 0, self.eventNewCanvas.frame.size.width, (self.eventNewCanvas.frame.size.height-self.eventNewCanvas.createEventButton.frame.size.height))];
+        [self.advancedOptions setFrame:CGRectMake(0, 0, self.eventNewCanvas.frame.size.width, (self.eventNewCanvas.frame.size.height-self.eventNewCanvas.createEvent.frame.size.height))];
         //[self.advancedOptions setFrame:CGRectMake(0, self.imageButton.frame.origin.y+self.imageButton.frame.size.height+5, self.background.frame.size.width, self.createEventButton.frame.origin.y - (self.imageButton.frame.origin.y+self.imageButton.frame.size.height))];
         [self.advancedOptions setBackgroundColor:[UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:0.98f]];
         [self.advancedOptions.maxAttendeesLabel setAlpha:1.0];
@@ -332,7 +322,7 @@
 
 -(void)collapseAdvancedOptions{
     [UIView animateWithDuration:0.8f animations:^{
-        [self.advancedOptions setFrame:CGRectMake(0, self.eventNewCanvas.createEventButton.frame.origin.y-30, self.eventNewCanvas.frame.size.width, 30)];
+        [self.advancedOptions setFrame:CGRectMake(0, self.eventNewCanvas.createEvent.frame.origin.y-30, self.eventNewCanvas.frame.size.width, 30)];
         [self.advancedOptions setBackgroundColor:[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:0.9f]];
         [self.advancedOptions.maxAttendeesLabel setAlpha:0.9f];
         } completion:^(BOOL finished) {

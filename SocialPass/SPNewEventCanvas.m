@@ -21,7 +21,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
         [self setupSubviews];
         [self setupCharacteristics];
         [self setupConstraints];
@@ -32,28 +31,20 @@
 -(void)setupSubviews{
     [self setClipsToBounds:YES];
     
-    //Cover Photo
-    self.imageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.imageLabel = [UILabel new];
-    
-    //Description
-    self.descriptionLabel = [UILabel new];
+    self.coverPhoto = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.coverPhotoHeader = [UILabel new];
+    self.descriptionHeader = [UILabel new];
     self.descriptionTF = [UITextField new];
-    
-    //Times
     self.startTime = [UITextField new];
     self.endTime = [UITextField new];
     self.toLabel = [UILabel new];
     self.timeLabel = [UILabel new];
-    
-    //Create Button
-    self.createEventButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    
+    self.createEvent = [UIButton buttonWithType:UIButtonTypeCustom];
     self.keyboard = [TPKeyboardAvoidingScrollView new];
     
-    [self.keyboard addSubview:self.imageButton];
-    [self.keyboard addSubview:self.imageLabel];
-    [self.keyboard addSubview:self.descriptionLabel];
+    [self.keyboard addSubview:self.coverPhoto];
+    [self.keyboard addSubview:self.coverPhotoHeader];
+    [self.keyboard addSubview:self.descriptionHeader];
     [self.keyboard addSubview:self.descriptionTF];
     [self.keyboard addSubview:self.startTime];
     [self.keyboard addSubview:self.endTime];
@@ -61,41 +52,34 @@
     [self.keyboard addSubview:self.timeLabel];
     
     [self addSubview:self.keyboard];
-    [self addSubview:self.createEventButton];
+    [self addSubview:self.createEvent];
 }
 
 -(void)setupCharacteristics{
     self.backgroundColor = [UIColor SPGray];
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-    //Cover photo header
-    self.imageLabel.text = @"Event Cover Photo";
-    [self.imageLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
-    self.imageLabel.textAlignment = NSTextAlignmentCenter;
-    [self.imageLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    self.coverPhotoHeader.text = @"Event Cover Photo";
+    [self.coverPhotoHeader setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
+    self.coverPhotoHeader.textAlignment = NSTextAlignmentCenter;
+    [self.coverPhotoHeader setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-    //Cover photo picker
-    [self.imageButton setTitle:@"No Photo" forState:UIControlStateNormal];
-    [self.imageButton.titleLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:16.0f]];
-    [self.imageButton setBackgroundColor:[UIColor greenColor]];
-
-    [self.imageButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.coverPhoto setTitle:@"No Photo" forState:UIControlStateNormal];
+    [self.coverPhoto.titleLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:16.0f]];
+    [self.coverPhoto setBackgroundColor:[UIColor greenColor]];
+    [self.coverPhoto setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-    //Description header
-    self.descriptionLabel.text = @"What do you want to do?";
-    [self.descriptionLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
-    self.descriptionLabel.textAlignment = NSTextAlignmentCenter;
-    [self.descriptionLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    self.descriptionHeader.text = @"What do you want to do?";
+    [self.descriptionHeader setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
+    self.descriptionHeader.textAlignment = NSTextAlignmentCenter;
+    [self.descriptionHeader setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-    
-    //Description
     [self.descriptionTF setPlaceholder:@"Description"];
     [self.descriptionTF setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
     [self.descriptionTF setBackgroundColor:[UIColor whiteColor]];
     [self.descriptionTF setBorderStyle:UITextBorderStyleRoundedRect];
     [self.descriptionTF setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-    //Times
     [self.startTime setPlaceholder:@"Start Time"];
     [self.startTime setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
     [self.startTime setBackgroundColor:[UIColor whiteColor]];
@@ -118,28 +102,26 @@
     self.toLabel.textAlignment = NSTextAlignmentCenter;
     [self.toLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-    //Create Button
-    [self.createEventButton setBackgroundColor:[UIColor colorWithRed:206.0/255.0 green:206.0/255.0 blue:206.0/255.0 alpha:1.0]];
-    [self.createEventButton setTitle:@"Create Event" forState:UIControlStateNormal];
-    [self.createEventButton.titleLabel setFont:[UIFont fontWithName:@"Avenir-Medium" size:19.0f]];
-    [self.createEventButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.createEventButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.createEvent setBackgroundColor:[UIColor colorWithRed:206.0/255.0 green:206.0/255.0 blue:206.0/255.0 alpha:1.0]];
+    [self.createEvent setTitle:@"Create Event" forState:UIControlStateNormal];
+    [self.createEvent.titleLabel setFont:[UIFont fontWithName:@"Avenir-Medium" size:19.0f]];
+    [self.createEvent setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.createEvent setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-    //Keyboard
     [self.keyboard setTranslatesAutoresizingMaskIntoConstraints:NO];
 
 }
 
 -(void)setupConstraints{
-    UIView *imageLabel = self.imageLabel;
-    UIView *eventPhoto = self.imageButton;
-    UIView *descLabel = self.descriptionLabel;
+    UIView *imageLabel = self.coverPhotoHeader;
+    UIView *eventPhoto = self.coverPhoto;
+    UIView *descLabel = self.descriptionHeader;
     UIView *desc = self.descriptionTF;
     UIView *start = self.startTime;
     UIView *end = self.endTime;
     UIView *to = self.toLabel;
     UIView *timeLabel = self.timeLabel;
-    UIView *createEvent = self.createEventButton;
+    UIView *createEvent = self.createEvent;
     
     UIView *keyboard = self.keyboard;
 

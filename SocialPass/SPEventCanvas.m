@@ -40,12 +40,23 @@
 
 
 -(void)setupCharacteristics{
-    //Background Canvas
+    [self setupBackground];
+    [self setupSkipButton];
+    [self setupJoinButton];
+    [self setupEventPhoto];
+    [self setupEventDescr];
+    [self setupEventOrganizer];
+    [self setupEventTime];
+    [self setupEventAttendees];
+}
+
+-(void)setupBackground{
     self.backgroundColor = [UIColor SPGray];
     [self.layer setCornerRadius:3];
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    //Skip Button
+}
+
+-(void)setupSkipButton{
     self.skipButton.backgroundColor = [UIColor SPSkipRed];
     [self.skipButton setTitle:@"SKIP" forState:UIControlStateNormal];
     [self.skipButton.titleLabel setFont:[UIFont fontWithName:@"Avenir-Medium" size:20.0f]];
@@ -53,8 +64,9 @@
     self.skipButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.skipButton.layer setCornerRadius:3];
     [self.skipButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    //Joing Button
+}
+
+-(void)setupJoinButton{
     self.joinButton.backgroundColor = [UIColor SPJoinGreen];
     [self.joinButton setTitle:@"JOIN" forState:UIControlStateNormal];
     [self.joinButton.titleLabel setFont:[UIFont fontWithName:@"Avenir-Medium" size:20.0f]];
@@ -62,42 +74,46 @@
     self.joinButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.joinButton.layer setCornerRadius:3];
     [self.joinButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    //Photo
+}
+
+-(void)setupEventPhoto{
     self.eventPhoto.backgroundColor = [UIColor whiteColor];
     self.eventPhoto.alpha = 1.0;
     [self.eventPhoto.layer setCornerRadius:3];
     [self.eventPhoto setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    //Description
+}
+
+-(void)setupEventDescr{
     //self.eventDesc.text = @"Drinks at Treehouse";
     [self.eventDesc setFont:[UIFont fontWithName:@"Avenir-Light" size:17.0]];
     self.eventDesc.textColor = [UIColor blackColor];
     self.eventDesc.textAlignment = NSTextAlignmentCenter;
     [self.eventDesc setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    //Organizer
+}
+
+-(void)setupEventOrganizer{
     //self.eventOrganizer.text = @"Alex Athan";
     [self.eventOrganizer setFont:[UIFont fontWithName:@"Avenir-LightOblique" size:13.0]];
     self.eventOrganizer.textColor = [UIColor blackColor];
     self.eventOrganizer.textAlignment = NSTextAlignmentCenter;
     [self.eventOrganizer setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    //Time
+}
+
+-(void)setupEventTime{
     //self.eventTime.text = @"Today from 4:00PM to 11:00PM";
     [self.eventTime setFont:[UIFont fontWithName:@"Avenir-Light" size:17.0]];
     self.eventTime.textColor = [UIColor blackColor];
     self.eventTime.textAlignment = NSTextAlignmentCenter;
     [self.eventTime setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    //Attendees
+}
+
+-(void)setupEventAttendees{
     //self.attendees.text = @"Attendees: 25 (20 Mutual)";
     [self.attendees setFont:[UIFont fontWithName:@"Avenir-Light" size:17.0]];
     self.attendees.textColor = [UIColor blackColor];
     self.attendees.textAlignment = NSTextAlignmentCenter;
     [self.attendees setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
-
 -(void)setupConstraints{
     UIView *eventPhoto = self.eventPhoto;
     UIView *skipButton = self.skipButton;
@@ -106,8 +122,6 @@
     UIView *eventOrg = self.eventOrganizer;
     UIView *eventTime = self.eventTime;
     UIView *attendees = self.attendees;
-    
-    //Constraints for event information
     
     NSDictionary *views = NSDictionaryOfVariableBindings(eventPhoto, skipButton, joinButton, eventDesc, eventOrg, eventTime, attendees);
     
@@ -126,7 +140,6 @@
     //Align buttons (side-by-side)
     constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[skipButton]-[joinButton(==skipButton)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
     
-    //Add constraints to their views
     [self addConstraints:constraints];
 
 }

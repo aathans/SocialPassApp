@@ -17,9 +17,7 @@
         
         self.backgroundColor = [UIColor clearColor];
         self.layer.contents = (id)[UIImage imageNamed:@"ShadowLayer"].CGImage;
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        // Initialization code
+        self.selectionStyle = UITableViewCellSelectionStyleNone;        
         self.contentView.backgroundColor = [UIColor clearColor];
         
         self.backgroundLayerView = [[UIView alloc] initWithFrame:CGRectMake(3,0,270,65)];

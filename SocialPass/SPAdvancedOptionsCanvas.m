@@ -14,7 +14,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
         [self setupSubviews];
         [self setupCharacteristics];
         [self setupConstraints];
@@ -38,17 +37,15 @@
 }
 
 -(void)setupCharacteristics{
-    //Advanced Label
+    [self setBackgroundColor:[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:0.9]];
+    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
     [self.advancedLabel setText:@"Advanced Options"];
     [self.advancedLabel setTextAlignment:NSTextAlignmentCenter];
     [self.advancedLabel setBackgroundColor:[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0]];
     [self.advancedLabel setTextColor:[UIColor blackColor]];
     [self.advancedLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
     [self.advancedLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    //Advanced Options View
-    [self setBackgroundColor:[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:0.9]];
-    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self.maxAttendeesLabel setFrame:CGRectMake(10, 60, 165, 40)];
     [self.maxAttendeesLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:16.0]];
@@ -81,13 +78,10 @@
     
     NSDictionary *views = NSDictionaryOfVariableBindings(advancedLabel);
     
-    //Alternate Constraints
     NSArray *advancedConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[advancedLabel]|" options:0 metrics:nil views:views];
     advancedConstraints = [advancedConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[advancedLabel(30)]" options:0 metrics:nil views:views]];
     
     [self addConstraints:advancedConstraints];
-    
-    
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{

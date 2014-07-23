@@ -17,8 +17,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        
         self.numAttendeeFormatter = [NSNumberFormatter new];
         self.minAttendees = [NSNumber numberWithInt:2];
         self.maxAttendees = [NSNumber numberWithInt:500];

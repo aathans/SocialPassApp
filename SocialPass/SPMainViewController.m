@@ -21,11 +21,9 @@
 @property (nonatomic) UICollectionView *attendeePhotos;
 @property (nonatomic) UILabel *header;
 @property (nonatomic) UIButton *addEventbutton;
-
 @property (nonatomic) NSMutableArray *profiles;
 @property (nonatomic) NSUInteger indexCount;
 @property (nonatomic) BOOL didCreateNewEvent;
-
 @property (nonatomic, strong) SPTransitionManager *transitionManager;
 
 @end
@@ -85,37 +83,12 @@
             self.events = [[NSMutableArray alloc] initWithArray:objects];
             NSLog(@"Retrieved %lu", (unsigned long)[self.events count]);
             
-            if([self.events count] == 0){
+            if([self areEvents]){
+                PFObject *SPEvent = [self.events objectAtIndex:self.indexCount];
+                [self setupEvent:SPEvent];
+            }else{
                 NSLog(@"Retrieved none");
                 return;
-            }
-            
-            PFObject *SPEvent = [self.events objectAtIndex:self.indexCount];
-            if(SPEvent != nil){
-                PFFile *eventPhoto = [SPEvent objectForKey:@"EventPhoto"];
-                NSURL *imageFileURL = [[NSURL alloc] initWithString:eventPhoto.url];
-                NSData *imageData = [NSData dataWithContentsOfURL:imageFileURL];
-                self.eventCanvas.eventPhoto.image = [UIImage imageWithData:imageData];
-                
-                self.eventCanvas.eventDesc.text = [SPEvent objectForKey:@"Description"];
-                self.eventCanvas.eventOrganizer.text = [NSString stringWithFormat:@"%@",[SPEvent objectForKey:@"organizerName"]];
-                self.eventCanvas.attendees.text = [NSString stringWithFormat:@"Attendees: %@", [SPEvent objectForKey:@"NumAttendees"]];
-                
-                NSDate *startTime = [SPEvent objectForKey:@"StartTime"];
-                NSDate *endTime = nil;
-                if(![[SPEvent objectForKey:@"EndTime"] isEqual:[NSNull null]]){
-                    endTime = [SPEvent objectForKey:@"EndTime"];
-                }
-                NSDateFormatter *dateFormatter = [NSDateFormatter new];
-                [dateFormatter setDateFormat:@"hh:mm a"];
-                if((endTime != nil) && !([startTime isEqualToDate:endTime])){
-                    NSLog(@"End Time found");
-                    self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today from %@ to %@", [dateFormatter stringFromDate:startTime], [dateFormatter stringFromDate:endTime]];
-                }else{
-                    NSLog(@"Start time only");
-                    self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today at %@",[dateFormatter stringFromDate:startTime]];
-                }
-                
             }
         }
     }];
@@ -182,81 +155,88 @@
 }
 
 - (void)skipButtonPressed:(id)sender {
-    [self skipEvent];
+    [self moveToNextEvent];
 }
 
--(void)skipEvent{
+-(void)moveToNextEvent{
     
-    if([self.events count] == 0){
-        NSLog(@"There are currently no events");
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No more events." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alertView show];
-        self.eventCanvas.eventPhoto.image = nil;
-        self.eventCanvas.eventDesc.text = nil;
-        self.eventCanvas.eventOrganizer.text = nil;
-        self.eventCanvas.eventTime.text = nil;
-        self.eventCanvas.attendees.text = nil;
+    if([self areEvents]){
         
-        return;
-    }
-    
-    self.indexCount++;
-    
-    if(self.indexCount >= [self.events count]){
-        NSLog(@"Reached end of events");
+        self.indexCount++;
         
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No more events." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alertView show];
-        self.indexCount = 0;
-        if([self.events count] == 1){
-            return;
+        if(self.indexCount >= [self.events count]){
+            NSLog(@"Reached end of events");
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No more events." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
+            self.indexCount = 0;
+            if([self.events count] == 1){
+                return;
+            }
         }
+        
+        PFObject *SPEvent = [self.events objectAtIndex:self.indexCount];
+        
+        if(SPEvent != nil){
+            [self setupEvent:SPEvent];
+        }
+    } else {
+        [self makeEventVariablesNil];
+    }
+}
+
+-(void)setupEvent:(PFObject *)SPEvent{
+    PFFile *eventPhoto = [SPEvent objectForKey:@"EventPhoto"];
+    NSURL *imageFileURL = [[NSURL alloc] initWithString:eventPhoto.url];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageFileURL];
+    self.eventCanvas.eventPhoto.image = [UIImage imageWithData:imageData];
+    self.eventCanvas.eventDesc.text = [SPEvent objectForKey:@"Description"];
+    self.eventCanvas.eventOrganizer.text = [NSString stringWithFormat:@"%@",[SPEvent objectForKey:@"organizerName"]];
+    self.eventCanvas.attendees.text = [NSString stringWithFormat:@"Attendees: %@", [SPEvent objectForKey:@"NumAttendees"]];
+    
+    NSDate *startTime = [SPEvent objectForKey:@"StartTime"];
+    NSDate *endTime = nil;
+    if(![[SPEvent objectForKey:@"EndTime"] isEqual:[NSNull null]]){
+        endTime = [SPEvent objectForKey:@"EndTime"];
+    }
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    [dateFormatter setDateFormat:@"hh:mm a"];
+    if((endTime != nil) && !([startTime isEqualToDate:endTime])){
+        NSLog(@"End Time found");
+        self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today from %@ to %@", [dateFormatter stringFromDate:startTime], [dateFormatter stringFromDate:endTime]];
+    }else{
+        NSLog(@"Start time only");
+        self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today at %@",[dateFormatter stringFromDate:startTime]];
     }
 
-    PFObject *SPEvent = [self.events objectAtIndex:self.indexCount];
-    
-    if(SPEvent != nil){
-        PFFile *eventPhoto = [SPEvent objectForKey:@"EventPhoto"];
-        NSURL *imageFileURL = [[NSURL alloc] initWithString:eventPhoto.url];
-        NSData *imageData = [NSData dataWithContentsOfURL:imageFileURL];
-        self.eventCanvas.eventPhoto.image = [UIImage imageWithData:imageData];
-        self.eventCanvas.eventDesc.text = [SPEvent objectForKey:@"Description"];
-        self.eventCanvas.eventOrganizer.text = [NSString stringWithFormat:@"%@",[SPEvent objectForKey:@"organizerName"]];
-        self.eventCanvas.attendees.text = [NSString stringWithFormat:@"Attendees: %@", [SPEvent objectForKey:@"NumAttendees"]];
-
-        NSDate *startTime = [SPEvent objectForKey:@"StartTime"];
-        NSDate *endTime = nil;
-        if(![[SPEvent objectForKey:@"EndTime"] isEqual:[NSNull null]]){
-            endTime = [SPEvent objectForKey:@"EndTime"];
-        }
-        NSDateFormatter *dateFormatter = [NSDateFormatter new];
-        [dateFormatter setDateFormat:@"hh:mm a"];
-        if((endTime != nil) && !([startTime isEqualToDate:endTime])){
-            NSLog(@"End Time found");
-            self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today from %@ to %@", [dateFormatter stringFromDate:startTime], [dateFormatter stringFromDate:endTime]];
-        }else{
-            NSLog(@"Start time only");
-            self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today at %@",[dateFormatter stringFromDate:startTime]];
-        }
-        
-    }
 }
 
 -(void)joinButtonPressed:(id)sender{
     
-    if([self.events count] == 0){
-        NSLog(@"There are currently no events");
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No more events." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alertView show];
-        self.eventCanvas.eventPhoto.image = nil;
-        self.eventCanvas.eventDesc.text = nil;
-        self.eventCanvas.eventOrganizer.text = nil;
-        self.eventCanvas.eventTime.text = nil;
-        self.eventCanvas.attendees.text = nil;
-        
-        return;
+    if([self areEvents] == NO){
+        [self makeEventVariablesNil];
+    } else {
+        [self joinEvent];
+        [self moveToNextEvent];
     }
-    
+}
+
+-(BOOL)areEvents{
+    return ([self.events count] == 0) ? YES:NO;
+}
+
+-(void)makeEventVariablesNil{
+    NSLog(@"There are currently no events");
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No more events." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
+    self.eventCanvas.eventPhoto.image = nil;
+    self.eventCanvas.eventDesc.text = nil;
+    self.eventCanvas.eventOrganizer.text = nil;
+    self.eventCanvas.eventTime.text = nil;
+    self.eventCanvas.attendees.text = nil;
+}
+
+-(void)joinEvent{
     PFObject *event = [self.events objectAtIndex:self.indexCount];
     NSNumber *numAttendees = [event objectForKey:@"NumAttendees"];
     NSNumber *maxAttendees = [event objectForKey:@"MaxAttendees"];
@@ -283,9 +263,7 @@
         }
     }
     
-    [self skipEvent];
 }
-
 #pragma mark - UIViewControllerTransitioningDelegate
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
