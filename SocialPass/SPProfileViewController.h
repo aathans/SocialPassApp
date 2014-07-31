@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SPProfileViewController : UIViewController
+@interface SPProfileViewController : UIViewController <UIViewControllerTransitioningDelegate>
 
 @property (nonatomic) UITableView *eventFeed;
 

@@ -43,15 +43,21 @@
     NSString *description = [event objectForKey:@"Description"];
     NSDate *startTime = [event objectForKey:@"StartTime"];
     NSDate *endTime = nil;
+    NSString *eventID = [event objectId];
+    cell.eventID = eventID;
+    
+    NSLog(@"EVENT GOT: %@", cell.eventID);
     
     if(![[event objectForKey:@"EndTime"] isEqual:[NSNull null]]){
         endTime = [event objectForKey:@"EndTime"];
     }
     
     NSLog(@"%@", description);
+    
     NSString *text = nil;
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     [dateFormatter setDateFormat:@"hh:mm a"];
+    
     if(endTime != nil){
         text = [NSString stringWithFormat:@"%@ from %@ to %@", description, [dateFormatter stringFromDate:startTime], [dateFormatter stringFromDate:endTime]];
     }else{
@@ -69,27 +75,9 @@
     return 1;
 }
 
-- (void)configureFeedFetch
-{
-    PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
-    [eventQuery whereKey:@"AttendeeList" equalTo:[PFUser currentUser].objectId];
-    [eventQuery orderByAscending:@"StartTime"];
-    //[eventQuery orderByAscending:@"StartTime"];
- //   [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-   //     self.events = [[NSMutableArray alloc] initWithArray:objects];
-   // }];
-    
-    self.events = [[NSMutableArray alloc] initWithArray:[eventQuery findObjects]];
-}
-
-- (void)fetchFeedForTable:(UITableView *)table
-{
-    [self configureFeedFetch];
-    NSLog(@"Configuring Feed");
-}
-
 -(void)fetchFeedForTableInBackground:(UITableView *)table{
     PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
+    eventQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [eventQuery whereKey:@"AttendeeList" equalTo:[PFUser currentUser].objectId];
     [eventQuery orderByAscending:@"StartTime"];
        [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {

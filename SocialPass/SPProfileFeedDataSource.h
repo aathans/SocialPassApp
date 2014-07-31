@@ -12,7 +12,6 @@
 
 @property (nonatomic) NSMutableArray *events;
 
-- (void)fetchFeedForTable:(UITableView *)table;
 - (void)fetchFeedForTableInBackground:(UITableView *)table;
 
 @end

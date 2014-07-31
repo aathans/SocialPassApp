@@ -23,6 +23,7 @@
 		FA1D740A197DCB9C005ADF36 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1D7408197DCB9C005ADF36 /* Parse.framework */; };
 		FA1D740C197DCD7E005ADF36 /* SPMainViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA941A1B197DC7A40093479C /* SPMainViewControllerTests.m */; };
 		FA1D7412197F397F005ADF36 /* SPAdvancedOptionsAttendeeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1D7411197F397F005ADF36 /* SPAdvancedOptionsAttendeeTextField.m */; };
+		FA1D7414198098BC005ADF36 /* BackgroundImage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA1D7413198098BC005ADF36 /* BackgroundImage@2x.jpg */; };
 		FA284C41195CCAD900A09AF9 /* SPFriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA284C40195CCAD900A09AF9 /* SPFriendsTableViewCell.m */; };
 		FA284C46195CD8D400A09AF9 /* UIColor+themeColors.m in Sources */ = {isa = PBXBuildFile; fileRef = FA284C45195CD8D400A09AF9 /* UIColor+themeColors.m */; };
 		FA284C51195CF36D00A09AF9 /* SPProfileFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA284C50195CF36D00A09AF9 /* SPProfileFeedDataSource.m */; };
@@ -96,6 +97,7 @@
 		FA1D7408197DCB9C005ADF36 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = SocialPass/Parse.framework; sourceTree = "<group>"; };
 		FA1D7410197F397F005ADF36 /* SPAdvancedOptionsAttendeeTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAdvancedOptionsAttendeeTextField.h; sourceTree = "<group>"; };
 		FA1D7411197F397F005ADF36 /* SPAdvancedOptionsAttendeeTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAdvancedOptionsAttendeeTextField.m; sourceTree = "<group>"; };
+		FA1D7413198098BC005ADF36 /* BackgroundImage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "BackgroundImage@2x.jpg"; sourceTree = "<group>"; };
 		FA284C3F195CCAD900A09AF9 /* SPFriendsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFriendsTableViewCell.h; sourceTree = "<group>"; };
 		FA284C40195CCAD900A09AF9 /* SPFriendsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFriendsTableViewCell.m; sourceTree = "<group>"; };
 		FA284C44195CD8D400A09AF9 /* UIColor+themeColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+themeColors.h"; sourceTree = "<group>"; };
@@ -292,6 +294,18 @@
 			name = "Transition Animations";
 			sourceTree = "<group>";
 		};
+		FA6BD2881988766E00043C1B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FA1D7413198098BC005ADF36 /* BackgroundImage@2x.jpg */,
+				FA3ADA06196DFBB400E7795C /* SocialPassLaunchImage@2x.png */,
+				FA3ADA04196DFAAE00E7795C /* SocialPassLaunchImage.png */,
+				FA3ADA02196DF15500E7795C /* SocialPassAppIcon.png */,
+				FA3ADA08196ED05700E7795C /* SocialPassAppIconV2.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		FAA8D96319578AEE0090C4ED = {
 			isa = PBXGroup;
 			children = (
@@ -342,10 +356,7 @@
 				FA4A5A95195AAADE00C016EC /* Profile */,
 				FAA8D9CC1958DF100090C4ED /* Event Details */,
 				FAA8D98619578AEF0090C4ED /* Images.xcassets */,
-				FA3ADA06196DFBB400E7795C /* SocialPassLaunchImage@2x.png */,
-				FA3ADA04196DFAAE00E7795C /* SocialPassLaunchImage.png */,
-				FA3ADA02196DF15500E7795C /* SocialPassAppIcon.png */,
-				FA3ADA08196ED05700E7795C /* SocialPassAppIconV2.png */,
+				FA6BD2881988766E00043C1B /* Resources */,
 				FAA8D9C81957C3B50090C4ED /* Keyboard */,
 				FA4A5A99195B71CA00C016EC /* Transition Animations */,
 				FA284C47195CD8DC00A09AF9 /* SPColors */,
@@ -546,6 +557,7 @@
 				FA3ADA03196DF15500E7795C /* SocialPassAppIcon.png in Resources */,
 				FAA8D97C19578AEF0090C4ED /* InfoPlist.strings in Resources */,
 				FA3ADA07196DFBB400E7795C /* SocialPassLaunchImage@2x.png in Resources */,
+				FA1D7414198098BC005ADF36 /* BackgroundImage@2x.jpg in Resources */,
 				FAA8D98719578AEF0090C4ED /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,8 +12,7 @@
 @implementation SPFriendsTableDataSource
 
 
--(id)init
-{
+-(id)init{
     self = [super init];
     if (self) {
         
@@ -26,8 +25,8 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     NSString *cellID1=@"CellOne";
     
     SPFriendsTableViewCell *cell = nil;

@@ -10,8 +10,7 @@
 
 @implementation SPEventDetailView
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
@@ -66,7 +65,19 @@
 }
 
 -(void)setupConstraints{
+    UIView *eventName = self.eventName;
+    UIView *eventOrganizer = _eventOrganizer;
+    UIView *eventTime = _eventTime;
+    UIView *eventAttendees = _eventAttendees;
+    //UIView *eventPhoto = _eventPhoto;
     
+    NSDictionary *views = NSDictionaryOfVariableBindings(eventName, eventOrganizer, eventTime, eventAttendees);
+    
+    NSArray *eventConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[eventName]|" options:0 metrics:nil views:views];
+    eventConstraints = [eventConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[eventName]-[eventOrganizer]-[eventTime]-[eventAttendees]" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
+    
+    
+    [self addConstraints:eventConstraints];
 }
 
 @end

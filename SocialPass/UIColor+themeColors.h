@@ -11,6 +11,7 @@
 @interface UIColor (themeColors)
 
 +(UIColor *)SPGray;
++(UIColor *)SPLightGray;
 +(UIColor *)SPGraySelected;
 +(UIColor *)SPSkipRed;
 +(UIColor *)SPJoinGreen;

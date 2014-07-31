@@ -68,8 +68,6 @@
     [self.advancedOptions.advancedLabel addGestureRecognizer:advancedOptionsTap];
 }
 
-
-
 #pragma mark - setup methods
 
 -(void)setCharacteristics{
@@ -176,6 +174,14 @@
     [self.currentTextField resignFirstResponder];
 }
 
+#pragma mark - cancel button
+
+- (void)cancelButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
 #pragma mark - create event button 
 
 - (void)createEventPressed:(id)sender {
@@ -201,7 +207,7 @@
         NSDate *startTime = [dateFormatter dateFromString:self.eventNewCanvas.startTime.text];
         NSDate *endTime = [dateFormatter dateFromString:self.eventNewCanvas.endTime.text];
         //Set event photo
-        NSData *eventPhotoData = UIImageJPEGRepresentation(self.pickedImage, 0.8);
+        NSData *eventPhotoData = UIImageJPEGRepresentation(self.pickedImage, 0.2);
         PFFile *eventPhoto = [PFFile fileWithData:eventPhotoData];
         PFObject *event = [PFObject objectWithClassName:@"Event"];
         
@@ -288,7 +294,6 @@
     _pickedImage = pickedImage;
     if(_pickedImage == nil){
     }else{
-        NSLog(@"Setting photo");
         [self.eventNewCanvas.coverPhoto setImage:pickedImage forState:UIControlStateNormal];
     }
 }
@@ -298,14 +303,6 @@
     }else{
         [self promptForPhotoRoll];
     }
-}
-
-#pragma mark - cancel button
-
-- (void)cancelButton:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
 }
 
 #pragma mark - Advanced options
@@ -330,7 +327,6 @@
 }
 
 -(void)advancedOptionsTapped:(id)sender{
-    NSLog(@"DID TAP ADVANCED");
     if(self.advancedIsOpen){
         [self collapseAdvancedOptions];
         self.advancedIsOpen = NO;

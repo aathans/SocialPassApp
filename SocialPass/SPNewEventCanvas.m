@@ -17,8 +17,7 @@
 
 @implementation SPNewEventCanvas
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
         [self setupSubviews];
@@ -64,7 +63,7 @@
     self.coverPhotoHeader.textAlignment = NSTextAlignmentCenter;
     [self.coverPhotoHeader setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-    [self.coverPhoto setTitle:@"No Photo" forState:UIControlStateNormal];
+    [self.coverPhoto setTitle:@"Choose Photo" forState:UIControlStateNormal];
     [self.coverPhoto.titleLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:16.0f]];
     [self.coverPhoto setBackgroundColor:[UIColor greenColor]];
     [self.coverPhoto setTranslatesAutoresizingMaskIntoConstraints:NO];

@@ -36,30 +36,20 @@
 
     [self setViewControllers:@[_pages[1]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished) {
     }];
-
-    
-    
 }
 
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    // Do any additional setup after loading the view.
+    
     PFUser *currentUser = [PFUser currentUser];
     if(!currentUser){
         SPLoginViewController *loginViewController = [[SPLoginViewController alloc] init];
         
         [self presentViewController:loginViewController animated:NO completion:^{
-            
         }];
     }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)setupPages {
@@ -77,11 +67,14 @@
     if (nil == viewController) {
         return _pages[0];
     }
+    
     NSInteger idx = [_pages indexOfObject:viewController];
     NSParameterAssert(idx != NSNotFound);
+    
     if (idx >= [_pages count] - 1) {
         return nil;
     }
+    
     return _pages[idx + 1];
 }
 
@@ -89,11 +82,14 @@
     if (nil == viewController) {
         return _pages[0];
     }
+    
     NSInteger idx = [_pages indexOfObject:viewController];
     NSParameterAssert(idx != NSNotFound);
+    
     if (idx <= 0) {
         return nil;
     }
+    
     return _pages[idx - 1];
 }
 

@@ -10,8 +10,7 @@
 
 @implementation SPFriendsTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
@@ -42,8 +41,7 @@
     return self;
 }
 
--(UIView *)createProfilePictureBox
-{
+-(UIView *)createProfilePictureBox{
     UIView *whiteRoundedProfileView = [[UIView alloc] initWithFrame:CGRectMake(210, 0, 65, 65)];
     whiteRoundedProfileView.backgroundColor = [UIColor colorWithRed:170.0/255.0 green:170.0/255.0 blue:170.0/255.0 alpha:0.13];
     [whiteRoundedProfileView.layer setCornerRadius:3];
@@ -51,14 +49,12 @@
     return whiteRoundedProfileView;
 }
 
--(void)addProfilePictureBoxToBack:(UIView *)profilePictureBoxView
-{
+-(void)addProfilePictureBoxToBack:(UIView *)profilePictureBoxView{
     [self.contentView addSubview:profilePictureBoxView];
     [self.contentView sendSubviewToBack:profilePictureBoxView];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated{
     [super setSelected:selected animated:animated];
 }
 

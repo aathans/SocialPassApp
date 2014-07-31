@@ -12,5 +12,6 @@
 
 @property (nonatomic) UIView *backgroundLayerView;
 @property (nonatomic) UILabel *contentText;
+@property (nonatomic) NSString *eventID;
 
 @end

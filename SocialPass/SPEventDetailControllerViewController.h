@@ -10,4 +10,6 @@
 
 @interface SPEventDetailControllerViewController : UIViewController
 
+@property (nonatomic)NSString *eventID;
+
 @end

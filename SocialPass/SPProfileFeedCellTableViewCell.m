@@ -15,6 +15,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
+        //self.eventID = [NSString new];
+        
         self.backgroundColor = [UIColor clearColor];
         self.layer.contents = (id)[UIImage imageNamed:@"ShadowLayer"].CGImage;
         self.selectionStyle = UITableViewCellSelectionStyleNone;        

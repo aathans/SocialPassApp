@@ -10,6 +10,8 @@
 #import "SPProfileFeedDataSource.h"
 #import "SPProfileFeedCellTableViewCell.h"
 #import "SPLoginViewController.h"
+#import "SPTransitionManager.h"
+#import "SPEventDetailControllerViewController.h"
 
 @interface SPProfileViewController () <UITableViewDelegate,UINavigationControllerDelegate, NSURLConnectionDelegate>
 
@@ -17,17 +19,18 @@
 @property (nonatomic) UIImageView *profilePicture;
 @property (nonatomic) UILabel *name;
 @property (nonatomic) UILabel *header;
+@property (nonatomic) UILabel *headerTitle;
 @property (nonatomic) SPProfileFeedDataSource *profileDataSource;
 @property (nonatomic) UIButton *logoutButton;
 @property (nonatomic) NSMutableData *imageData;
+@property (nonatomic, strong) SPTransitionManager *transitionManager;
 
 @end
 
 @implementation SPProfileViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (id)init{
+    self = [super init];
     if (self) {
         self.profileDataSource = [SPProfileFeedDataSource new];
     }
@@ -35,13 +38,15 @@
     return self;
 }
 
-- (void)loadView
-{
+- (void)loadView{
     [super loadView];
+    
+    self.transitionManager = [SPTransitionManager new];;
     self.background = [UIView new];
     self.profilePicture = [UIImageView new];
     self.name = [UILabel new];
     self.header = [UILabel new];
+    self.headerTitle = [UILabel new];
     self.logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
     self.eventFeed = [UITableView new];
@@ -52,17 +57,26 @@
     self.imageData = [[NSMutableData alloc] init];
     
     [self.view addSubview:self.header];
+    [self.header addSubview:self.headerTitle];
     [self.view addSubview:self.profilePicture];
     [self.view addSubview:self.name];
     [self.view addSubview:self.eventFeed];
     [self.view addSubview:self.logoutButton];
     
-    [self getFacebookInfo];
+    if([[PFUser currentUser] isNew]){
+        [self getFacebookInfo];
+    }
+    
     [self setupCharacteristics];
     [self setupConstraints];
-    [self.profileDataSource fetchFeedForTable:self.eventFeed];
-    
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.profileDataSource fetchFeedForTableInBackground:self.eventFeed];
+}
+
+#pragma mark - Facebook methods
 
 -(void)getFacebookInfo{
     FBRequest *request = [FBRequest requestForMe];
@@ -102,6 +116,7 @@
             [[PFUser currentUser] setObject:userProfile forKey:@"profile"];
             [[PFUser currentUser] saveInBackground];
             
+        
         } else if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"]
                     isEqualToString: @"OAuthException"]) {
             NSLog(@"The facebook session was invalidated");
@@ -156,7 +171,6 @@
     }
 }
 
-
 -(void)setupUsername{
     [self.name setFont:[UIFont fontWithName:@"Avenir-Medium" size:18.0f]];
     [self.name setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -167,19 +181,29 @@
     [self.profilePicture setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
+#pragma mark - Event information
+
 -(void)setupEventFeed{
     self.eventFeed.backgroundColor = [UIColor clearColor];
     [self.eventFeed setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.eventFeed setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.profileDataSource fetchFeedForTableInBackground:self.eventFeed];
 }
 
+#pragma mark - Header
+
 -(void)setupHeader{
-    self.header.text = @"Profile";
-    [self.header setTextAlignment:NSTextAlignmentCenter];
     [self.header setBackgroundColor:[UIColor clearColor]];
-    [self.header setFont:[UIFont fontWithName:@"Avenir-Light" size:18.0f]];
     [self.header setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [self.headerTitle setBackgroundColor:[UIColor clearColor]];
+    [self.headerTitle setText:@"Profile"];
+    [self.headerTitle setTextAlignment:NSTextAlignmentCenter];
+    [self.headerTitle setFont:[UIFont fontWithName:@"Avenir-Light" size:18]];
+    [self.headerTitle setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
+
+#pragma mark - Logout
 
 -(void)setupLogout{
     [self.logoutButton addTarget:self action:@selector(logoutPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -192,6 +216,18 @@
     [self.logoutButton setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
+-(void)logoutPressed:(id)sender{
+    [PFUser logOut];
+    SPLoginViewController *loginVC = [SPLoginViewController new];
+    
+    [self presentViewController:loginVC animated:NO completion:^{
+        
+    }];
+}
+
+#pragma mark - Constraints
+
+
 -(void)setupConstraints{
     
     UIView *background = self.background;
@@ -200,8 +236,11 @@
     UIView *name = self.name;
     UIView *header = self.header;
     UIView *logout = self.logoutButton;
+    UIView *headerTitle = self.headerTitle;
     
     NSDictionary *views = NSDictionaryOfVariableBindings(background, eventFeed, profilePicture, name, header, logout);
+    
+    NSDictionary *headerViews = NSDictionaryOfVariableBindings(headerTitle);
     
     NSArray *profileConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[eventFeed]-|" options:0 metrics:nil views:views];
     
@@ -209,20 +248,20 @@
     
     profileConstraints = [profileConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[logout(22)]" options:0 metrics:nil views:views]];
     
-    profileConstraints = [profileConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[header]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
+    profileConstraints = [profileConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[header]|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
     
     profileConstraints = [profileConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[profilePicture(60)]-[name(200)]" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
     
-    profileConstraints = [profileConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[header(22)]-5-[profilePicture(60)]-10-[eventFeed]-|" options:0 metrics:nil views:views]];
+    profileConstraints = [profileConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[header(47)]-5-[profilePicture(60)]-10-[eventFeed]-|" options:0 metrics:nil views:views]];
     
+    NSArray *headerConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[headerTitle]|" options:0 metrics:nil views:headerViews];
+    headerConstraints = [headerConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[headerTitle(32)]" options:0 metrics:nil views:headerViews]];
+    
+    [self.header addConstraints:headerConstraints];
     [self.view addConstraints:profileConstraints];
     
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.profileDataSource fetchFeedForTableInBackground:self.eventFeed];
-}
 
 #pragma mark - Table view delegate methods
 
@@ -230,15 +269,39 @@
     return 80.0f;
 }
 
-#pragma mark - Helper methods
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    SPProfileFeedCellTableViewCell *cell = (SPProfileFeedCellTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    NSLog(@"EVENT SENDING ID: %@", cell.eventID);
+    [self presentEventDetailsWithEventID:cell.eventID];
+}
 
--(void)logoutPressed:(id)sender{
-    [PFUser logOut];
-    SPLoginViewController *loginVC = [SPLoginViewController new];
+-(void)presentEventDetailsWithEventID:(NSString *)eventID{
+    SPEventDetailControllerViewController *newEventVC = [SPEventDetailControllerViewController new];
+    newEventVC.modalPresentationStyle = UIModalPresentationCustom;
+    newEventVC.transitioningDelegate = self;
+    NSLog(@"GIVING EVENT ID: %@", eventID);
+    newEventVC.eventID = eventID;
     
-    [self presentViewController:loginVC animated:NO completion:^{
+    [self presentViewController:newEventVC animated:YES completion:^{
         
     }];
+
+}
+
+#pragma mark - UIViewControllerTransitioningDelegate
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                   presentingController:(UIViewController *)presenting
+                                                                       sourceController:(UIViewController *)source{
+    NSLog(@"Transitioning to create an event");
+    self.transitionManager.transitionTo = MODAL; //Going from main to create event
+    return self.transitionManager;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
+    NSLog(@"Transitioning back to main page");
+    self.transitionManager.transitionTo = INITIAL; //Going from creating event back to main
+    return self.transitionManager;
 }
 
 @end

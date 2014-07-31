@@ -12,7 +12,6 @@
 
 -(id)init{
     self = [super initWithFrame:CGRectZero];
-    self.backgroundColor = [UIColor colorWithRed:184 green:184 blue:184 alpha:0.5];
     [self setupSubviews];
     [self setupCharacteristics];
     [self setupConstraints];
@@ -27,7 +26,6 @@
     self.eventOrganizer = [UILabel new];
     self.eventTime = [UILabel new];
     self.attendees = [UILabel new];
-    //self.attendeePhotos = [UICollectionView new];
     
     [self addSubview:self.eventPhoto];
     [self addSubview:self.eventDesc];
@@ -125,19 +123,14 @@
     
     NSDictionary *views = NSDictionaryOfVariableBindings(eventPhoto, skipButton, joinButton, eventDesc, eventOrg, eventTime, attendees);
     
-    //Photo width
     NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[eventPhoto]-|" options:0 metrics:nil views:views];
     
-    //Align all in center of canvas
     constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[eventPhoto(180)]-5-[eventDesc][eventOrg]-[eventTime][attendees]" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
     
-    //Position skip button
     constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[skipButton(50)]-10-|" options:0 metrics:nil views:views]];
     
-    //Position join button
     constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[joinButton(==skipButton)]" options:0 metrics:nil views:views]];
     
-    //Align buttons (side-by-side)
     constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[skipButton]-[joinButton(==skipButton)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
     
     [self addConstraints:constraints];

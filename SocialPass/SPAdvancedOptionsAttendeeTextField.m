@@ -13,8 +13,7 @@
 #define NUMBERS_ONLY @"1234567890"
 #define CHARACTER_LIMIT 3
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
         self.numAttendeeFormatter = [NSNumberFormatter new];

@@ -20,6 +20,7 @@
 @property (nonatomic) SPEventCanvas *eventCanvas;
 @property (nonatomic) UICollectionView *attendeePhotos;
 @property (nonatomic) UILabel *header;
+@property (nonatomic) UILabel *headerTitle;
 @property (nonatomic) UIButton *addEventbutton;
 @property (nonatomic) NSMutableArray *profiles;
 @property (nonatomic) NSUInteger indexCount;
@@ -30,9 +31,8 @@
 
 @implementation SPMainViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (id)init{
+    self = [super init];
     if (self) {
         self.indexCount = 0;
         self.didCreateNewEvent = NO;
@@ -46,9 +46,11 @@
     self.eventCanvas = [SPEventCanvas new];
     self.addEventbutton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.header = [UILabel new];
+    self.headerTitle = [UILabel new];
 
     [self.view addSubview:self.eventCanvas];
     [self.view addSubview:self.addEventbutton];
+    [self.header addSubview:self.headerTitle];
     [self.view addSubview:self.header];
     
     self.transitionManager = [SPTransitionManager new];
@@ -75,6 +77,7 @@
 
 -(void)setupEvents{
     PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
+    eventQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [eventQuery whereKey:@"AttendeeList" notEqualTo:[PFUser currentUser].objectId];
     [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error){
@@ -95,15 +98,24 @@
 }
 
 -(void)setupCharacteristics{
+//    UIGraphicsBeginImageContext(self.view.frame.size);
+//    [[UIImage imageNamed:@"BackgroundImage.jpg"] drawInRect:self.view.bounds];
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
     [self setupHeader];
 }
 
 -(void)setupHeader{
     self.header.backgroundColor = [UIColor clearColor];
-    [self.header setFont:[UIFont fontWithName:@"Avenir-Light" size:18]];
-    [self.header setText:@"SocialPass"];
-    [self.header setTextAlignment:NSTextAlignmentCenter];
     [self.header setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [self.headerTitle setBackgroundColor:[UIColor clearColor]];
+    [self.headerTitle setText:@"SocialPass"];
+    [self.headerTitle setTextAlignment:NSTextAlignmentCenter];
+    [self.headerTitle setFont:[UIFont fontWithName:@"Avenir-Light" size:18]];
+    [self.headerTitle setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
 -(void)setupButtons{
@@ -121,20 +133,24 @@
     UIView *background = self.eventCanvas;
     UIView *addEvent = self.addEventbutton;
     UIView *header = self.header;
+    UIView *headerTitle = self.headerTitle;
 
-    NSDictionary *headerView = NSDictionaryOfVariableBindings(header);
+    NSDictionary *titleView = NSDictionaryOfVariableBindings(headerTitle);
+    NSDictionary *views = NSDictionaryOfVariableBindings(background, header, addEvent);
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(background, addEvent);
+    NSArray *headerConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[header]|" options:0 metrics:nil views:views];
+    headerConstraints = [headerConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[header(47)]-5-[background]-|" options:0 metrics:nil views:views]];
     
-    NSArray *headerConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[header]-|" options:0 metrics:nil views:headerView];
-    headerConstraints = [headerConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[header(22)]" options:0 metrics:nil views:headerView]];
+    NSArray *titleConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[headerTitle]|" options:0 metrics:nil views:titleView];
+    titleConstraints = [titleConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[headerTitle(32)]" options:0 metrics:nil views:titleView]];
     
     NSArray *backgroundConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[background]-|" options:0 metrics:nil views:views];
     
-    backgroundConstraints = [backgroundConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[addEvent(22)]-5-[background]-|" options:0 metrics:nil views:views]];
+    backgroundConstraints = [backgroundConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[addEvent(22)]" options:0 metrics:nil views:views]];
     backgroundConstraints = [backgroundConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[addEvent(22)]-30-|" options:0 metrics:nil views:views]];
 
     [self.view addConstraints:headerConstraints];
+    [self.header addConstraints:titleConstraints];
     [self.view addConstraints:backgroundConstraints];
     
 }
@@ -222,7 +238,7 @@
 }
 
 -(BOOL)areEvents{
-    return ([self.events count] == 0) ? YES:NO;
+    return ([self.events count]) ? YES:NO;
 }
 
 -(void)makeEventVariablesNil{
@@ -241,8 +257,6 @@
     NSNumber *numAttendees = [event objectForKey:@"NumAttendees"];
     NSNumber *maxAttendees = [event objectForKey:@"MaxAttendees"];
     NSMutableArray *attendees = [event objectForKey:@"AttendeeList"];
-    
-    //NSUInteger joinedIndex = self.indexCount;
     
     if(event != nil){
         NSLog(@"Num Attendees: %@ Max Attendees: %@", numAttendees, maxAttendees);
@@ -264,6 +278,7 @@
     }
     
 }
+
 #pragma mark - UIViewControllerTransitioningDelegate
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
@@ -274,8 +289,7 @@
     return self.transitionManager;
 }
 
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
-{
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
     NSLog(@"Transitioning back to main page");
     self.transitionManager.transitionTo = INITIAL; //Going from creating event back to main
     return self.transitionManager;
