@@ -206,6 +206,7 @@
         [dateFormatter setDateFormat:@"hh:mm a"];
         NSDate *startTime = [dateFormatter dateFromString:self.eventNewCanvas.startTime.text];
         NSDate *endTime = [dateFormatter dateFromString:self.eventNewCanvas.endTime.text];
+        
         //Set event photo
         NSData *eventPhotoData = UIImageJPEGRepresentation(self.pickedImage, 0.2);
         PFFile *eventPhoto = [PFFile fileWithData:eventPhotoData];
@@ -214,9 +215,9 @@
         [event setObject:[PFUser currentUser].objectId forKey:@"OrganizerID"];
         [event setObject:attendeeList forKey:@"AttendeeList"];
         [event setObject:self.eventNewCanvas.descriptionTF.text forKey:@"Description"];
-        [event setObject:startTime forKey:@"StartTime"];
+        [event setObject:self.eventNewCanvas.startTime.text forKey:@"StartTime"];
         if(endTime != nil){
-            [event setObject:endTime forKey:@"EndTime"];
+            [event setObject:self.eventNewCanvas.endTime.text forKey:@"EndTime"];
         } else {
             [event setObject:[NSNull new] forKey:@"EndTime"];
         }

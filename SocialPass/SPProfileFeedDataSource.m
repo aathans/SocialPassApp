@@ -30,7 +30,15 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"%lu", (unsigned long)self.events.count);
+    NSInteger numberOfEvents = self.events.count;
+    NSLog(@"%ld", (long)numberOfEvents);
+    
+    if(numberOfEvents != 0){
+        tableView.backgroundView.hidden = YES;
+    }else{
+        tableView.backgroundView.hidden = NO;
+    }
+    
     return self.events.count;
 }
 
@@ -41,12 +49,10 @@
     PFObject *event = [self.events objectAtIndex:indexPath.row];
     
     NSString *description = [event objectForKey:@"Description"];
-    NSDate *startTime = [event objectForKey:@"StartTime"];
-    NSDate *endTime = nil;
+    NSString *startTime = [event objectForKey:@"StartTime"];
+    NSString *endTime = nil;
     NSString *eventID = [event objectId];
     cell.eventID = eventID;
-    
-    NSLog(@"EVENT GOT: %@", cell.eventID);
     
     if(![[event objectForKey:@"EndTime"] isEqual:[NSNull null]]){
         endTime = [event objectForKey:@"EndTime"];
@@ -55,13 +61,11 @@
     NSLog(@"%@", description);
     
     NSString *text = nil;
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    [dateFormatter setDateFormat:@"hh:mm a"];
     
-    if(endTime != nil){
-        text = [NSString stringWithFormat:@"%@ from %@ to %@", description, [dateFormatter stringFromDate:startTime], [dateFormatter stringFromDate:endTime]];
+    if(endTime != nil && ![endTime isEqualToString:startTime]){
+        text = [NSString stringWithFormat:@"%@ from %@ to %@", description, startTime, endTime];
     }else{
-        text = [NSString stringWithFormat:@"%@ at %@", description, [dateFormatter stringFromDate:startTime]];
+        text = [NSString stringWithFormat:@"%@ at %@", description, startTime];
     }
     
     [cell.contentText setText:text];

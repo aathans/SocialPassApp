@@ -36,6 +36,7 @@
 		FA3ADA0E196F254900E7795C /* SPEventDetailControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9CA1958DF0A0090C4ED /* SPEventDetailControllerViewController.m */; };
 		FA4A5A94195AAAD900C016EC /* SPProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4A5A93195AAAD900C016EC /* SPProfileViewController.m */; };
 		FA4A5A98195B6E6E00C016EC /* SPTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4A5A97195B6E6E00C016EC /* SPTransitionManager.m */; };
+		FA6BD28B198B38D500043C1B /* SPEmptyFeedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6BD28A198B38D500043C1B /* SPEmptyFeedLabel.m */; };
 		FAA8D97019578AEE0090C4ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D96F19578AEE0090C4ED /* Foundation.framework */; };
 		FAA8D97219578AEE0090C4ED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D97119578AEE0090C4ED /* CoreGraphics.framework */; };
 		FAA8D97419578AEE0090C4ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D97319578AEE0090C4ED /* UIKit.framework */; };
@@ -116,6 +117,8 @@
 		FA4A5A93195AAAD900C016EC /* SPProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPProfileViewController.m; sourceTree = "<group>"; };
 		FA4A5A96195B6E6E00C016EC /* SPTransitionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTransitionManager.h; sourceTree = "<group>"; };
 		FA4A5A97195B6E6E00C016EC /* SPTransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTransitionManager.m; sourceTree = "<group>"; };
+		FA6BD289198B38D500043C1B /* SPEmptyFeedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPEmptyFeedLabel.h; sourceTree = "<group>"; };
+		FA6BD28A198B38D500043C1B /* SPEmptyFeedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPEmptyFeedLabel.m; sourceTree = "<group>"; };
 		FA941A1B197DC7A40093479C /* SPMainViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMainViewControllerTests.m; sourceTree = "<group>"; };
 		FAA8D96C19578AEE0090C4ED /* SocialPass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialPass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA8D96F19578AEE0090C4ED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -280,6 +283,7 @@
 			children = (
 				FA4A5A92195AAAD900C016EC /* SPProfileViewController.h */,
 				FA4A5A93195AAAD900C016EC /* SPProfileViewController.m */,
+				FA6BD28C198B3ADE00043C1B /* Empty Label */,
 				FA284C4B195CEFB000A09AF9 /* Feed */,
 			);
 			name = Profile;
@@ -304,6 +308,15 @@
 				FA3ADA08196ED05700E7795C /* SocialPassAppIconV2.png */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		FA6BD28C198B3ADE00043C1B /* Empty Label */ = {
+			isa = PBXGroup;
+			children = (
+				FA6BD289198B38D500043C1B /* SPEmptyFeedLabel.h */,
+				FA6BD28A198B38D500043C1B /* SPEmptyFeedLabel.m */,
+			);
+			name = "Empty Label";
 			sourceTree = "<group>";
 		};
 		FAA8D96319578AEE0090C4ED = {
@@ -600,6 +613,7 @@
 				FA4A5A98195B6E6E00C016EC /* SPTransitionManager.m in Sources */,
 				FAA8D98219578AEF0090C4ED /* AppDelegate.m in Sources */,
 				FAA8D97E19578AEF0090C4ED /* main.m in Sources */,
+				FA6BD28B198B38D500043C1B /* SPEmptyFeedLabel.m in Sources */,
 				FA0929AD1960ADCB0010DB1C /* SPFriendsTableDataSource.m in Sources */,
 				FA0BF742195B7D3F00CBE8AB /* SPSignUpViewController.m in Sources */,
 				FA1D7412197F397F005ADF36 /* SPAdvancedOptionsAttendeeTextField.m in Sources */,

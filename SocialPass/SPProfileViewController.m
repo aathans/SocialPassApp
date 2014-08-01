@@ -12,6 +12,7 @@
 #import "SPLoginViewController.h"
 #import "SPTransitionManager.h"
 #import "SPEventDetailControllerViewController.h"
+#import "SPEmptyFeedLabel.h"
 
 @interface SPProfileViewController () <UITableViewDelegate,UINavigationControllerDelegate, NSURLConnectionDelegate>
 
@@ -54,6 +55,7 @@
     self.eventFeed.dataSource = self.profileDataSource;
     [self.eventFeed setRowHeight:75];
     [self.eventFeed registerClass:[SPProfileFeedCellTableViewCell class] forCellReuseIdentifier:@"Cell"];
+    
     self.imageData = [[NSMutableData alloc] init];
     
     [self.view addSubview:self.header];
@@ -187,6 +189,15 @@
     self.eventFeed.backgroundColor = [UIColor clearColor];
     [self.eventFeed setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.eventFeed setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    SPEmptyFeedLabel *emptyLabel = [[SPEmptyFeedLabel alloc] init];
+    emptyLabel.font = [UIFont fontWithName:@"Avenir-Light" size:17.0f];
+    emptyLabel.alpha = 0.5f;
+    emptyLabel.textAlignment = NSTextAlignmentCenter;
+    emptyLabel.text = @"No Upcoming Events";
+    
+    self.eventFeed.backgroundView = emptyLabel;
+    
     [self.profileDataSource fetchFeedForTableInBackground:self.eventFeed];
 }
 

@@ -141,22 +141,19 @@
 
 -(NSString *)getTimeText:(PFObject *)SPEvent{
     NSString *timeText = [NSString new];
-    NSDate *startTime = [SPEvent objectForKey:@"StartTime"];
-    NSDate *endTime = nil;
+    NSString *startTime = [SPEvent objectForKey:@"StartTime"];
+    NSString *endTime = nil;
     
     if(![[SPEvent objectForKey:@"EndTime"] isEqual:[NSNull null]]){
         endTime = [SPEvent objectForKey:@"EndTime"];
     }
     
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    [dateFormatter setDateFormat:@"hh:mm a"];
-    
-    if((endTime != nil) && !([startTime isEqualToDate:endTime])){
+    if((endTime != nil) && !([startTime isEqualToString:endTime])){
         NSLog(@"End Time found");
-       timeText = [NSString stringWithFormat:@"Today from %@ to %@", [dateFormatter stringFromDate:startTime], [dateFormatter stringFromDate:endTime]];
+       timeText = [NSString stringWithFormat:@"Today from %@ to %@", startTime, endTime];
     }else{
         NSLog(@"Start time only");
-        timeText = [NSString stringWithFormat:@"Today at %@",[dateFormatter stringFromDate:startTime]];
+        timeText = [NSString stringWithFormat:@"Today at %@",startTime];
     }
     
     return timeText;

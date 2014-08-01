@@ -24,7 +24,6 @@
 @property (nonatomic) UIButton *addEventbutton;
 @property (nonatomic) NSMutableArray *profiles;
 @property (nonatomic) NSUInteger indexCount;
-@property (nonatomic) BOOL didCreateNewEvent;
 @property (nonatomic, strong) SPTransitionManager *transitionManager;
 
 @end
@@ -35,7 +34,6 @@
     self = [super init];
     if (self) {
         self.indexCount = 0;
-        self.didCreateNewEvent = NO;
     }
     return self;
 }
@@ -63,17 +61,6 @@
         [self setupEvents];
     }
 }
-
-
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    if(self.didCreateNewEvent){
-        [self setupEvents];
-        self.didCreateNewEvent = NO;
-    }
-}
-
 
 -(void)setupEvents{
     PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
@@ -156,7 +143,6 @@
 }
 
 -(void)addEventPushed:(id)sender{
-    self.didCreateNewEvent = YES;
     [self presentNewEventVC];
 }
 
@@ -212,19 +198,18 @@
     NSArray *attendees = [SPEvent objectForKey:@"AttendeeList"];
     self.eventCanvas.attendees.text = [NSString stringWithFormat:@"Attendees: %lu", (unsigned long)[attendees count]];
     
-    NSDate *startTime = [SPEvent objectForKey:@"StartTime"];
-    NSDate *endTime = nil;
+    NSString *startTime = [SPEvent objectForKey:@"StartTime"];
+    NSString *endTime = nil;
     if(![[SPEvent objectForKey:@"EndTime"] isEqual:[NSNull null]]){
         endTime = [SPEvent objectForKey:@"EndTime"];
     }
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    [dateFormatter setDateFormat:@"hh:mm a"];
-    if((endTime != nil) && !([startTime isEqualToDate:endTime])){
+
+    if((endTime != nil) && !([startTime isEqualToString:endTime])){
         NSLog(@"End Time found");
-        self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today from %@ to %@", [dateFormatter stringFromDate:startTime], [dateFormatter stringFromDate:endTime]];
+        self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today from %@ to %@", startTime, endTime];
     }else{
         NSLog(@"Start time only");
-        self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today at %@",[dateFormatter stringFromDate:startTime]];
+        self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today at %@",startTime];
     }
 
 }
