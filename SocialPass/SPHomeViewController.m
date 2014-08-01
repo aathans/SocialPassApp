@@ -26,7 +26,6 @@
     return self;
 }
 
-
 -(void)loadView{
     [super loadView];
 
@@ -37,7 +36,6 @@
     [self setViewControllers:@[_pages[1]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL finished) {
     }];
 }
-
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -59,7 +57,6 @@
     
     _pages = @[friendsVC, mainVC, profileVC];
 }
-
 
 #pragma mark - UIPageViewControllerDataSource
 
@@ -92,6 +89,5 @@
     
     return _pages[idx - 1];
 }
-
 
 @end

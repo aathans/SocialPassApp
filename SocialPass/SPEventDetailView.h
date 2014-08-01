@@ -10,11 +10,13 @@
 
 @interface SPEventDetailView : UIView
 
-@property (nonatomic) UILabel *eventName;
+@property (nonatomic) UIButton *cancelButton;
+@property (nonatomic) UILabel *eventDesc;
 @property (nonatomic) UILabel *eventOrganizer;
 @property (nonatomic) UILabel *eventTime;
-@property (nonatomic) UILabel *eventAttendees;
+@property (nonatomic) UILabel *attendees;
 @property (nonatomic) UIImageView *eventPhoto;
+@property (nonatomic) UICollectionView *attendeePhotos;
 
 
 @end

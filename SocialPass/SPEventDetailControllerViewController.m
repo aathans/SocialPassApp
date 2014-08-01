@@ -14,6 +14,7 @@
 @property (nonatomic) SPEventDetailView *eventView;
 @property (nonatomic) NSArray *events;
 @property (nonatomic) UIButton *returnButton;
+@property (nonatomic) PFObject *SPEvent;
 
 @end
 
@@ -44,6 +45,8 @@
 
 -(void)setupCharacteristics{
     [self.eventView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [self setupCancelButton];
     [self setupReturnButtonWithTitle:@"Return" andFont:[UIFont fontWithName:@"Avenir-Light" size:17.0f]];
 }
 
@@ -56,15 +59,38 @@
     self.returnButton.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
+
 -(void)returnButton:(id)sender{
     [self dismissViewControllerAnimated:YES completion:^{
-        
+    }];
+}
+
+-(void)setupCancelButton{
+    [self.eventView.cancelButton addTarget:self action:@selector(cancelButton:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)cancelButton:(id)sender{
+    
+    NSNumber *numAttendees = [self.SPEvent objectForKey:@"NumAttendees"];
+    NSMutableArray *attendees = [self.SPEvent objectForKey:@"AttendeeList"];
+    
+    if(self.SPEvent != nil){
+        numAttendees = @(numAttendees.intValue - 1);
+        [attendees removeObject:[PFUser currentUser].objectId];
+        [self.SPEvent setObject:numAttendees forKey:@"NumAttendees"];
+        [self.SPEvent setObject:attendees forKey:@"AttendeeList"];
+        [self.SPEvent saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            NSLog(@"Saving");
+        }];
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:^{
     }];
 }
 
 -(void)setupConstraints{
-    UIView *eventView = _eventView;
-    UIButton *returnButton = _returnButton;
+    UIView *eventView = self.eventView;
+    UIButton *returnButton = self.returnButton;
     
     NSDictionary *views = NSDictionaryOfVariableBindings(eventView, returnButton);
     
@@ -86,13 +112,54 @@
             self.events = [[NSMutableArray alloc] initWithArray:objects];
             NSLog(@"Retrieved %lu", (unsigned long)[self.events count]);
             
-            PFObject *SPEvent = [self.events objectAtIndex:0];
-            self.eventView.eventName.text = [SPEvent objectForKey:@"Description"];
-            self.eventView.eventOrganizer.text = [SPEvent objectForKey:@"organizerName"];
-            NSArray *attendees = [SPEvent objectForKey:@"AttendeeList"];
-            self.eventView.eventAttendees.text = [NSString stringWithFormat:@"Attendees: %lu", (unsigned long)[attendees count]];
+            _SPEvent = [self.events objectAtIndex:0];
+            //_eventView.eventPhoto.image = [self getEventPhoto:self.SPEvent];
+            _eventView.eventDesc.text = [self.SPEvent objectForKey:@"Description"];
+            _eventView.eventOrganizer.text = [self.SPEvent objectForKey:@"organizerName"];
+            _eventView.eventTime.text = [self getTimeText:self.SPEvent];
+            
+            NSArray *attendees = [self.SPEvent objectForKey:@"AttendeeList"];
+            _eventView.attendees.text = [NSString stringWithFormat:@"Attendees: %lu", (unsigned long)[attendees count]];
         }
     }];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    _eventView.eventPhoto.image = [self getEventPhoto:self.SPEvent];
+}
+
+-(UIImage *)getEventPhoto:(PFObject *)SPEvent{
+    PFFile *eventPhoto = [SPEvent objectForKey:@"EventPhoto"];
+    NSURL *imageFileURL = [[NSURL alloc] initWithString:eventPhoto.url];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageFileURL];
+    UIImage *eventImage;
+    eventImage = [UIImage imageWithData:imageData];
+    
+    return eventImage;
+}
+
+-(NSString *)getTimeText:(PFObject *)SPEvent{
+    NSString *timeText = [NSString new];
+    NSDate *startTime = [SPEvent objectForKey:@"StartTime"];
+    NSDate *endTime = nil;
+    
+    if(![[SPEvent objectForKey:@"EndTime"] isEqual:[NSNull null]]){
+        endTime = [SPEvent objectForKey:@"EndTime"];
+    }
+    
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    [dateFormatter setDateFormat:@"hh:mm a"];
+    
+    if((endTime != nil) && !([startTime isEqualToDate:endTime])){
+        NSLog(@"End Time found");
+       timeText = [NSString stringWithFormat:@"Today from %@ to %@", [dateFormatter stringFromDate:startTime], [dateFormatter stringFromDate:endTime]];
+    }else{
+        NSLog(@"Start time only");
+        timeText = [NSString stringWithFormat:@"Today at %@",[dateFormatter stringFromDate:startTime]];
+    }
+    
+    return timeText;
 }
 
 @end

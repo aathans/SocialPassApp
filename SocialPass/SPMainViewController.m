@@ -208,7 +208,9 @@
     self.eventCanvas.eventPhoto.image = [UIImage imageWithData:imageData];
     self.eventCanvas.eventDesc.text = [SPEvent objectForKey:@"Description"];
     self.eventCanvas.eventOrganizer.text = [NSString stringWithFormat:@"%@",[SPEvent objectForKey:@"organizerName"]];
-    self.eventCanvas.attendees.text = [NSString stringWithFormat:@"Attendees: %@", [SPEvent objectForKey:@"NumAttendees"]];
+    
+    NSArray *attendees = [SPEvent objectForKey:@"AttendeeList"];
+    self.eventCanvas.attendees.text = [NSString stringWithFormat:@"Attendees: %lu", (unsigned long)[attendees count]];
     
     NSDate *startTime = [SPEvent objectForKey:@"StartTime"];
     NSDate *endTime = nil;
@@ -254,17 +256,15 @@
 
 -(void)joinEvent{
     PFObject *event = [self.events objectAtIndex:self.indexCount];
-    NSNumber *numAttendees = [event objectForKey:@"NumAttendees"];
     NSNumber *maxAttendees = [event objectForKey:@"MaxAttendees"];
     NSMutableArray *attendees = [event objectForKey:@"AttendeeList"];
+    NSNumber *numAttendees = [NSNumber numberWithLong:[attendees count]];
     
     if(event != nil){
         NSLog(@"Num Attendees: %@ Max Attendees: %@", numAttendees, maxAttendees);
         
         if(numAttendees.intValue < maxAttendees.intValue){
-            numAttendees = @(numAttendees.intValue + 1);
             [attendees addObject:[PFUser currentUser].objectId];
-            [event setObject:numAttendees forKey:@"NumAttendees"];
             [event setObject:attendees forKey:@"AttendeeList"];
             [event saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 NSLog(@"Saving");
@@ -276,7 +276,6 @@
             [alert show];
         }
     }
-    
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate

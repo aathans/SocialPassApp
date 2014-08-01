@@ -10,74 +10,115 @@
 
 @implementation SPEventDetailView
 
-- (id)initWithFrame:(CGRect)frame{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        [self setupSubviews];
-        [self setupCharacteristics];
-        [self setupConstraints];
-        
-    }
+-(id)init{
+    self = [super initWithFrame:CGRectZero];
+    [self setupSubviews];
+    [self setupCharacteristics];
+    [self setupConstraints];
     return self;
 }
 
 -(void)setupSubviews{
-    _eventName = [UILabel new];
-    _eventOrganizer = [UILabel new];
-    _eventTime = [UILabel new];
-    _eventAttendees = [UILabel new];
-    _eventPhoto = [UIImageView new];
+    self.eventPhoto = [UIImageView new];
+    self.cancelButton = [UIButton new];
+    self.eventDesc = [UILabel new];
+    self.eventOrganizer = [UILabel new];
+    self.eventTime = [UILabel new];
+    self.attendees = [UILabel new];
     
-    [self addSubview:_eventName];
-    [self addSubview:_eventOrganizer];
-    [self addSubview:_eventTime];
-    [self addSubview:_eventAttendees];
-    [self addSubview:_eventPhoto];
+    [self addSubview:self.eventPhoto];
+    [self addSubview:self.eventDesc];
+    [self addSubview:self.eventOrganizer];
+    [self addSubview:self.eventTime];
+    [self addSubview:self.cancelButton];
+    [self addSubview:self.attendees];
 }
 
--(void) setupCharacteristics{
+
+-(void)setupCharacteristics{
+    [self setupBackground];
+    [self setupCancelButton];
+    [self setupEventPhoto];
+    [self setupEventDescr];
+    [self setupEventOrganizer];
+    [self setupEventTime];
+    [self setupEventAttendees];
+}
+
+-(void)setupBackground{
     self.backgroundColor = [UIColor SPGray];
+    [self.layer setCornerRadius:3];
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    [self.eventName setFont:[UIFont fontWithName:@"Avenir-Light" size:17.0]];
-    _eventName.textColor = [UIColor blackColor];
-    _eventName.textAlignment = NSTextAlignmentCenter;
-    [_eventName setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    [self.eventOrganizer setFont:[UIFont fontWithName:@"Avenir-Light" size:17.0]];
-    _eventOrganizer.textColor = [UIColor blackColor];
-    _eventOrganizer.textAlignment = NSTextAlignmentCenter;
-    [_eventOrganizer setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    [self.eventTime setFont:[UIFont fontWithName:@"Avenir-Light" size:17.0]];
-    _eventTime.textColor = [UIColor blackColor];
-    _eventTime.textAlignment = NSTextAlignmentCenter;
-    [_eventTime setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    [self.eventAttendees setFont:[UIFont fontWithName:@"Avenir-Light" size:17.0]];
-    _eventAttendees.textColor = [UIColor blackColor];
-    _eventAttendees.textAlignment = NSTextAlignmentCenter;
-    [_eventAttendees setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    [_eventPhoto setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
 }
 
+-(void)setupCancelButton{
+    self.cancelButton.backgroundColor = [UIColor SPSkipRed];
+    [self.cancelButton setTitle:@"CANCEL" forState:UIControlStateNormal];
+    [self.cancelButton.titleLabel setFont:[UIFont fontWithName:@"Avenir-Medium" size:20.0f]];
+    self.cancelButton.titleLabel.textColor = [UIColor whiteColor];
+    self.cancelButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self.cancelButton.layer setCornerRadius:3];
+    [self.cancelButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+}
+
+-(void)setupEventPhoto{
+    self.eventPhoto.backgroundColor = [UIColor whiteColor];
+    self.eventPhoto.alpha = 1.0;
+    [self.eventPhoto.layer setCornerRadius:3];
+    [self.eventPhoto setTranslatesAutoresizingMaskIntoConstraints:NO];
+}
+
+-(void)setupEventDescr{
+    //self.eventDesc.text = @"Drinks at Treehouse";
+    [self.eventDesc setFont:[UIFont fontWithName:@"Avenir-Light" size:17.0]];
+    self.eventDesc.textColor = [UIColor blackColor];
+    self.eventDesc.textAlignment = NSTextAlignmentCenter;
+    [self.eventDesc setTranslatesAutoresizingMaskIntoConstraints:NO];
+}
+
+-(void)setupEventOrganizer{
+    //self.eventOrganizer.text = @"Alex Athan";
+    [self.eventOrganizer setFont:[UIFont fontWithName:@"Avenir-LightOblique" size:13.0]];
+    self.eventOrganizer.textColor = [UIColor blackColor];
+    self.eventOrganizer.textAlignment = NSTextAlignmentCenter;
+    [self.eventOrganizer setTranslatesAutoresizingMaskIntoConstraints:NO];
+}
+
+-(void)setupEventTime{
+    //self.eventTime.text = @"Today from 4:00PM to 11:00PM";
+    [self.eventTime setFont:[UIFont fontWithName:@"Avenir-Light" size:17.0]];
+    self.eventTime.textColor = [UIColor blackColor];
+    self.eventTime.textAlignment = NSTextAlignmentCenter;
+    [self.eventTime setTranslatesAutoresizingMaskIntoConstraints:NO];
+}
+
+-(void)setupEventAttendees{
+    //self.attendees.text = @"Attendees: 25 (20 Mutual)";
+    [self.attendees setFont:[UIFont fontWithName:@"Avenir-Light" size:17.0]];
+    self.attendees.textColor = [UIColor blackColor];
+    self.attendees.textAlignment = NSTextAlignmentCenter;
+    [self.attendees setTranslatesAutoresizingMaskIntoConstraints:NO];
+}
 -(void)setupConstraints{
-    UIView *eventName = self.eventName;
-    UIView *eventOrganizer = _eventOrganizer;
-    UIView *eventTime = _eventTime;
-    UIView *eventAttendees = _eventAttendees;
-    //UIView *eventPhoto = _eventPhoto;
+    UIView *eventPhoto = self.eventPhoto;
+    UIView *cancelButton = self.cancelButton;
+    UIView *eventDesc = self.eventDesc;
+    UIView *eventOrg = self.eventOrganizer;
+    UIView *eventTime = self.eventTime;
+    UIView *attendees = self.attendees;
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(eventName, eventOrganizer, eventTime, eventAttendees);
+    NSDictionary *views = NSDictionaryOfVariableBindings(eventPhoto, cancelButton, eventDesc, eventOrg, eventTime, attendees);
     
-    NSArray *eventConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[eventName]|" options:0 metrics:nil views:views];
-    eventConstraints = [eventConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[eventName]-[eventOrganizer]-[eventTime]-[eventAttendees]" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
+    NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[eventPhoto]-|" options:0 metrics:nil views:views];
     
+    constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[eventPhoto(180)]-5-[eventDesc][eventOrg]-[eventTime][attendees]" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
     
-    [self addConstraints:eventConstraints];
+    constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[cancelButton(50)]-10-|" options:0 metrics:nil views:views]];
+    
+    constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[cancelButton]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
+    
+    [self addConstraints:constraints];
+    
 }
 
 @end
