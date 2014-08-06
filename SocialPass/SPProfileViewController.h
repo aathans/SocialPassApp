@@ -11,6 +11,6 @@
 @interface SPProfileViewController : UIViewController <UIViewControllerTransitioningDelegate>
 
 @property (nonatomic) UITableView *eventFeed;
-
+@property (nonatomic) BOOL didCancelEvent;
 
 @end

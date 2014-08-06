@@ -64,8 +64,8 @@
 
 -(void)setupEvents{
     PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
-    eventQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [eventQuery whereKey:@"AttendeeList" notEqualTo:[PFUser currentUser].objectId];
+    [eventQuery orderByAscending:@"StartTime"];
     [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error){
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -73,6 +73,8 @@
             self.events = [[NSMutableArray alloc] initWithArray:objects];
             NSLog(@"Retrieved %lu", (unsigned long)[self.events count]);
             
+            self.indexCount = 0;
+
             if([self areEvents]){
                 PFObject *SPEvent = [self.events objectAtIndex:self.indexCount];
                 [self setupEvent:SPEvent];
@@ -168,9 +170,9 @@
         
         if(self.indexCount >= [self.events count]){
             NSLog(@"Reached end of events");
-            
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No more events." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"!!!" message:@"End of events." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
+            [self setupEvents];
             self.indexCount = 0;
             if([self.events count] == 1){
                 return;
@@ -184,6 +186,7 @@
         }
     } else {
         [self makeEventVariablesNil];
+        [self setupEvents];
     }
 }
 
@@ -205,19 +208,17 @@
     }
 
     if((endTime != nil) && !([startTime isEqualToString:endTime])){
-        NSLog(@"End Time found");
         self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today from %@ to %@", startTime, endTime];
     }else{
-        NSLog(@"Start time only");
         self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today at %@",startTime];
     }
 
 }
 
 -(void)joinButtonPressed:(id)sender{
-    
     if([self areEvents] == NO){
         [self makeEventVariablesNil];
+        [self setupEvents];
     } else {
         [self joinEvent];
         [self moveToNextEvent];
@@ -232,6 +233,7 @@
     NSLog(@"There are currently no events");
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No more events." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alertView show];
+    self.indexCount = 0;
     self.eventCanvas.eventPhoto.image = nil;
     self.eventCanvas.eventDesc.text = nil;
     self.eventCanvas.eventOrganizer.text = nil;
@@ -251,9 +253,7 @@
         if(numAttendees.intValue < maxAttendees.intValue){
             [attendees addObject:[PFUser currentUser].objectId];
             [event setObject:attendees forKey:@"AttendeeList"];
-            [event saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                NSLog(@"Saving");
-            }];
+            [event save];
             [self.events removeObjectAtIndex:self.indexCount];
             self.indexCount--;
         }else{

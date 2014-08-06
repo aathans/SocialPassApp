@@ -25,6 +25,7 @@
 @property (nonatomic) UIButton *logoutButton;
 @property (nonatomic) NSMutableData *imageData;
 @property (nonatomic, strong) SPTransitionManager *transitionManager;
+@property (nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -73,9 +74,18 @@
     [self setupConstraints];
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+-(void)viewDidLoad{
+    [super viewDidLoad];
     [self.profileDataSource fetchFeedForTableInBackground:self.eventFeed];
+}
+
+-(void)updateTable:(id)sender{
+    [self.profileDataSource fetchFeedForTableInBackground:self.eventFeed];
+    [self stopRefreshing];
+}
+
+-(void)stopRefreshing{
+    [self.refreshControl endRefreshing];
 }
 
 #pragma mark - Facebook methods
@@ -195,8 +205,14 @@
     emptyLabel.alpha = 0.5f;
     emptyLabel.textAlignment = NSTextAlignmentCenter;
     emptyLabel.text = @"No Upcoming Events";
-    
     self.eventFeed.backgroundView = emptyLabel;
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc]
+                                        init];
+    [refreshControl addTarget:self action:@selector(updateTable:) forControlEvents:UIControlEventValueChanged];
+    
+    self.refreshControl = refreshControl;
+    [self.eventFeed addSubview:self.refreshControl];
     
     [self.profileDataSource fetchFeedForTableInBackground:self.eventFeed];
 }
@@ -312,6 +328,10 @@
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
     NSLog(@"Transitioning back to main page");
     self.transitionManager.transitionTo = INITIAL; //Going from creating event back to main
+    if(_didCancelEvent){
+        [self.profileDataSource fetchFeedForTableInBackground:self.eventFeed];
+        self.didCancelEvent = NO;
+    }
     return self.transitionManager;
 }
 

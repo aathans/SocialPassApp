@@ -68,8 +68,7 @@
 }
 
 -(void)loginClicked:(id)sender{
-    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
-    
+    NSArray *permissionsArray = @[@"user_about_me"];
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
         if (!user) {
             if (!error) {

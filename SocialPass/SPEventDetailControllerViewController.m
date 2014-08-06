@@ -8,6 +8,8 @@
 
 #import "SPEventDetailControllerViewController.h"
 #import "SPEventDetailView.h"
+#import "SPProfileViewController.h"
+#import "SPHomeViewController.h"
 
 @interface SPEventDetailControllerViewController () <UINavigationControllerDelegate>
 
@@ -83,7 +85,9 @@
             NSLog(@"Saving");
         }];
     }
-    
+    SPHomeViewController *presenter = (SPHomeViewController *)self.presentingViewController;
+    SPProfileViewController *profileVC = (SPProfileViewController *)presenter.viewControllers[0];
+    profileVC.didCancelEvent = YES;
     [self dismissViewControllerAnimated:YES completion:^{
     }];
 }

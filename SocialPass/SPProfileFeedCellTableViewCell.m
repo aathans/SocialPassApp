@@ -18,7 +18,7 @@
         //self.eventID = [NSString new];
         
         self.backgroundColor = [UIColor clearColor];
-        self.layer.contents = (id)[UIImage imageNamed:@"ShadowLayer"].CGImage;
+        self.layer.contents = (id)[UIImage imageNamed:@"ShadowLayser"].CGImage;
         self.selectionStyle = UITableViewCellSelectionStyleNone;        
         self.contentView.backgroundColor = [UIColor clearColor];
         

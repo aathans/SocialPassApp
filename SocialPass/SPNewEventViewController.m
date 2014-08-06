@@ -155,6 +155,7 @@
     if(_datePicker == nil && ((textField == self.eventNewCanvas.startTime) || (textField == self.eventNewCanvas.endTime))) {
         _datePicker = [[UIDatePicker alloc] init];
         _datePicker.datePickerMode = UIDatePickerModeTime;
+        
     }
     
     if((textField == self.eventNewCanvas.startTime) || (textField == self.eventNewCanvas.endTime)){
