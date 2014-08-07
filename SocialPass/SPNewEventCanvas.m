@@ -75,15 +75,6 @@
     [self.descriptionTF setBorderStyle:UITextBorderStyleRoundedRect];
     [self.descriptionTF setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-//    NSDate *currentDate = [NSDate new];
-//    NSCalendar *cal = [NSCalendar currentCalendar];
-//    NSDateComponents *comps = [cal components:NSMonthCalendarUnit | NSDayCalendarUnit fromDate:currentDate];
-//    
-//    NSInteger currentMonth = [comps month] - 1;
-//    NSInteger currentDay = [comps day] - 1;
-//    [self.dayPicker selectRow:currentMonth inComponent:0 animated:NO];
-//    [self.dayPicker selectRow:currentDay inComponent:1 animated:NO];
-    
     [self.day setInputView:self.dayPicker];
     [self.day setPlaceholder:@"Date"];
     [self.day setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];

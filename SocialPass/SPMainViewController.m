@@ -253,8 +253,6 @@
     NSNumber *numAttendees = [NSNumber numberWithLong:[attendees count]];
     
     if(event != nil){
-        NSLog(@"Num Attendees: %@ Max Attendees: %@", numAttendees, maxAttendees);
-        
         if(numAttendees.intValue < maxAttendees.intValue){
             [attendees addObject:[PFUser currentUser].objectId];
             [event setObject:attendees forKey:@"AttendeeList"];

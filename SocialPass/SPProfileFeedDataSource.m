@@ -73,7 +73,6 @@
     }
     
     [cell.contentText setText:text];
-    //[cell.textLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:16.0f]];
     NSLog(@"returning cell: %@", text);
     return cell;
 }

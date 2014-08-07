@@ -73,17 +73,21 @@
 
 -(void)cancelButton:(id)sender{
     
-    NSNumber *numAttendees = [self.SPEvent objectForKey:@"NumAttendees"];
     NSMutableArray *attendees = [self.SPEvent objectForKey:@"AttendeeList"];
+    NSUInteger numAttendees = [attendees count];
     
     if(self.SPEvent != nil){
-        numAttendees = @(numAttendees.intValue - 1);
-        [attendees removeObject:[PFUser currentUser].objectId];
-        [self.SPEvent setObject:numAttendees forKey:@"NumAttendees"];
-        [self.SPEvent setObject:attendees forKey:@"AttendeeList"];
-        [self.SPEvent saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            NSLog(@"Saving");
-        }];
+        
+        if(numAttendees == 1){
+            [self.SPEvent deleteEventually];
+        }else{
+            numAttendees -= 1;
+            [attendees removeObject:[PFUser currentUser].objectId];
+            [self.SPEvent setObject:attendees forKey:@"AttendeeList"];
+            [self.SPEvent saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                NSLog(@"Saving");
+            }];
+        }
     }
     SPHomeViewController *presenter = (SPHomeViewController *)self.presentingViewController;
     SPProfileViewController *profileVC = (SPProfileViewController *)presenter.viewControllers[0];

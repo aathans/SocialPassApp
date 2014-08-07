@@ -14,6 +14,8 @@
 @property (nonatomic) UILabel *advancedLabel;
 @property (nonatomic) UILabel *maxAttendeesLabel;
 @property (nonatomic) SPAdvancedOptionsAttendeeTextField *numAttendees;
+@property (nonatomic) UILabel *locationLabel;
+@property (nonatomic) UITextField *location;
 @property (nonatomic) UILabel *publicLabel;
 @property (nonatomic) UISwitch *publicSwitch;
 

@@ -103,9 +103,18 @@
     if(self.currentTextField == self.eventNewCanvas.day){
         [dateFormatter setDateFormat:@"MMM d"];
         UIPickerView *datePicker = (UIPickerView *)self.currentTextField.inputView;
-
-        NSInteger month = [datePicker selectedRowInComponent:0] + 1;
+        
+        NSCalendar *cal = [NSCalendar currentCalendar];
+        NSDateComponents *current = [cal components:NSMonthCalendarUnit | NSDayCalendarUnit fromDate:[NSDate new]];
+        
+        NSInteger month = [datePicker selectedRowInComponent:0] + [current month];
+        if(month > 12)
+            month -= 12;
         NSInteger day = [datePicker selectedRowInComponent:1] + 1;
+        
+        if(month == [current month])
+            day += [current day] - 1;
+        
         [_startDateComps setMonth:month];
         [_startDateComps setDay:day];
         [_endDateComps setMonth:month];
@@ -255,7 +264,6 @@
         } else {
             [event setObject:startTime forKey:@"EndTime"];
         }
-        
         [event setObject:maxAttendees forKey:@"MaxAttendees"];
         [event setObject:isPublicNum forKey:@"IsPublic"];
         [event setObject:eventPhoto forKey:@"EventPhoto"];

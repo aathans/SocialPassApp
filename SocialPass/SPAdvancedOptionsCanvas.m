@@ -27,12 +27,16 @@
     self.numAttendees = [SPAdvancedOptionsAttendeeTextField new];
     self.publicLabel = [UILabel new];
     self.publicSwitch = [UISwitch new];
+    self.location = [UITextField new];
+    self.locationLabel = [UILabel new];
     
     [self addSubview:self.advancedLabel];
     [self addSubview:self.maxAttendeesLabel];
     [self addSubview:self.numAttendees];
     [self addSubview:self.publicSwitch];
     [self addSubview:self.publicLabel];
+    [self addSubview:self.locationLabel];
+    [self addSubview:self.location];
 }
 
 -(void)setupCharacteristics{
@@ -59,12 +63,21 @@
     [self.numAttendees setBackgroundColor:[UIColor whiteColor]];
     [self.numAttendees setText:@"25"];
     
-    [self.publicLabel setFrame:CGRectMake(10, 110, 165, 40)];
+    [self.publicLabel setFrame:CGRectMake(10, 105, 165, 40)];
     [self.publicLabel setText:@"Public:"];
     [self.publicLabel setTextAlignment:NSTextAlignmentRight];
     [self.publicLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:16.0]];
     
-    [self.publicSwitch setFrame:CGRectMake(185, 115, 60, 30)];
+    [self.locationLabel setFrame:CGRectMake(10, 155, 80, 40)];
+    [self.locationLabel setText:@"Location:"];
+    [self.locationLabel setTextAlignment:NSTextAlignmentLeft];
+    [self.locationLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:16.0]];
+    
+    [self.location setFrame:CGRectMake(80, 160, 155, 30)];
+    [self.location setBorderStyle:UITextBorderStyleRoundedRect];
+    [self.location setBackgroundColor:[UIColor whiteColor]];
+    
+    [self.publicSwitch setFrame:CGRectMake(185, 110, 60, 30)];
     //self.publicSwitch.transform = CGAffineTransformMakeScale(1.25, 1.25);
     self.publicSwitch.backgroundColor = [UIColor whiteColor];
     self.publicSwitch.layer.cornerRadius = 16.0;

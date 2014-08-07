@@ -86,6 +86,7 @@
 {
     if (component == 0) {
         [pickerView reloadComponent:1];
+        [pickerView selectRow:0 inComponent:1 animated:NO];
     }
     
 }
