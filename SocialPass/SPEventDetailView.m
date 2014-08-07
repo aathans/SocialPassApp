@@ -47,6 +47,7 @@
 
 -(void)setupBackground{
     self.backgroundColor = [UIColor SPGray];
+    self.clipsToBounds = YES;
     [self.layer setCornerRadius:3];
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
 }

@@ -50,6 +50,9 @@
 
 -(void)setupBackground{
     self.backgroundColor = [UIColor SPGray];
+    self.layer.borderWidth = 0.1f;
+    self.layer.borderColor = [UIColor grayColor].CGColor;
+    self.clipsToBounds = YES;
     [self.layer setCornerRadius:3];
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
 }

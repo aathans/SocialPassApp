@@ -173,7 +173,7 @@
         NSURL *pictureURL = [NSURL URLWithString:[[PFUser currentUser] objectForKey:@"profile"][@"pictureURL"]];
         
         NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:pictureURL
-                                                                  cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                                  cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                                               timeoutInterval:2.0f];
         // Run network request asynchronously
         NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
@@ -238,7 +238,7 @@
     [self.logoutButton.titleLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:16.0f]];
     [self.logoutButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.logoutButton.layer setBorderColor:[UIColor blackColor].CGColor];
-    [self.logoutButton.layer setBorderWidth:1.0f];
+    [self.logoutButton.layer setBorderWidth:0.5f];
     [self.logoutButton.layer setCornerRadius:3.0f];
     [self.logoutButton setTranslatesAutoresizingMaskIntoConstraints:NO];
 }

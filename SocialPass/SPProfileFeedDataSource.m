@@ -49,23 +49,27 @@
     PFObject *event = [self.events objectAtIndex:indexPath.row];
     
     NSString *description = [event objectForKey:@"Description"];
-    NSString *startTime = [event objectForKey:@"StartTime"];
-    NSString *endTime = nil;
+    NSDate *startTime = [event objectForKey:@"StartTime"];
+    NSDate *endTime = [event objectForKey:@"EndTime"];
     NSString *eventID = [event objectId];
     cell.eventID = eventID;
-    
-    if(![[event objectForKey:@"EndTime"] isEqual:[NSNull null]]){
-        endTime = [event objectForKey:@"EndTime"];
-    }
     
     NSLog(@"%@", description);
     
     NSString *text = nil;
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
     
-    if(endTime != nil && ![endTime isEqualToString:startTime]){
-        text = [NSString stringWithFormat:@"%@ from %@ to %@", description, startTime, endTime];
+    if([startTime isEqualToDate:endTime]){
+        [dateFormatter setDateFormat:@"MMM d' at 'hh:mm a"];
+        text = [NSString stringWithFormat:@"%@ on %@", description, [dateFormatter stringFromDate:startTime]];
     }else{
-        text = [NSString stringWithFormat:@"%@ at %@", description, startTime];
+        [dateFormatter setDateFormat:@"MMM d hh:mm a"];
+        
+        NSDateFormatter *endDateFormatter = [NSDateFormatter new];
+        [endDateFormatter setDateFormat:@"hh:mm a"];
+        
+        text = [NSString stringWithFormat:@"%@ from %@ to %@", description, [dateFormatter stringFromDate:startTime], [endDateFormatter stringFromDate:endTime]];
+
     }
     
     [cell.contentText setText:text];

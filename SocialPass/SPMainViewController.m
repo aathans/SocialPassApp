@@ -201,16 +201,21 @@
     NSArray *attendees = [SPEvent objectForKey:@"AttendeeList"];
     self.eventCanvas.attendees.text = [NSString stringWithFormat:@"Attendees: %lu", (unsigned long)[attendees count]];
     
-    NSString *startTime = [SPEvent objectForKey:@"StartTime"];
-    NSString *endTime = nil;
-    if(![[SPEvent objectForKey:@"EndTime"] isEqual:[NSNull null]]){
-        endTime = [SPEvent objectForKey:@"EndTime"];
-    }
-
-    if((endTime != nil) && !([startTime isEqualToString:endTime])){
-        self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today from %@ to %@", startTime, endTime];
+    NSDate *startTime = [SPEvent objectForKey:@"StartTime"];
+    NSDate *endTime = [SPEvent objectForKey:@"EndTime"];
+    
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    
+    if([startTime isEqualToDate:endTime]){
+        [dateFormatter setDateFormat:@"MMM d' at 'hh:mm a"];
+        self.eventCanvas.eventTime.text = [dateFormatter stringFromDate:startTime];
     }else{
-        self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"Today at %@",startTime];
+        [dateFormatter setDateFormat:@"MMM d hh:mm a"];
+        
+        NSDateFormatter *endDateFormatter = [NSDateFormatter new];
+        [endDateFormatter setDateFormat:@"hh:mm a"];
+        
+        self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"%@ to %@", [dateFormatter stringFromDate:startTime], [endDateFormatter stringFromDate:endTime]];
     }
 
 }

@@ -20,10 +20,12 @@
 @property (nonatomic) SPAdvancedOptionsCanvas *advancedOptions;
 @property (nonatomic) TPKeyboardAvoidingScrollView *keyboard;
 @property (nonatomic) UIImage *pickedImage;
-@property (nonatomic) UIToolbar *keyboardToolbar;
-@property (nonatomic) UIDatePicker *datePicker;
 @property (nonatomic) UITextField *currentTextField;
 @property (nonatomic) BOOL advancedIsOpen;
+
+@property (nonatomic) NSDateComponents *startDateComps;
+@property (nonatomic) NSDateComponents *endDateComps;
+@property (nonatomic) BOOL endTimeExists;
 
 @end
 
@@ -31,6 +33,9 @@
 
 - (id)init {
     self = [super init];
+    self.startDateComps = [NSDateComponents new];
+    self.endDateComps = [NSDateComponents new];
+    _endTimeExists = NO;
     
     return self;
 }
@@ -41,9 +46,9 @@
     self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
     self.eventNewCanvas = [SPNewEventCanvas new];
-    self.eventNewCanvas.descriptionTF.delegate = self;
     self.eventNewCanvas.startTime.delegate = self;
     self.eventNewCanvas.endTime.delegate = self;
+    self.eventNewCanvas.day.delegate = self;
     
     self.advancedIsOpen = NO;
     self.advancedOptions = [SPAdvancedOptionsCanvas new];
@@ -75,8 +80,60 @@
     [self setupBackgroundWithColor:[UIColor whiteColor] andAlpha:1.0];
     [self setupImageButton];
     [self setupCancelButtonWithTitle:@"Cancel" andFont:[UIFont fontWithName:@"Avenir-Light" size:17.0f]];
+    
+    UIToolbar *keyboardToolbar = [UIToolbar new];
+    keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
+    [keyboardToolbar setBarStyle:UIBarStyleDefault];
+    
+    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(formatDate:)];
+    [done setTintColor:[UIColor blackColor]];
+    [keyboardToolbar setItems:[[NSArray alloc] initWithObjects: flexSpace, done, nil]];
+    
+    self.eventNewCanvas.startTime.inputAccessoryView = keyboardToolbar;
+    self.eventNewCanvas.endTime.inputAccessoryView = keyboardToolbar;
+    self.eventNewCanvas.day.inputAccessoryView = keyboardToolbar;
 
 }
+
+-(void)formatDate:(id)sender{
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    if(self.currentTextField == self.eventNewCanvas.day){
+        [dateFormatter setDateFormat:@"MMM d"];
+        UIPickerView *datePicker = (UIPickerView *)self.currentTextField.inputView;
+
+        NSInteger month = [datePicker selectedRowInComponent:0] + 1;
+        NSInteger day = [datePicker selectedRowInComponent:1] + 1;
+        [_startDateComps setMonth:month];
+        [_startDateComps setDay:day];
+        [_endDateComps setMonth:month];
+        [_endDateComps setDay:day];
+        
+        NSDate *date = [gregorian dateFromComponents:_startDateComps];
+    
+        self.currentTextField.text = [dateFormatter stringFromDate:date];
+    }else{
+        [dateFormatter setDateFormat:@"h:mm a"];
+        UIDatePicker *datePicker = (UIDatePicker *)self.currentTextField.inputView;
+        NSDateComponents *timeComponents = [gregorian components:NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:datePicker.date];
+        
+        if(self.currentTextField == self.eventNewCanvas.startTime){
+            [_startDateComps setMinute:[timeComponents minute]];
+            [_startDateComps setHour:[timeComponents hour]];
+        }else{
+            [_endDateComps setMinute:[timeComponents minute]];
+            [_endDateComps setHour:[timeComponents hour]];
+            _endTimeExists = YES;
+        }
+        
+        self.currentTextField.text = [dateFormatter stringFromDate:datePicker.date];
+    }
+    
+    [self.currentTextField resignFirstResponder];
+}
+
 
 -(void)setupBackgroundWithColor:(UIColor *)color andAlpha:(double)alpha{
     self.view.backgroundColor = color;
@@ -137,42 +194,6 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     self.currentTextField = textField;
-
-    if (_keyboardToolbar == nil) {
-        _keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
-        [_keyboardToolbar setBarStyle:UIBarStyleDefault];
-        
-        UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-        
-        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(formatDate:)];
-        [done setTintColor:[UIColor blackColor]];
-        [_keyboardToolbar setItems:[[NSArray alloc] initWithObjects: flexSpace, done, nil]];
-    }
-    
-    
-    self.currentTextField.inputAccessoryView = _keyboardToolbar;
-    
-    if(_datePicker == nil && ((textField == self.eventNewCanvas.startTime) || (textField == self.eventNewCanvas.endTime))) {
-        _datePicker = [[UIDatePicker alloc] init];
-        _datePicker.datePickerMode = UIDatePickerModeTime;
-        
-    }
-    
-    if((textField == self.eventNewCanvas.startTime) || (textField == self.eventNewCanvas.endTime)){
-        self.currentTextField.inputView = _datePicker;
-        [self.currentTextField.inputAccessoryView setHidden:NO];
-    } else {
-        [self.currentTextField.inputAccessoryView setHidden:YES];
-    }
-    
-}
-
--(void)formatDate:(id)sender{
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"h:mm a"];
-    self.currentTextField.text = [dateFormatter stringFromDate:self.datePicker.date];
-    [self.currentTextField resignFirstResponder];
 }
 
 #pragma mark - cancel button
@@ -197,16 +218,28 @@
         //Initialize attendee information
         NSNumberFormatter *numAttendeeFormatter = [NSNumberFormatter new];
         NSNumber *maxAttendees = [numAttendeeFormatter numberFromString:self.advancedOptions.numAttendees.text];
-        NSNumber *oneNumber = [NSNumber numberWithInt:1];
         NSNumber *isPublicNum = [NSNumber numberWithBool:[self.advancedOptions.publicSwitch isOn]];
         
         NSMutableArray *attendeeList = [[NSMutableArray alloc] initWithObjects:[PFUser currentUser].objectId, nil];
         
+        NSString *description = self.eventNewCanvas.descriptionTF.text;
+        
         //Start and end time
         NSDateFormatter *dateFormatter = [NSDateFormatter new];
         [dateFormatter setDateFormat:@"hh:mm a"];
-        NSDate *startTime = [dateFormatter dateFromString:self.eventNewCanvas.startTime.text];
-        NSDate *endTime = [dateFormatter dateFromString:self.eventNewCanvas.endTime.text];
+        
+        NSCalendar *gregorian = [[NSCalendar alloc]
+                                 initWithCalendarIdentifier:NSGregorianCalendar];
+        
+        NSDate *startTime = [gregorian dateFromComponents:_startDateComps];
+        NSDate *endTime = [gregorian dateFromComponents:_endDateComps];
+        
+        if((_startDateComps.hour == _endDateComps.hour) && (_startDateComps.minute == _endDateComps.minute) && _endTimeExists){
+            NSDateComponents *dayComponent = [NSDateComponents new];
+            dayComponent.day = 1;
+            
+            endTime = [gregorian dateByAddingComponents:dayComponent toDate:endTime options:0];
+        }
         
         //Set event photo
         NSData *eventPhotoData = UIImageJPEGRepresentation(self.pickedImage, 0.2);
@@ -215,15 +248,15 @@
         
         [event setObject:[PFUser currentUser].objectId forKey:@"OrganizerID"];
         [event setObject:attendeeList forKey:@"AttendeeList"];
-        [event setObject:self.eventNewCanvas.descriptionTF.text forKey:@"Description"];
-        [event setObject:self.eventNewCanvas.startTime.text forKey:@"StartTime"];
-        if(endTime != nil){
-            [event setObject:self.eventNewCanvas.endTime.text forKey:@"EndTime"];
+        [event setObject:description forKey:@"Description"];
+        [event setObject:startTime forKey:@"StartTime"];
+        if(_endTimeExists){
+            [event setObject:endTime forKey:@"EndTime"];
         } else {
-            [event setObject:[NSNull new] forKey:@"EndTime"];
+            [event setObject:startTime forKey:@"EndTime"];
         }
+        
         [event setObject:maxAttendees forKey:@"MaxAttendees"];
-        [event setObject:oneNumber forKey:@"NumAttendees"];
         [event setObject:isPublicNum forKey:@"IsPublic"];
         [event setObject:eventPhoto forKey:@"EventPhoto"];
         [event setObject:[[PFUser currentUser] objectForKey:@"profile"][@"name"] forKey:@"organizerName"];

@@ -18,15 +18,17 @@
         //self.eventID = [NSString new];
         
         self.backgroundColor = [UIColor clearColor];
-        self.layer.contents = (id)[UIImage imageNamed:@"ShadowLayser"].CGImage;
-        self.selectionStyle = UITableViewCellSelectionStyleNone;        
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.contentView.backgroundColor = [UIColor clearColor];
         
         self.backgroundLayerView = [[UIView alloc] initWithFrame:CGRectMake(3,0,270,65)];
         self.backgroundLayerView.backgroundColor = [UIColor SPGray];
+        self.backgroundLayerView.layer.borderColor = [UIColor grayColor].CGColor;
+        self.backgroundLayerView.layer.borderWidth = 0.1f;
         [self.backgroundLayerView.layer setCornerRadius:3];
         
         self.contentText = [[UILabel alloc] initWithFrame:CGRectMake(self.backgroundLayerView.frame.origin.x+10, self.backgroundLayerView.frame.origin.y, self.backgroundLayerView.frame.size.width-10, self.backgroundLayerView.frame.size.height)];
+        self.contentText.clipsToBounds = YES;
         self.contentText.backgroundColor = [UIColor clearColor];
 
         [self.contentText setFont:[UIFont fontWithName:@"Avenir-Light" size:16.0f]];

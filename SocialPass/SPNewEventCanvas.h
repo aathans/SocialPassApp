@@ -13,10 +13,9 @@
 @property (nonatomic) UIButton *coverPhoto;
 @property (nonatomic) UILabel *coverPhotoHeader;
 @property (nonatomic) UITextField *descriptionTF;
-@property (nonatomic) UILabel *descriptionHeader;
+@property (nonatomic) UITextField *day;
 @property (nonatomic) UITextField *startTime;
 @property (nonatomic) UITextField *endTime;
-@property (nonatomic) UILabel *timeLabel;
 @property (nonatomic) UILabel *toLabel;
 @property (nonatomic) UIButton *createEvent;
 

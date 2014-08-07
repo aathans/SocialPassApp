@@ -15,13 +15,14 @@
     if (self) {
         
         self.backgroundColor = [UIColor clearColor];
-        self.layer.contents = (id)[UIImage imageNamed:@"ShadowLayer"].CGImage;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         self.contentView.backgroundColor = [UIColor clearColor];
         
         self.backgroundLayerView = [[UIView alloc] initWithFrame:CGRectMake(3,0,270,65)];
         self.backgroundLayerView.backgroundColor = [UIColor SPGray];
+        self.backgroundLayerView.layer.borderColor = [UIColor grayColor].CGColor;
+        self.backgroundLayerView.layer.borderWidth = 0.1f;
         [self.backgroundLayerView.layer setCornerRadius:3];
         
         

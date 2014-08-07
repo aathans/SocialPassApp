@@ -37,6 +37,7 @@
 		FA4A5A94195AAAD900C016EC /* SPProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4A5A93195AAAD900C016EC /* SPProfileViewController.m */; };
 		FA4A5A98195B6E6E00C016EC /* SPTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4A5A97195B6E6E00C016EC /* SPTransitionManager.m */; };
 		FA6BD28B198B38D500043C1B /* SPEmptyFeedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6BD28A198B38D500043C1B /* SPEmptyFeedLabel.m */; };
+		FA6BD29F1992E35900043C1B /* SPDayMonth.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6BD29E1992E35900043C1B /* SPDayMonth.m */; };
 		FAA8D97019578AEE0090C4ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D96F19578AEE0090C4ED /* Foundation.framework */; };
 		FAA8D97219578AEE0090C4ED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D97119578AEE0090C4ED /* CoreGraphics.framework */; };
 		FAA8D97419578AEE0090C4ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D97319578AEE0090C4ED /* UIKit.framework */; };
@@ -119,6 +120,8 @@
 		FA4A5A97195B6E6E00C016EC /* SPTransitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTransitionManager.m; sourceTree = "<group>"; };
 		FA6BD289198B38D500043C1B /* SPEmptyFeedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPEmptyFeedLabel.h; sourceTree = "<group>"; };
 		FA6BD28A198B38D500043C1B /* SPEmptyFeedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPEmptyFeedLabel.m; sourceTree = "<group>"; };
+		FA6BD29D1992E35900043C1B /* SPDayMonth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDayMonth.h; sourceTree = "<group>"; };
+		FA6BD29E1992E35900043C1B /* SPDayMonth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDayMonth.m; sourceTree = "<group>"; };
 		FA941A1B197DC7A40093479C /* SPMainViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMainViewControllerTests.m; sourceTree = "<group>"; };
 		FAA8D96C19578AEE0090C4ED /* SocialPass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialPass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA8D96F19578AEE0090C4ED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -319,6 +322,15 @@
 			name = "Empty Label";
 			sourceTree = "<group>";
 		};
+		FA6BD2961991CCA400043C1B /* DayMonthOnlyPicker */ = {
+			isa = PBXGroup;
+			children = (
+				FA6BD29D1992E35900043C1B /* SPDayMonth.h */,
+				FA6BD29E1992E35900043C1B /* SPDayMonth.m */,
+			);
+			name = DayMonthOnlyPicker;
+			sourceTree = "<group>";
+		};
 		FAA8D96319578AEE0090C4ED = {
 			isa = PBXGroup;
 			children = (
@@ -445,6 +457,7 @@
 			children = (
 				FAA8D9B319578D450090C4ED /* SPNewEventViewController.h */,
 				FAA8D9B419578D450090C4ED /* SPNewEventViewController.m */,
+				FA6BD2961991CCA400043C1B /* DayMonthOnlyPicker */,
 				FA0929A11960A2170010DB1C /* New Event Views */,
 			);
 			name = "New Event";
@@ -604,6 +617,7 @@
 				FAA8D9C0195797C30090C4ED /* SPEventCanvas.m in Sources */,
 				FA0BF744195B7D3F00CBE8AB /* SPLoginViewController.m in Sources */,
 				FAA8D9A619578B150090C4ED /* SPCoreDataStack.m in Sources */,
+				FA6BD29F1992E35900043C1B /* SPDayMonth.m in Sources */,
 				FAA8D98519578AEF0090C4ED /* SocialPass.xcdatamodeld in Sources */,
 				FAA8D9C71957C3AE0090C4ED /* TPKeyboardAvoidingScrollView.m in Sources */,
 				FA284C54195CF4F500A09AF9 /* SPProfileFeedCellTableViewCell.m in Sources */,

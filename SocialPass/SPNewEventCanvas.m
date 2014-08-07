@@ -8,10 +8,12 @@
 
 #import "SPNewEventCanvas.h"
 #import "TPKeyboardAvoidingScrollView.h"
+#import "SPDayMonth.h"
 
 @interface SPNewEventCanvas() <UITextFieldDelegate>
 
 @property (nonatomic) TPKeyboardAvoidingScrollView *keyboard;
+@property (nonatomic) SPDayMonth *dayPicker;
 
 @end
 
@@ -32,23 +34,22 @@
     
     self.coverPhoto = [UIButton buttonWithType:UIButtonTypeCustom];
     self.coverPhotoHeader = [UILabel new];
-    self.descriptionHeader = [UILabel new];
     self.descriptionTF = [UITextField new];
+    self.day = [UITextField new];
     self.startTime = [UITextField new];
     self.endTime = [UITextField new];
     self.toLabel = [UILabel new];
-    self.timeLabel = [UILabel new];
     self.createEvent = [UIButton buttonWithType:UIButtonTypeCustom];
     self.keyboard = [TPKeyboardAvoidingScrollView new];
-    
+    self.dayPicker = [SPDayMonth new];
+
     [self.keyboard addSubview:self.coverPhoto];
     [self.keyboard addSubview:self.coverPhotoHeader];
-    [self.keyboard addSubview:self.descriptionHeader];
     [self.keyboard addSubview:self.descriptionTF];
     [self.keyboard addSubview:self.startTime];
     [self.keyboard addSubview:self.endTime];
     [self.keyboard addSubview:self.toLabel];
-    [self.keyboard addSubview:self.timeLabel];
+    [self.keyboard addSubview:self.day];
     
     [self addSubview:self.keyboard];
     [self addSubview:self.createEvent];
@@ -68,33 +69,43 @@
     [self.coverPhoto setBackgroundColor:[UIColor greenColor]];
     [self.coverPhoto setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-    self.descriptionHeader.text = @"What do you want to do?";
-    [self.descriptionHeader setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
-    self.descriptionHeader.textAlignment = NSTextAlignmentCenter;
-    [self.descriptionHeader setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
     [self.descriptionTF setPlaceholder:@"Description"];
     [self.descriptionTF setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
     [self.descriptionTF setBackgroundColor:[UIColor whiteColor]];
     [self.descriptionTF setBorderStyle:UITextBorderStyleRoundedRect];
     [self.descriptionTF setTranslatesAutoresizingMaskIntoConstraints:NO];
     
+//    NSDate *currentDate = [NSDate new];
+//    NSCalendar *cal = [NSCalendar currentCalendar];
+//    NSDateComponents *comps = [cal components:NSMonthCalendarUnit | NSDayCalendarUnit fromDate:currentDate];
+//    
+//    NSInteger currentMonth = [comps month] - 1;
+//    NSInteger currentDay = [comps day] - 1;
+//    [self.dayPicker selectRow:currentMonth inComponent:0 animated:NO];
+//    [self.dayPicker selectRow:currentDay inComponent:1 animated:NO];
+    
+    [self.day setInputView:self.dayPicker];
+    [self.day setPlaceholder:@"Date"];
+    [self.day setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
+    [self.day setBorderStyle:UITextBorderStyleRoundedRect];
+    [self.day setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
     [self.startTime setPlaceholder:@"Start Time"];
     [self.startTime setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
-    [self.startTime setBackgroundColor:[UIColor whiteColor]];
     [self.startTime setBorderStyle:UITextBorderStyleRoundedRect];
     [self.startTime setTranslatesAutoresizingMaskIntoConstraints:NO];
     
+    UIDatePicker *datePicker = [UIDatePicker new];
+    datePicker.datePickerMode = UIDatePickerModeTime;
+    [self.startTime setInputView:datePicker];
+    [self.startTime.inputAccessoryView setHidden:NO];
+    
     [self.endTime setPlaceholder:@"End Time"];
     [self.endTime setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
-    [self.endTime setBackgroundColor:[UIColor whiteColor]];
     [self.endTime setBorderStyle:UITextBorderStyleRoundedRect];
     [self.endTime setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    self.timeLabel.text = @"What time?";
-    [self.timeLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
-    self.timeLabel.textAlignment = NSTextAlignmentCenter;
-    [self.timeLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.endTime setInputView:datePicker];
+    [self.endTime.inputAccessoryView setHidden:NO];
     
     self.toLabel.text = @"to";
     [self.toLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
@@ -114,17 +125,16 @@
 -(void)setupConstraints{
     UIView *imageLabel = self.coverPhotoHeader;
     UIView *eventPhoto = self.coverPhoto;
-    UIView *descLabel = self.descriptionHeader;
     UIView *desc = self.descriptionTF;
+    UIView *day = self.day;
     UIView *start = self.startTime;
     UIView *end = self.endTime;
     UIView *to = self.toLabel;
-    UIView *timeLabel = self.timeLabel;
     UIView *createEvent = self.createEvent;
     
     UIView *keyboard = self.keyboard;
 
-    NSDictionary *views = NSDictionaryOfVariableBindings(imageLabel, eventPhoto, descLabel, desc, start, end, to, timeLabel, keyboard, createEvent);
+    NSDictionary *views = NSDictionaryOfVariableBindings(imageLabel, eventPhoto, desc,day, start, end, to, keyboard, createEvent);
     
     NSArray *keyboardConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[keyboard]|" options:0 metrics:nil views:views];
     keyboardConstraints = [keyboardConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[keyboard]|" options:0 metrics:nil views:views]];
@@ -137,11 +147,11 @@
     //Horizontal
     NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[eventPhoto]-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views];
     constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[desc]-|" options:0 metrics:nil views:views]];
-    
+    constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[day]-|" options:0 metrics:nil views:views]];
     constraints = [constraints arrayByAddingObject:[NSLayoutConstraint constraintWithItem:imageLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:keyboard attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
     
     //Vertical
-    constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[imageLabel]-5-[eventPhoto(180)]-3-[descLabel][desc]-3-[timeLabel]-[to]-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
+    constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[imageLabel]-5-[eventPhoto(180)]-[desc]-5-[day]-10-[to]-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
     
     constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[start]-5-[to]-5-[end(==start)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
     
