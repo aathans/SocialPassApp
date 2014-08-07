@@ -31,7 +31,6 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger numberOfEvents = self.events.count;
-    NSLog(@"%ld", (long)numberOfEvents);
     
     if(numberOfEvents != 0){
         tableView.backgroundView.hidden = YES;

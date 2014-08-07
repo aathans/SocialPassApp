@@ -550,6 +550,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Dolo;
 				TargetAttributes = {
+					FAA8D96B19578AEE0090C4ED = {
+						DevelopmentTeam = R9LFG8QGXF;
+					};
 					FAA8D98B19578AEF0090C4ED = {
 						TestTargetID = FAA8D96B19578AEE0090C4ED;
 					};
@@ -753,11 +756,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/SocialPass";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocialPass/SocialPass-Prefix.pch";
 				INFOPLIST_FILE = "SocialPass/SocialPass-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -767,11 +773,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/SocialPass";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SocialPass/SocialPass-Prefix.pch";
 				INFOPLIST_FILE = "SocialPass/SocialPass-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

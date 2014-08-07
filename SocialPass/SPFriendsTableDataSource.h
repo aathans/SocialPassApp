@@ -10,7 +10,7 @@
 
 @interface SPFriendsTableDataSource : NSObject <UITableViewDataSource>
 
-@property (nonatomic) NSArray *friendsArray;
+@property (nonatomic) NSArray *friendUsers;
 
 - (void)fetchFeedForTable:(UITableView *)table;
 
