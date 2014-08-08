@@ -62,6 +62,8 @@
 		FAA8D9C71957C3AE0090C4ED /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9C41957C3AE0090C4ED /* TPKeyboardAvoidingScrollView.m */; };
 		FAC81B981960B591006C2904 /* SPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC81B971960B591006C2904 /* SPUser.m */; };
 		FAC81B9B1960B592006C2904 /* SPEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC81B9A1960B592006C2904 /* SPEvent.m */; };
+		FACA986519942862001D0960 /* defaultEventPhoto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FACA986419942862001D0960 /* defaultEventPhoto.jpg */; };
+		FACA986719942C0E001D0960 /* defaultEventPhoto@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FACA986619942C0E001D0960 /* defaultEventPhoto@2x.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +163,8 @@
 		FAC81B971960B591006C2904 /* SPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUser.m; sourceTree = "<group>"; };
 		FAC81B991960B592006C2904 /* SPEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPEvent.h; sourceTree = "<group>"; };
 		FAC81B9A1960B592006C2904 /* SPEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPEvent.m; sourceTree = "<group>"; };
+		FACA986419942862001D0960 /* defaultEventPhoto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = defaultEventPhoto.jpg; sourceTree = "<group>"; };
+		FACA986619942C0E001D0960 /* defaultEventPhoto@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "defaultEventPhoto@2x.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +308,8 @@
 		FA6BD2881988766E00043C1B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FACA986419942862001D0960 /* defaultEventPhoto.jpg */,
+				FACA986619942C0E001D0960 /* defaultEventPhoto@2x.jpg */,
 				FA1D7413198098BC005ADF36 /* BackgroundImage@2x.jpg */,
 				FA3ADA06196DFBB400E7795C /* SocialPassLaunchImage@2x.png */,
 				FA3ADA04196DFAAE00E7795C /* SocialPassLaunchImage.png */,
@@ -581,11 +587,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FACA986719942C0E001D0960 /* defaultEventPhoto@2x.jpg in Resources */,
 				FA3ADA09196ED05700E7795C /* SocialPassAppIconV2.png in Resources */,
 				FA3ADA05196DFAAE00E7795C /* SocialPassLaunchImage.png in Resources */,
 				FA3ADA03196DF15500E7795C /* SocialPassAppIcon.png in Resources */,
 				FAA8D97C19578AEF0090C4ED /* InfoPlist.strings in Resources */,
 				FA3ADA07196DFBB400E7795C /* SocialPassLaunchImage@2x.png in Resources */,
+				FACA986519942862001D0960 /* defaultEventPhoto.jpg in Resources */,
 				FA1D7414198098BC005ADF36 /* BackgroundImage@2x.jpg in Resources */,
 				FAA8D98719578AEF0090C4ED /* Images.xcassets in Resources */,
 			);

@@ -39,33 +39,29 @@
     
     PFUser *user = [self.friendUsers objectAtIndex:0];
     cell.contentText.text = [user objectForKey:@"profile"][@"name"];
-    
+    cell.username = [user objectForKey:@"username"];
+
     return cell;
 }
 
 - (void)fetchFeedForTable:(UITableView *)table{
-    NSLog(@"Fetching feed for friends table");
-    // Issue a Facebook Graph API request to get your user's friend list
     [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
         if (!error) {
-            // result will contain an array with your user's friends in the "data" key
             NSArray *friendObjects = [result objectForKey:@"data"];
             NSMutableArray *friendIds = [NSMutableArray arrayWithCapacity:friendObjects.count];
-            // Create a list of friends' Facebook IDs
+            
             for (NSDictionary *friendObject in friendObjects) {
                 [friendIds addObject:[friendObject objectForKey:@"id"]];
             }
 
-            // Construct a PFUser query that will find friends whose facebook ids
-            // are contained in the current user's friend list.
             PFQuery *friendQuery = [PFUser query];
+            [friendQuery setCachePolicy:kPFCachePolicyCacheElseNetwork];
             [friendQuery whereKey:@"facebookId" containedIn:friendIds];
             
-            // findObjects will return a list of PFUsers that are friends
-            // with the current user
-            self.friendUsers = [friendQuery findObjects];
-            
-            [table reloadData];
+            [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                self.friendUsers = objects;
+                [table reloadData];
+            }];
         }
     }];
 }

@@ -251,7 +251,7 @@
         }
         
         //Set event photo
-        NSData *eventPhotoData = UIImageJPEGRepresentation(self.pickedImage, 0.2);
+        NSData *eventPhotoData = UIImageJPEGRepresentation(self.pickedImage, 0.8f);
         PFFile *eventPhoto = [PFFile fileWithData:eventPhotoData];
         PFObject *event = [PFObject objectWithClassName:@"Event"];
         

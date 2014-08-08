@@ -194,7 +194,15 @@
     PFFile *eventPhoto = [SPEvent objectForKey:@"EventPhoto"];
     NSURL *imageFileURL = [[NSURL alloc] initWithString:eventPhoto.url];
     NSData *imageData = [NSData dataWithContentsOfURL:imageFileURL];
-    self.eventCanvas.eventPhoto.image = [UIImage imageWithData:imageData];
+    NSLog(@"IMAGE: %@",imageData);
+    if([imageData length] == 0){
+        NSLog(@"HERE");
+        self.eventCanvas.eventPhoto.image = [UIImage imageNamed:@"defaultEventPhoto.jpg"];
+    }
+    else{
+        self.eventCanvas.eventPhoto.image = [UIImage imageWithData:imageData];
+    }
+    
     self.eventCanvas.eventDesc.text = [SPEvent objectForKey:@"Description"];
     self.eventCanvas.eventOrganizer.text = [NSString stringWithFormat:@"%@",[SPEvent objectForKey:@"organizerName"]];
     
