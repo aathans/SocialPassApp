@@ -82,22 +82,12 @@
             }
         } else if (user.isNew) {
             NSLog(@"User with facebook signed up and logged in!");
-
+            [self getFacebookInfo];
             [self dismissViewControllerAnimated:YES completion:^{
                 
             }];
         } else {
             NSLog(@"User with facebook logged in!");
-            [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-                if (!error) {
-                    // Store the current user's Facebook ID on the user
-                    [[PFUser currentUser] setObject:[result objectForKey:@"id"]
-                                             forKey:@"facebookId"];
-                    [[PFUser currentUser] saveInBackground];
-                    NSLog(@"SAVVVVING");
-                }
-            }];
-            [self getFacebookInfo];
             [self dismissViewControllerAnimated:YES completion:^{
                 
             }];
@@ -140,6 +130,8 @@
                 NSLog(@"%@", [pictureURL absoluteString]);
             }
             
+            [[PFUser currentUser] setObject:[result objectForKey:@"id"]
+                                     forKey:@"facebookId"];
             [[PFUser currentUser] setObject:userProfile forKey:@"profile"];
             [[PFUser currentUser] saveInBackground];
             

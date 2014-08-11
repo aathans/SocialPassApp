@@ -105,11 +105,19 @@
         UIPickerView *datePicker = (UIPickerView *)self.currentTextField.inputView;
         
         NSCalendar *cal = [NSCalendar currentCalendar];
-        NSDateComponents *current = [cal components:NSMonthCalendarUnit | NSDayCalendarUnit fromDate:[NSDate new]];
+        NSDateComponents *current = [cal components:NSMonthCalendarUnit | NSDayCalendarUnit | NSYearCalendarUnit fromDate:[NSDate new]];
         
         NSInteger month = [datePicker selectedRowInComponent:0] + [current month];
-        if(month > 12)
+        NSInteger year = [current year];
+        if(month > 12){
             month -= 12;
+            [_startDateComps setYear:year+1]; //Event is next year
+            [_endDateComps setYear:year+1];
+        }else{
+            [_startDateComps setYear:year];
+            [_endDateComps setYear:year];
+        }
+        
         NSInteger day = [datePicker selectedRowInComponent:1] + 1;
         
         if(month == [current month])
@@ -216,7 +224,6 @@
 #pragma mark - create event button 
 
 - (void)createEventPressed:(id)sender {
-    NSLog(@"Did tap create event");
     if((self.eventNewCanvas.descriptionTF.text.length == 0) || (self.eventNewCanvas.startTime.text.length == 0)){
         
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Make sure event has a description and start time" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

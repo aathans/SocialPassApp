@@ -194,7 +194,7 @@
     PFFile *eventPhoto = [SPEvent objectForKey:@"EventPhoto"];
     NSURL *imageFileURL = [[NSURL alloc] initWithString:eventPhoto.url];
     NSData *imageData = [NSData dataWithContentsOfURL:imageFileURL];
-    NSLog(@"IMAGE: %@",imageData);
+
     if([imageData length] == 0){
         NSLog(@"HERE");
         self.eventCanvas.eventPhoto.image = [UIImage imageNamed:@"defaultEventPhoto.jpg"];

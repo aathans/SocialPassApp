@@ -125,7 +125,7 @@
             _eventView.eventDesc.text = [self.SPEvent objectForKey:@"Description"];
             _eventView.eventOrganizer.text = [self.SPEvent objectForKey:@"organizerName"];
             _eventView.eventTime.text = [self getTimeText:self.SPEvent];
-            
+            _eventView.eventPhoto.image = [UIImage imageNamed:@"defaultEventPhoto.jpg"];
             NSArray *attendees = [self.SPEvent objectForKey:@"AttendeeList"];
             _eventView.attendees.text = [NSString stringWithFormat:@"Attendees: %lu", (unsigned long)[attendees count]];
         }
@@ -141,6 +141,8 @@
     PFFile *eventPhoto = [SPEvent objectForKey:@"EventPhoto"];
     NSURL *imageFileURL = [[NSURL alloc] initWithString:eventPhoto.url];
     NSData *imageData = [NSData dataWithContentsOfURL:imageFileURL];
+    if([imageData length] == 0)
+        return [UIImage imageNamed:@"defaultEventPhoto.jpg"];
     UIImage *eventImage;
     eventImage = [UIImage imageWithData:imageData];
     
