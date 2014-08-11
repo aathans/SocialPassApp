@@ -37,9 +37,7 @@
     
     [self.view addSubview:self.returnButton];
     [self.view addSubview:self.eventView];
-    
-    NSLog(@"EVENT ID: %@",self.eventID);
-    
+        
     [self getEvent];
     [self setupCharacteristics];
     [self setupConstraints];
@@ -73,7 +71,7 @@
 
 -(void)cancelButton:(id)sender{
     
-    NSMutableArray *attendees = [self.SPEvent objectForKey:@"AttendeeList"];
+    NSMutableArray *attendees = [self.SPEvent objectForKey:kSPEventAttendeeList];
     NSUInteger numAttendees = [attendees count];
     
     if(self.SPEvent != nil){
@@ -83,7 +81,7 @@
         }else{
             numAttendees -= 1;
             [attendees removeObject:[PFUser currentUser].objectId];
-            [self.SPEvent setObject:attendees forKey:@"AttendeeList"];
+            [self.SPEvent setObject:attendees forKey:kSPEventAttendeeList];
             [self.SPEvent saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 NSLog(@"Saving");
             }];
@@ -110,7 +108,7 @@
 }
 
 -(void)getEvent{
-    PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
+    PFQuery *eventQuery = [PFQuery queryWithClassName:kSPEventClass];
     eventQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [eventQuery whereKey:@"objectId" equalTo:self.eventID];
     [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -122,11 +120,11 @@
             
             _SPEvent = [self.events objectAtIndex:0];
             //_eventView.eventPhoto.image = [self getEventPhoto:self.SPEvent];
-            _eventView.eventDesc.text = [self.SPEvent objectForKey:@"Description"];
+            _eventView.eventDesc.text = [self.SPEvent objectForKey:kSPEventDescription];
             _eventView.eventOrganizer.text = [self.SPEvent objectForKey:@"organizerName"];
             _eventView.eventTime.text = [self getTimeText:self.SPEvent];
             _eventView.eventPhoto.image = [UIImage imageNamed:@"defaultEventPhoto.jpg"];
-            NSArray *attendees = [self.SPEvent objectForKey:@"AttendeeList"];
+            NSArray *attendees = [self.SPEvent objectForKey:kSPEventAttendeeList];
             _eventView.attendees.text = [NSString stringWithFormat:@"Attendees: %lu", (unsigned long)[attendees count]];
         }
     }];
@@ -138,11 +136,13 @@
 }
 
 -(UIImage *)getEventPhoto:(PFObject *)SPEvent{
-    PFFile *eventPhoto = [SPEvent objectForKey:@"EventPhoto"];
+    PFFile *eventPhoto = [SPEvent objectForKey:kSPEventPhoto];
     NSURL *imageFileURL = [[NSURL alloc] initWithString:eventPhoto.url];
     NSData *imageData = [NSData dataWithContentsOfURL:imageFileURL];
+    
     if([imageData length] == 0)
         return [UIImage imageNamed:@"defaultEventPhoto.jpg"];
+    
     UIImage *eventImage;
     eventImage = [UIImage imageWithData:imageData];
     
@@ -151,8 +151,8 @@
 
 -(NSString *)getTimeText:(PFObject *)SPEvent{
     NSString *timeText = [NSString new];
-    NSDate *startTime = [SPEvent objectForKey:@"StartTime"];
-    NSDate *endTime = [SPEvent objectForKey:@"EndTime"];
+    NSDate *startTime = [SPEvent objectForKey:kSPEventStartTime];
+    NSDate *endTime = [SPEvent objectForKey:kSPEventEndTime];
     
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     

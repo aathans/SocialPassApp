@@ -12,9 +12,9 @@
 
 @implementation SPUser
 
-@dynamic firstName;
-@dynamic lastName;
+@dynamic name;
 @dynamic userID;
+@dynamic pictureURL;
 @dynamic eventsJoined;
 
 @end

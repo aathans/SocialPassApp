@@ -47,9 +47,9 @@
     
     PFObject *event = [self.events objectAtIndex:indexPath.row];
     
-    NSString *description = [event objectForKey:@"Description"];
-    NSDate *startTime = [event objectForKey:@"StartTime"];
-    NSDate *endTime = [event objectForKey:@"EndTime"];
+    NSString *description = [event objectForKey:kSPEventDescription];
+    NSDate *startTime = [event objectForKey:kSPEventStartTime];
+    NSDate *endTime = [event objectForKey:kSPEventEndTime];
     NSString *eventID = [event objectId];
     cell.eventID = eventID;
     
@@ -82,10 +82,10 @@
 }
 
 -(void)fetchFeedForTableInBackground:(UITableView *)table{
-    PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
+    PFQuery *eventQuery = [PFQuery queryWithClassName:kSPEventClass];
     eventQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    [eventQuery whereKey:@"AttendeeList" equalTo:[PFUser currentUser].objectId];
-    [eventQuery orderByAscending:@"StartTime"];
+    [eventQuery whereKey:kSPEventAttendeeList equalTo:[PFUser currentUser].objectId];
+    [eventQuery orderByAscending:kSPEventStartTime];
        [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
          self.events = [[NSMutableArray alloc] initWithArray:objects];
         [table reloadData];

@@ -64,6 +64,9 @@
 		FAC81B9B1960B592006C2904 /* SPEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC81B9A1960B592006C2904 /* SPEvent.m */; };
 		FACA986519942862001D0960 /* defaultEventPhoto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FACA986419942862001D0960 /* defaultEventPhoto.jpg */; };
 		FACA986719942C0E001D0960 /* defaultEventPhoto@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FACA986619942C0E001D0960 /* defaultEventPhoto@2x.jpg */; };
+		FACA986A19993184001D0960 /* SPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA986919993184001D0960 /* SPCache.m */; };
+		FACA986E19993605001D0960 /* SPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA986D19993605001D0960 /* SPConstants.m */; };
+		FACA987119993BC9001D0960 /* SPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA987019993BC9001D0960 /* SPUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +168,12 @@
 		FAC81B9A1960B592006C2904 /* SPEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPEvent.m; sourceTree = "<group>"; };
 		FACA986419942862001D0960 /* defaultEventPhoto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = defaultEventPhoto.jpg; sourceTree = "<group>"; };
 		FACA986619942C0E001D0960 /* defaultEventPhoto@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "defaultEventPhoto@2x.jpg"; sourceTree = "<group>"; };
+		FACA986819993184001D0960 /* SPCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCache.h; sourceTree = "<group>"; };
+		FACA986919993184001D0960 /* SPCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCache.m; sourceTree = "<group>"; };
+		FACA986C19993605001D0960 /* SPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPConstants.h; sourceTree = "<group>"; };
+		FACA986D19993605001D0960 /* SPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPConstants.m; sourceTree = "<group>"; };
+		FACA986F19993BC9001D0960 /* SPUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUtility.h; sourceTree = "<group>"; };
+		FACA987019993BC9001D0960 /* SPUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUtility.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,6 +388,12 @@
 			children = (
 				FAA8D98019578AEF0090C4ED /* AppDelegate.h */,
 				FAA8D98119578AEF0090C4ED /* AppDelegate.m */,
+				FACA986819993184001D0960 /* SPCache.h */,
+				FACA986919993184001D0960 /* SPCache.m */,
+				FACA986C19993605001D0960 /* SPConstants.h */,
+				FACA986D19993605001D0960 /* SPConstants.m */,
+				FACA986F19993BC9001D0960 /* SPUtility.h */,
+				FACA987019993BC9001D0960 /* SPUtility.m */,
 				FA0BF745195B7D4700CBE8AB /* Login */,
 				FAA8D9B219578C650090C4ED /* Home */,
 				FAA8D9BA1957951E0090C4ED /* Main Page */,
@@ -615,6 +630,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAA8D9BD195795670090C4ED /* SPMainViewController.m in Sources */,
+				FACA987119993BC9001D0960 /* SPUtility.m in Sources */,
 				FA3ADA0E196F254900E7795C /* SPEventDetailControllerViewController.m in Sources */,
 				FA284C46195CD8D400A09AF9 /* UIColor+themeColors.m in Sources */,
 				FA284C51195CF36D00A09AF9 /* SPProfileFeedDataSource.m in Sources */,
@@ -628,6 +644,7 @@
 				FAA8D9C0195797C30090C4ED /* SPEventCanvas.m in Sources */,
 				FA0BF744195B7D3F00CBE8AB /* SPLoginViewController.m in Sources */,
 				FAA8D9A619578B150090C4ED /* SPCoreDataStack.m in Sources */,
+				FACA986E19993605001D0960 /* SPConstants.m in Sources */,
 				FA6BD29F1992E35900043C1B /* SPDayMonth.m in Sources */,
 				FAA8D98519578AEF0090C4ED /* SocialPass.xcdatamodeld in Sources */,
 				FAA8D9C71957C3AE0090C4ED /* TPKeyboardAvoidingScrollView.m in Sources */,
@@ -641,6 +658,7 @@
 				FA6BD28B198B38D500043C1B /* SPEmptyFeedLabel.m in Sources */,
 				FA0929AD1960ADCB0010DB1C /* SPFriendsTableDataSource.m in Sources */,
 				FA0BF742195B7D3F00CBE8AB /* SPSignUpViewController.m in Sources */,
+				FACA986A19993184001D0960 /* SPCache.m in Sources */,
 				FA1D7412197F397F005ADF36 /* SPAdvancedOptionsAttendeeTextField.m in Sources */,
 				FAC81B9B1960B592006C2904 /* SPEvent.m in Sources */,
 				FA284C41195CCAD900A09AF9 /* SPFriendsTableViewCell.m in Sources */,

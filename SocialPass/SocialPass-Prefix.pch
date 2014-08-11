@@ -17,4 +17,7 @@
     #import <CoreData/CoreData.h>
     #import <Parse/Parse.h>
     #import <FacebookSDK/FacebookSDK.h>
+    #import "SPCache.h"
+    #import "SPConstants.h"
+    #import "SPUtility.h"
 #endif

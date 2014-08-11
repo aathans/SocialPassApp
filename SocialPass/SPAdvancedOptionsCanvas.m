@@ -59,6 +59,7 @@
     
     
     [self.numAttendees setFrame:CGRectMake(180, 65, 60, 30)];
+    [self.numAttendees setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
     [self.numAttendees setBorderStyle:UITextBorderStyleRoundedRect];
     [self.numAttendees setBackgroundColor:[UIColor whiteColor]];
     [self.numAttendees setText:@"25"];
@@ -74,6 +75,7 @@
     [self.locationLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:16.0]];
     
     [self.location setFrame:CGRectMake(80, 160, 155, 30)];
+    [self.location setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
     [self.location setBorderStyle:UITextBorderStyleRoundedRect];
     [self.location setBackgroundColor:[UIColor whiteColor]];
     

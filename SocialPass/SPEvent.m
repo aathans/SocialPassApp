@@ -15,7 +15,6 @@
 @dynamic endTime;
 @dynamic eventDesc;
 @dynamic eventPhoto;
-@dynamic isAttending;
 @dynamic isPublic;
 @dynamic maxAttendees;
 @dynamic numAttendees;

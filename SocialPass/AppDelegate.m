@@ -20,7 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
+    
     [Parse setApplicationId:@"hIMK947I58Vg1Xgk30yXXPtW4Dwe9fECkwffWZEt"
                   clientKey:@"R9ArkDtV3UPzpuMIsFQujs82sZ2mdW6NGrzUZK4n"];
     

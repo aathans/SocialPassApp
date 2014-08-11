@@ -17,6 +17,7 @@
 @property (nonatomic) SPFriendsTableDataSource *friendsListDataSource;
 @property (nonatomic) UILabel *header;
 @property (nonatomic) UILabel *headerTitle;
+@property (nonatomic) UIRefreshControl *refreshControl;
 
 -(void)setupConstraints;
 -(void)setupCharacteristics;
@@ -25,8 +26,8 @@
 
 @implementation SPFriendsListViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (id)init{
+    self = [super init];
     if (self) {
     }
     return self;
@@ -37,7 +38,7 @@
     self.header = [UILabel new];
     self.headerTitle = [UILabel new];
     
-    self.friendsListDataSource = [[SPFriendsTableDataSource alloc] init];
+    self.friendsListDataSource = [SPFriendsTableDataSource new];
     self.friendsList = [[SPFriendsTable alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     self.friendsList.dataSource = self.friendsListDataSource;
     self.friendsList.backgroundColor = [UIColor clearColor];
@@ -53,7 +54,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.friendsList reloadData];
 }
 
 -(void)setupCharacteristics{
@@ -73,8 +73,23 @@
 }
 
 -(void)setupFriendsList{
+    UIRefreshControl *refreshControl = [UIRefreshControl new];
+    [refreshControl addTarget:self action:@selector(updateTable:) forControlEvents:UIControlEventValueChanged];
+    
+    self.refreshControl = refreshControl;
+    [self.friendsList addSubview:self.refreshControl];
+    
     [self.friendsList setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.friendsList setTranslatesAutoresizingMaskIntoConstraints:NO];
+}
+
+-(void)updateTable:(id)sender{
+    [self.friendsListDataSource fetchFeedForTable:self.friendsList];
+    [self stopRefreshing];
+}
+
+-(void)stopRefreshing{
+    [self.refreshControl endRefreshing];
 }
 
 -(void)setupConstraints{
@@ -90,7 +105,6 @@
     feedConstraints = [feedConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[header(47)]-5-[feed]-|" options:0 metrics:nil views:views]];
     
     NSArray *headerConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[header]|" options:0 metrics:nil views:views];
-    
 
     NSArray *headerTitleConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[headerTitle]|" options:0 metrics:nil views:headerViews];
     headerTitleConstraints = [headerTitleConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[headerTitle(32)]" options:0 metrics:nil views:headerViews]];
@@ -98,7 +112,6 @@
     [self.header addConstraints:headerTitleConstraints];
     [self.view addConstraints:headerConstraints];
     [self.view addConstraints:feedConstraints];
-    
 }
 
 @end

@@ -37,11 +37,12 @@
     }];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
     
     PFUser *currentUser = [PFUser currentUser];
+    
     if(!currentUser){
         SPLoginViewController *loginViewController = [[SPLoginViewController alloc] init];
         
@@ -57,6 +58,7 @@
     
     _pages = @[friendsVC, mainVC, profileVC];
 }
+
 
 #pragma mark - UIPageViewControllerDataSource
 

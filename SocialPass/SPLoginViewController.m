@@ -60,13 +60,6 @@
 
 #pragma mark - Helper methods
 
--(void)buttonClicked:(id)sender{
-    NSLog(@"HI");
-    SPSignUpViewController *signUpViewController = [[SPSignUpViewController alloc] init];
-    [self presentViewController:signUpViewController animated:YES completion:^{
-    }];
-}
-
 -(void)loginClicked:(id)sender{
     NSArray *permissionsArray = @[@"user_about_me"];
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
@@ -82,12 +75,12 @@
             }
         } else if (user.isNew) {
             NSLog(@"User with facebook signed up and logged in!");
-            [self getFacebookInfo];
             [self dismissViewControllerAnimated:YES completion:^{
                 
             }];
         } else {
             NSLog(@"User with facebook logged in!");
+            [self getFacebookInfo];
             [self dismissViewControllerAnimated:YES completion:^{
                 
             }];
@@ -105,7 +98,7 @@
             
             NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
             
-            NSMutableDictionary *userProfile = [NSMutableDictionary dictionaryWithCapacity:7];
+            NSMutableDictionary *userProfile = [NSMutableDictionary dictionaryWithCapacity:5];
             
             if (facebookID) {
                 userProfile[@"facebookId"] = facebookID;
@@ -113,17 +106,11 @@
             if (userData[@"name"]) {
                 userProfile[@"name"] = userData[@"name"];
             }
-            if (userData[@"location"][@"name"]) {
-                userProfile[@"location"] = userData[@"location"][@"name"];
-            }
             if (userData[@"gender"]) {
                 userProfile[@"gender"] = userData[@"gender"];
             }
             if (userData[@"birthday"]) {
                 userProfile[@"birthday"] = userData[@"birthday"];
-            }
-            if (userData[@"relationship_status"]) {
-                userProfile[@"relationship"] = userData[@"relationship_status"];
             }
             if ([pictureURL absoluteString]) {
                 userProfile[@"pictureURL"] = [pictureURL absoluteString];

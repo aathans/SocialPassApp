@@ -260,21 +260,24 @@
         //Set event photo
         NSData *eventPhotoData = UIImageJPEGRepresentation(self.pickedImage, 0.8f);
         PFFile *eventPhoto = [PFFile fileWithData:eventPhotoData];
-        PFObject *event = [PFObject objectWithClassName:@"Event"];
+        PFObject *event = [PFObject objectWithClassName:kSPEventClass];
         
-        [event setObject:[PFUser currentUser].objectId forKey:@"OrganizerID"];
-        [event setObject:attendeeList forKey:@"AttendeeList"];
-        [event setObject:description forKey:@"Description"];
-        [event setObject:startTime forKey:@"StartTime"];
+        PFRelation *attendees = [event relationForKey:@"attendees"];
+        [attendees addObject:[PFUser currentUser]];
+        
+        [event setObject:[PFUser currentUser].objectId forKey:kSPEventOrganizerID];
+        [event setObject:attendeeList forKey:kSPEventAttendeeList];
+        [event setObject:description forKey:kSPEventDescription];
+        [event setObject:startTime forKey:kSPEventStartTime];
         if(_endTimeExists){
-            [event setObject:endTime forKey:@"EndTime"];
+            [event setObject:endTime forKey:kSPEventEndTime];
         } else {
-            [event setObject:startTime forKey:@"EndTime"];
+            [event setObject:startTime forKey:kSPEventEndTime];
         }
-        [event setObject:maxAttendees forKey:@"MaxAttendees"];
-        [event setObject:isPublicNum forKey:@"IsPublic"];
-        [event setObject:eventPhoto forKey:@"EventPhoto"];
-        [event setObject:[[PFUser currentUser] objectForKey:@"profile"][@"name"] forKey:@"organizerName"];
+        [event setObject:maxAttendees forKey:kSPEventMaxAttendees];
+        [event setObject:isPublicNum forKey:kSPEventIsPublic];
+        [event setObject:eventPhoto forKey:kSPEventPhoto];
+        [event setObject:[[PFUser currentUser] objectForKey:kSPUserProfile][@"name"] forKey:@"organizerName"];
         
         PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
         [ACL setPublicReadAccess:YES];

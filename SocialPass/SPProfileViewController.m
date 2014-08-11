@@ -57,7 +57,7 @@
     [self.eventFeed setRowHeight:75];
     [self.eventFeed registerClass:[SPProfileFeedCellTableViewCell class] forCellReuseIdentifier:@"Cell"];
     
-    self.imageData = [[NSMutableData alloc] init];
+    self.imageData = [NSMutableData new];
     
     [self.view addSubview:self.header];
     [self.header addSubview:self.headerTitle];
@@ -112,16 +112,14 @@
 }
 
 -(void)retrieveUsername{
-    if ([[PFUser currentUser] objectForKey:@"profile"][@"name"]) {
-        self.name.text = [[PFUser currentUser] objectForKey:@"profile"][@"name"];
-        NSLog(@"NAME GOT");
+    if ([[PFUser currentUser] objectForKey:kSPUserProfile][@"name"]) {
+        self.name.text = [[PFUser currentUser] objectForKey:kSPUserProfile][@"name"];
     }
 }
 
 -(void)retrieveProfilePicture{
-    if ([[PFUser currentUser] objectForKey:@"profile"][@"pictureURL"]) {
-        NSLog(@"Getting profile pic");
-        NSURL *pictureURL = [NSURL URLWithString:[[PFUser currentUser] objectForKey:@"profile"][@"pictureURL"]];
+    if ([[PFUser currentUser] objectForKey:kSPUserProfile][@"pictureURL"]) {
+        NSURL *pictureURL = [NSURL URLWithString:[[PFUser currentUser] objectForKey:kSPUserProfile][@"pictureURL"]];
         
         NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:pictureURL
                                                                   cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -249,7 +247,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     SPProfileFeedCellTableViewCell *cell = (SPProfileFeedCellTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"EVENT SENDING ID: %@", cell.eventID);
     [self presentEventDetailsWithEventID:cell.eventID];
 }
 
@@ -257,7 +254,6 @@
     SPEventDetailControllerViewController *newEventVC = [SPEventDetailControllerViewController new];
     newEventVC.modalPresentationStyle = UIModalPresentationCustom;
     newEventVC.transitioningDelegate = self;
-    NSLog(@"GIVING EVENT ID: %@", eventID);
     newEventVC.eventID = eventID;
     
     [self presentViewController:newEventVC animated:YES completion:^{

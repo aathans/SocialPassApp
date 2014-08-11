@@ -16,7 +16,6 @@
 @property (nonatomic, retain) NSString * endTime;
 @property (nonatomic, retain) NSString * eventDesc;
 @property (nonatomic, retain) NSData * eventPhoto;
-@property (nonatomic) BOOL  isAttending;
 @property (nonatomic) BOOL  isPublic;
 @property (nonatomic, retain) NSNumber * maxAttendees;
 @property (nonatomic, retain) NSNumber * numAttendees;

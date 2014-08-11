@@ -191,7 +191,7 @@
 }
 
 -(void)setupEvent:(PFObject *)SPEvent{
-    PFFile *eventPhoto = [SPEvent objectForKey:@"EventPhoto"];
+    PFFile *eventPhoto = [SPEvent objectForKey:kSPEventPhoto];
     NSURL *imageFileURL = [[NSURL alloc] initWithString:eventPhoto.url];
     NSData *imageData = [NSData dataWithContentsOfURL:imageFileURL];
 
@@ -203,14 +203,14 @@
         self.eventCanvas.eventPhoto.image = [UIImage imageWithData:imageData];
     }
     
-    self.eventCanvas.eventDesc.text = [SPEvent objectForKey:@"Description"];
+    self.eventCanvas.eventDesc.text = [SPEvent objectForKey:kSPEventDescription];
     self.eventCanvas.eventOrganizer.text = [NSString stringWithFormat:@"%@",[SPEvent objectForKey:@"organizerName"]];
     
-    NSArray *attendees = [SPEvent objectForKey:@"AttendeeList"];
+    NSArray *attendees = [SPEvent objectForKey:kSPEventAttendeeList];
     self.eventCanvas.attendees.text = [NSString stringWithFormat:@"Attendees: %lu", (unsigned long)[attendees count]];
     
-    NSDate *startTime = [SPEvent objectForKey:@"StartTime"];
-    NSDate *endTime = [SPEvent objectForKey:@"EndTime"];
+    NSDate *startTime = [SPEvent objectForKey:kSPEventStartTime];
+    NSDate *endTime = [SPEvent objectForKey:kSPEventEndTime];
     
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     
@@ -256,14 +256,14 @@
 
 -(void)joinEvent{
     PFObject *event = [self.events objectAtIndex:self.indexCount];
-    NSNumber *maxAttendees = [event objectForKey:@"MaxAttendees"];
-    NSMutableArray *attendees = [event objectForKey:@"AttendeeList"];
+    NSNumber *maxAttendees = [event objectForKey:kSPEventMaxAttendees];
+    NSMutableArray *attendees = [event objectForKey:kSPEventAttendeeList];
     NSNumber *numAttendees = [NSNumber numberWithLong:[attendees count]];
     
     if(event != nil){
         if(numAttendees.intValue < maxAttendees.intValue){
             [attendees addObject:[PFUser currentUser].objectId];
-            [event setObject:attendees forKey:@"AttendeeList"];
+            [event setObject:attendees forKey:kSPEventAttendeeList];
             [event save];
             [self.events removeObjectAtIndex:self.indexCount];
             self.indexCount--;

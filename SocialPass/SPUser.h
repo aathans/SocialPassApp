@@ -13,9 +13,9 @@
 
 @interface SPUser : NSManagedObject
 
-@property (nonatomic, retain) NSString * firstName;
-@property (nonatomic, retain) NSString * lastName;
-@property (nonatomic, retain) NSNumber * userID;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * userID;
+@property (nonatomic, retain) NSString * pictureURL;
 @property (nonatomic, retain) SPEvent *eventsJoined;
 
 @end

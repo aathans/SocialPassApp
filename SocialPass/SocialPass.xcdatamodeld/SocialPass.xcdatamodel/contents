@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13D65" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="SPEvent" representedClassName="SPEvent" syncable="YES">
         <attribute name="endTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventDesc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventPhoto" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="isAttending" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isPublic" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="maxAttendees" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="numAttendees" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -13,13 +12,13 @@
         <relationship name="attendees" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SPUser" inverseName="eventsJoined" inverseEntity="SPUser" syncable="YES"/>
     </entity>
     <entity name="SPUser" representedClassName="SPUser" syncable="YES">
-        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pictureURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="eventsJoined" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SPEvent" inverseName="attendees" inverseEntity="SPEvent" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SPEvent" positionX="-36" positionY="9" width="128" height="193"/>
+        <element name="SPEvent" positionX="-36" positionY="9" width="128" height="180"/>
         <element name="SPUser" positionX="-351" positionY="99" width="128" height="103"/>
     </elements>
 </model>
