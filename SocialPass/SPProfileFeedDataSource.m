@@ -84,7 +84,7 @@
 -(void)fetchFeedForTableInBackground:(UITableView *)table{
     PFQuery *eventQuery = [PFQuery queryWithClassName:kSPEventClass];
     eventQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    [eventQuery whereKey:kSPEventAttendeeList equalTo:[PFUser currentUser].objectId];
+    [eventQuery whereKey:kSPEventAttendees equalTo:[PFUser currentUser]];
     [eventQuery orderByAscending:kSPEventStartTime];
        [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
          self.events = [[NSMutableArray alloc] initWithArray:objects];

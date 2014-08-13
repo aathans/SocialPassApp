@@ -71,8 +71,8 @@
 
 -(void)cancelButton:(id)sender{
     
-    NSMutableArray *attendees = [self.SPEvent objectForKey:kSPEventAttendeeList];
-    NSUInteger numAttendees = [attendees count];
+    PFRelation *attendees = [self.SPEvent relationForKey:kSPEventAttendees];
+    NSUInteger numAttendees = 2;//[attendees count];
     
     if(self.SPEvent != nil){
         
@@ -80,8 +80,7 @@
             [self.SPEvent deleteEventually];
         }else{
             numAttendees -= 1;
-            [attendees removeObject:[PFUser currentUser].objectId];
-            [self.SPEvent setObject:attendees forKey:kSPEventAttendeeList];
+            [attendees removeObject:[PFUser currentUser]];
             [self.SPEvent saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 NSLog(@"Saving");
             }];
@@ -124,8 +123,7 @@
             _eventView.eventOrganizer.text = [self.SPEvent objectForKey:@"organizerName"];
             _eventView.eventTime.text = [self getTimeText:self.SPEvent];
             _eventView.eventPhoto.image = [UIImage imageNamed:@"defaultEventPhoto.jpg"];
-            NSArray *attendees = [self.SPEvent objectForKey:kSPEventAttendeeList];
-            _eventView.attendees.text = [NSString stringWithFormat:@"Attendees: %lu", (unsigned long)[attendees count]];
+            _eventView.attendees.text = [NSString stringWithFormat:@"Attendees: 2"];
         }
     }];
 }

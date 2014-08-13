@@ -46,8 +46,7 @@
 -(NSArray *)facebookFriends{
     if([self.cache objectForKey:kSPFriendsList])
         return [self.cache objectForKey:kSPFriendsList];
-    NSArray *friends =  @[];
-    return  @[];
+    return nil;
 }
 
 

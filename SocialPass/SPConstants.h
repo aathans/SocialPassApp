@@ -15,11 +15,11 @@ extern NSString *const kSPUserFacebookId;
 
 #pragma mark - PFObject Event Class
 extern NSString *const kSPEventClass;
-extern NSString *const kSPEventAttendeeList;
 extern NSString *const kSPEventDescription;
 extern NSString *const kSPEventPhoto;
-extern NSString *const kSPEventIsPublic;
 extern NSString *const kSPEventMaxAttendees;
 extern NSString *const kSPEventOrganizerID;
 extern NSString *const kSPEventStartTime;
 extern NSString *const kSPEventEndTime;
+extern NSString *const kSPEventAttendees;
+extern NSString *const kSPEventInvitees;

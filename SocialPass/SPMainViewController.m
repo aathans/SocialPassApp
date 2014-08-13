@@ -64,7 +64,7 @@
 
 -(void)setupEvents{
     PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
-    [eventQuery whereKey:@"AttendeeList" notEqualTo:[PFUser currentUser].objectId];
+    [eventQuery whereKey:@"Invitees" equalTo:[PFUser currentUser]];
     [eventQuery orderByAscending:@"StartTime"];
     [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error){
@@ -206,8 +206,7 @@
     self.eventCanvas.eventDesc.text = [SPEvent objectForKey:kSPEventDescription];
     self.eventCanvas.eventOrganizer.text = [NSString stringWithFormat:@"%@",[SPEvent objectForKey:@"organizerName"]];
     
-    NSArray *attendees = [SPEvent objectForKey:kSPEventAttendeeList];
-    self.eventCanvas.attendees.text = [NSString stringWithFormat:@"Attendees: %lu", (unsigned long)[attendees count]];
+    self.eventCanvas.attendees.text = [NSString stringWithFormat:@"Attendees: 2"];
     
     NSDate *startTime = [SPEvent objectForKey:kSPEventStartTime];
     NSDate *endTime = [SPEvent objectForKey:kSPEventEndTime];
@@ -257,14 +256,13 @@
 -(void)joinEvent{
     PFObject *event = [self.events objectAtIndex:self.indexCount];
     NSNumber *maxAttendees = [event objectForKey:kSPEventMaxAttendees];
-    NSMutableArray *attendees = [event objectForKey:kSPEventAttendeeList];
-    NSNumber *numAttendees = [NSNumber numberWithLong:[attendees count]];
+    PFRelation *attendees = [event relationForKey:kSPEventAttendees];
+    NSNumber *numAttendees = [NSNumber numberWithLong:2];
     
     if(event != nil){
         if(numAttendees.intValue < maxAttendees.intValue){
-            [attendees addObject:[PFUser currentUser].objectId];
-            [event setObject:attendees forKey:kSPEventAttendeeList];
-            [event save];
+            [attendees addObject:[PFUser currentUser]];
+            [event saveEventually];
             [self.events removeObjectAtIndex:self.indexCount];
             self.indexCount--;
         }else{

@@ -84,7 +84,7 @@
 }
 
 -(void)updateTable:(id)sender{
-    [self.friendsListDataSource fetchFeedForTable:self.friendsList];
+    [self.friendsListDataSource reloadFriendsForTable:self.friendsList];
     [self stopRefreshing];
 }
 

@@ -44,6 +44,16 @@
 }
 
 - (void)fetchFeedForTable:(UITableView *)table{
+    self.friendUsers = [[SPCache sharedCache] facebookFriends];
+    
+    if(self.friendUsers == nil){
+        [self reloadFriendsForTable:table];
+    }else{
+        [table reloadData];
+    }
+}
+
+-(void)reloadFriendsForTable:(UITableView *)table{
     [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
         if (!error) {
             NSArray *friendObjects = [result objectForKey:@"data"];
@@ -52,13 +62,13 @@
             for (NSDictionary *friendObject in friendObjects) {
                 [friendIds addObject:[friendObject objectForKey:@"id"]];
             }
-
+            
             PFQuery *friendQuery = [PFUser query];
             [friendQuery setCachePolicy:kPFCachePolicyCacheElseNetwork];
             [friendQuery whereKey:@"facebookId" containedIn:friendIds];
-            
             [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 self.friendUsers = objects;
+                [[SPCache sharedCache] setFacebookFriends:self.friendUsers];
                 [table reloadData];
             }];
         }

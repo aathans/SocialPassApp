@@ -44,11 +44,14 @@
     PFUser *currentUser = [PFUser currentUser];
     
     if(!currentUser){
-        SPLoginViewController *loginViewController = [[SPLoginViewController alloc] init];
-        
+        SPLoginViewController *loginViewController = [SPLoginViewController new];
         [self presentViewController:loginViewController animated:NO completion:^{
         }];
     }
+    
+    [self getMyFacebookInfo];
+    [self getFriends];
+    
 }
 
 - (void)setupPages {
@@ -91,5 +94,75 @@
     
     return _pages[idx - 1];
 }
+
+#pragma mark - facebook 
+
+-(void)getMyFacebookInfo{
+    FBRequest *request = [FBRequest requestForMe];
+    [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if (!error) {
+            NSDictionary *userData = (NSDictionary *)result;
+            
+            NSString *facebookID = userData[@"id"];
+            
+            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+            
+            NSMutableDictionary *userProfile = [NSMutableDictionary dictionaryWithCapacity:5];
+            
+            if (facebookID) {
+                userProfile[@"facebookId"] = facebookID;
+            }
+            if (userData[@"name"]) {
+                userProfile[@"name"] = userData[@"name"];
+            }
+            if (userData[@"gender"]) {
+                userProfile[@"gender"] = userData[@"gender"];
+            }
+            if (userData[@"birthday"]) {
+                userProfile[@"birthday"] = userData[@"birthday"];
+            }
+            if ([pictureURL absoluteString]) {
+                userProfile[@"pictureURL"] = [pictureURL absoluteString];
+                NSLog(@"%@", [pictureURL absoluteString]);
+            }
+            
+            [[PFUser currentUser] setObject:[result objectForKey:@"id"]
+                                     forKey:@"facebookId"];
+            [[PFUser currentUser] setObject:userProfile forKey:@"profile"];
+            [[PFUser currentUser] saveInBackground];
+            
+            
+        } else if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"]
+                    isEqualToString: @"OAuthException"]) {
+            NSLog(@"The facebook session was invalidated");
+            //[self logoutButtonTouchHandler:nil];
+        } else {
+            NSLog(@"Some other error: %@", error);
+        }
+    }];
+}
+
+-(void)getFriends{
+    [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if (!error) {
+            NSArray *friendObjects = [result objectForKey:@"data"];
+            NSMutableArray *friendIds = [NSMutableArray arrayWithCapacity:friendObjects.count];
+            
+            for (NSDictionary *friendObject in friendObjects) {
+                [friendIds addObject:[friendObject objectForKey:@"id"]];
+            }
+            
+            PFQuery *friendQuery = [PFUser query];
+            [friendQuery setCachePolicy:kPFCachePolicyCacheElseNetwork];
+            [friendQuery whereKey:@"facebookId" containedIn:friendIds];
+            
+            [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                [[SPCache sharedCache] setFacebookFriends:objects];
+            }];
+        }
+    }];
+    
+}
+
 
 @end

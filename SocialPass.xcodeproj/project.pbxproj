@@ -67,6 +67,7 @@
 		FACA986A19993184001D0960 /* SPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA986919993184001D0960 /* SPCache.m */; };
 		FACA986E19993605001D0960 /* SPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA986D19993605001D0960 /* SPConstants.m */; };
 		FACA987119993BC9001D0960 /* SPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA987019993BC9001D0960 /* SPUtility.m */; };
+		FACA9876199B00B8001D0960 /* SPProfileViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA9875199B00B8001D0960 /* SPProfileViewControllerTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +175,7 @@
 		FACA986D19993605001D0960 /* SPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPConstants.m; sourceTree = "<group>"; };
 		FACA986F19993BC9001D0960 /* SPUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUtility.h; sourceTree = "<group>"; };
 		FACA987019993BC9001D0960 /* SPUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUtility.m; sourceTree = "<group>"; };
+		FACA9875199B00B8001D0960 /* SPProfileViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPProfileViewControllerTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -428,6 +430,7 @@
 			children = (
 				FAA8D99A19578AEF0090C4ED /* SocialPassTests.m */,
 				FA941A1B197DC7A40093479C /* SPMainViewControllerTests.m */,
+				FACA9875199B00B8001D0960 /* SPProfileViewControllerTests.m */,
 				FAA8D99519578AEF0090C4ED /* Supporting Files */,
 			);
 			path = SocialPassTests;
@@ -671,6 +674,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA1D740C197DCD7E005ADF36 /* SPMainViewControllerTests.m in Sources */,
+				FACA9876199B00B8001D0960 /* SPProfileViewControllerTests.m in Sources */,
 				FAA8D99B19578AEF0090C4ED /* SocialPassTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -231,16 +231,12 @@
         
     }else{
        
-        //Initialize attendee information
         NSNumberFormatter *numAttendeeFormatter = [NSNumberFormatter new];
         NSNumber *maxAttendees = [numAttendeeFormatter numberFromString:self.advancedOptions.numAttendees.text];
         NSNumber *isPublicNum = [NSNumber numberWithBool:[self.advancedOptions.publicSwitch isOn]];
-        
-        NSMutableArray *attendeeList = [[NSMutableArray alloc] initWithObjects:[PFUser currentUser].objectId, nil];
-        
         NSString *description = self.eventNewCanvas.descriptionTF.text;
+        NSString *organizerName = [[PFUser currentUser] objectForKey:kSPUserProfile][@"name"];
         
-        //Start and end time
         NSDateFormatter *dateFormatter = [NSDateFormatter new];
         [dateFormatter setDateFormat:@"hh:mm a"];
         
@@ -257,16 +253,25 @@
             endTime = [gregorian dateByAddingComponents:dayComponent toDate:endTime options:0];
         }
         
-        //Set event photo
         NSData *eventPhotoData = UIImageJPEGRepresentation(self.pickedImage, 0.8f);
         PFFile *eventPhoto = [PFFile fileWithData:eventPhotoData];
         PFObject *event = [PFObject objectWithClassName:kSPEventClass];
         
-        PFRelation *attendees = [event relationForKey:@"attendees"];
+        PFRelation *attendees = [event relationForKey:kSPEventAttendees];
         [attendees addObject:[PFUser currentUser]];
         
+        PFRelation *invitees = [event relationForKey:kSPEventInvitees];
+        
+        if(isPublicNum){
+            NSArray *friendsList = [[SPCache sharedCache] facebookFriends];
+            for(PFUser *friend in friendsList){
+                [invitees addObject:friend];
+            }
+        }else{
+            //Present invite list
+        }
+    
         [event setObject:[PFUser currentUser].objectId forKey:kSPEventOrganizerID];
-        [event setObject:attendeeList forKey:kSPEventAttendeeList];
         [event setObject:description forKey:kSPEventDescription];
         [event setObject:startTime forKey:kSPEventStartTime];
         if(_endTimeExists){
@@ -275,9 +280,8 @@
             [event setObject:startTime forKey:kSPEventEndTime];
         }
         [event setObject:maxAttendees forKey:kSPEventMaxAttendees];
-        [event setObject:isPublicNum forKey:kSPEventIsPublic];
         [event setObject:eventPhoto forKey:kSPEventPhoto];
-        [event setObject:[[PFUser currentUser] objectForKey:kSPUserProfile][@"name"] forKey:@"organizerName"];
+        [event setObject:organizerName forKey:@"organizerName"];
         
         PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
         [ACL setPublicReadAccess:YES];
@@ -285,11 +289,9 @@
         event.ACL = ACL;
         
         [event saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            NSLog(@"Saving");
         }];
         
         [self dismissViewControllerAnimated:YES completion:^{
-            
         }];
     }
 }

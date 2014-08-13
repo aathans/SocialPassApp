@@ -13,5 +13,6 @@
 @property (nonatomic) NSArray *friendUsers;
 
 - (void)fetchFeedForTable:(UITableView *)table;
+- (void)reloadFriendsForTable:(UITableView *)table;
 
 @end

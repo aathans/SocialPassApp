@@ -10,6 +10,8 @@
 
 @interface SPMainViewControllerTests : XCTestCase
 
+@property (nonatomic) PFUser *user;
+
 @end
 
 @implementation SPMainViewControllerTests
@@ -17,7 +19,10 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    self.user = [PFUser new];
+    [_user setObjectId:@"i1234566"];
+    [_user setUsername:@"V2pcfjAg3XsASkXV5uP7BtL03"];
+    
 }
 
 - (void)tearDown
@@ -29,6 +34,7 @@
 - (void)testExample
 {
    // XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
 }
 
 @end

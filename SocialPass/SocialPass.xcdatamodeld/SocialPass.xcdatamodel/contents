@@ -13,7 +13,7 @@
     </entity>
     <entity name="SPUser" representedClassName="SPUser" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="pictureURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profilePicture" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="eventsJoined" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SPEvent" inverseName="attendees" inverseEntity="SPEvent" syncable="YES"/>
     </entity>
