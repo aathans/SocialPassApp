@@ -149,7 +149,7 @@
     [self.eventFeed setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.eventFeed setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-    SPEmptyFeedLabel *emptyLabel = [[SPEmptyFeedLabel alloc] init];
+    SPEmptyFeedLabel *emptyLabel = [SPEmptyFeedLabel new];
     emptyLabel.font = [UIFont fontWithName:@"Avenir-Light" size:17.0f];
     emptyLabel.alpha = 0.5f;
     emptyLabel.textAlignment = NSTextAlignmentCenter;

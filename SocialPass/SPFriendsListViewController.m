@@ -39,9 +39,8 @@
     self.headerTitle = [UILabel new];
     
     self.friendsListDataSource = [SPFriendsTableDataSource new];
-    self.friendsList = [[SPFriendsTable alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    self.friendsList = [SPFriendsTable new];
     self.friendsList.dataSource = self.friendsListDataSource;
-    self.friendsList.backgroundColor = [UIColor clearColor];
     
     [self.header addSubview:self.headerTitle];
     [self.view addSubview:self.header];

@@ -68,6 +68,7 @@
 		FACA986E19993605001D0960 /* SPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA986D19993605001D0960 /* SPConstants.m */; };
 		FACA987119993BC9001D0960 /* SPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA987019993BC9001D0960 /* SPUtility.m */; };
 		FACA9876199B00B8001D0960 /* SPProfileViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA9875199B00B8001D0960 /* SPProfileViewControllerTests.m */; };
+		FACA987C199C4B1E001D0960 /* SPInviteFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA987B199C4B1E001D0960 /* SPInviteFriends.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +177,8 @@
 		FACA986F19993BC9001D0960 /* SPUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUtility.h; sourceTree = "<group>"; };
 		FACA987019993BC9001D0960 /* SPUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUtility.m; sourceTree = "<group>"; };
 		FACA9875199B00B8001D0960 /* SPProfileViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPProfileViewControllerTests.m; sourceTree = "<group>"; };
+		FACA987A199C4B1E001D0960 /* SPInviteFriends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPInviteFriends.h; sourceTree = "<group>"; };
+		FACA987B199C4B1E001D0960 /* SPInviteFriends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPInviteFriends.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -481,6 +484,8 @@
 			children = (
 				FAA8D9B319578D450090C4ED /* SPNewEventViewController.h */,
 				FAA8D9B419578D450090C4ED /* SPNewEventViewController.m */,
+				FACA987A199C4B1E001D0960 /* SPInviteFriends.h */,
+				FACA987B199C4B1E001D0960 /* SPInviteFriends.m */,
 				FA6BD2961991CCA400043C1B /* DayMonthOnlyPicker */,
 				FA0929A11960A2170010DB1C /* New Event Views */,
 			);
@@ -639,6 +644,7 @@
 				FA284C51195CF36D00A09AF9 /* SPProfileFeedDataSource.m in Sources */,
 				FA3ADA0C196F1A5D00E7795C /* SPEventDetailView.m in Sources */,
 				FA4A5A94195AAAD900C016EC /* SPProfileViewController.m in Sources */,
+				FACA987C199C4B1E001D0960 /* SPInviteFriends.m in Sources */,
 				FA0929A41960A5420010DB1C /* SPAdvancedOptionsCanvas.m in Sources */,
 				FAA8D9A919578B900090C4ED /* SPHomeViewController.m in Sources */,
 				FA0BF743195B7D3F00CBE8AB /* SPForgotPasswordViewController.m in Sources */,

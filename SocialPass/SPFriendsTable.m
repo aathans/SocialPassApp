@@ -7,6 +7,7 @@
 //
 
 #import "SPFriendsTable.h"
+#import "SPFriendsTableDataSource.h"
 #import "SPFriendsTableViewCell.h"
 
 @implementation SPFriendsTable
@@ -15,6 +16,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.delegate = self;
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
