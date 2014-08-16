@@ -7,13 +7,18 @@
 //
 
 #import "SPInviteFriends.h"
-//#import "MSCellAccessory/MSCellAccessory.h"
+#import "SPInviteFriendsTable.h"
+#import "SPInviteFriendsDataSource.h"
 
 @interface SPInviteFriends()
 
-@property (nonatomic) PFUser *currentUser;
-@property(nonatomic, strong) NSArray *allUsers;
-@property(nonatomic, strong) NSMutableArray *friends;
+@property (nonatomic) SPInviteFriendsTable *friends;
+@property (nonatomic) SPInviteFriendsDataSource *friendsData;
+
+@property (nonatomic) UILabel *header;
+@property (nonatomic) UILabel *headerTitle;
+@property (nonatomic) UIButton *done;
+@property (nonatomic) UIButton *back;
 
 @end
 
@@ -23,132 +28,88 @@
     self = [super init];
     
     if(self){
-        
     }
     
     return self;
 }
 
--(void)loadView{
+- (void)loadView
+{
     [super loadView];
     
+    self.friends = [SPInviteFriendsTable new];
+    self.friendsData = [SPInviteFriendsDataSource new];
+    self.friends.dataSource = self.friendsData;
+    
+    self.done = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.done addTarget:self action:@selector(doneButton:) forControlEvents:UIControlEventTouchUpInside];
+
+    self.header = [UILabel new];
+    self.headerTitle = [UILabel new];
+    [self.header addSubview:self.headerTitle];
+    [self.header addSubview:self.done];
+    [self.view addSubview:self.header];
+    [self.view addSubview:self.friends];
+    
+    [self setupCharacteristics];
+    [self setupConstraints];
+    [self.friendsData fetchFeedForTable:self.friends];
 }
 
-//
-//  EditFriendsTableViewController.m
-//  Ribbit
-//
-//  Created by Alexander Athan on 5/24/14.
-//  Copyright (c) 2014 Alex. All rights reserved.
-//
-
-
-UIColor *disclosureColor;
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    PFQuery *query = [PFUser query];
-    [query orderByAscending:@"username"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if(error){
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }else{
-            self.allUsers = objects;
-            [self.tableView reloadData];
-        }
-    }];
-    self.currentUser = [PFUser currentUser];
-    
-    disclosureColor = [UIColor colorWithRed:0.553 green:0.439 blue:0.718 alpha:1.0];
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return [self.allUsers count];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    PFUser *user = [self.allUsers objectAtIndex:indexPath.row];
-    cell.textLabel.text = user.username;
-    // Configure the cell...
-    
-    
-    if([self isFriend:user]){
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        //cell.accessoryView = [MSCellAccessory accessoryWithType:FLAT_CHECKMARK color:disclosureColor];
-        
-    }else{
-        cell.accessoryView = nil;
-    }
-    
-    
-    return cell;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
-    PFUser *user = [self.allUsers objectAtIndex:indexPath.row];
-    
-    PFRelation *friendsRelation = [self.currentUser relationForKey:@"friendsRelation"];
-    
-    
-    if([self isFriend:user]){
-        //Remove them
-        //1. Remove checkmark
-        cell.accessoryView = nil;
-        
-        //2. Remove from array of friends
-        for(PFUser *friend in self.friends){
-            if([friend.objectId isEqualToString:user.objectId]){
-                [self.friends removeObject:friend];
-                break;
-            }
-        }
-        
-        //3. Remove from backend
-        [friendsRelation removeObject:user];
-        
-        
-    }else{
-        //cell.accessoryView = [MSCellAccessory accessoryWithType:FLAT_CHECKMARK color:disclosureColor];
-        
-        [self.friends addObject:user];
-        [friendsRelation addObject:user];
-        
-    }
-    
-    [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if(error){
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
+-(void)doneButton:(id)sender{
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.presentingViewController dismissViewControllerAnimated:NO completion:^{
+            
+        }];
     }];
 }
 
-#pragma mark - Helper methods
--(BOOL)isFriend:(PFUser *)user{
-    for(PFUser *friend in self.friends){
-        if([friend.objectId isEqualToString:user.objectId]){
-            return YES;
-        }
-    }
-    return NO;
+-(void)setupCharacteristics{
+    [self setupHeader];
+    [self setupButtonWithTitle:@"Done" andFont:[UIFont fontWithName:@"Avenir-Light" size:17.0f]];
+    [self.friends setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.friends setTranslatesAutoresizingMaskIntoConstraints:NO];
+}
+
+-(void)setupHeader{
+    self.header.backgroundColor = [UIColor clearColor];
+    [self.header setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [self.headerTitle setBackgroundColor:[UIColor clearColor]];
+    [self.headerTitle setText:@"Invite Friends"];
+    [self.headerTitle setTextAlignment:NSTextAlignmentCenter];
+    [self.headerTitle setFont:[UIFont fontWithName:@"Avenir-Light" size:18]];
+    [self.headerTitle setTranslatesAutoresizingMaskIntoConstraints:NO];
+}
+
+-(void)setupButtonWithTitle:(NSString *)title andFont:(UIFont *)font{
+    [self.done setTitle:title forState:UIControlStateNormal];
+    [self.done.titleLabel setFont:font];
+    [self.done setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.done setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.done.titleLabel.textAlignment = NSTextAlignmentCenter;
+}
+
+-(void)setupConstraints{
+    UIView *feed = self.friends;
+    UIView *header = self.header;
+    UIView *headerTitle = self.headerTitle;
+    
+    NSDictionary *headerViews = NSDictionaryOfVariableBindings(headerTitle);
+    NSDictionary *views = NSDictionaryOfVariableBindings(feed, header);
+    
+    NSArray *feedConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[feed]-|" options:0 metrics:nil views:views];
+    
+    feedConstraints = [feedConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[header(47)]-5-[feed]-|" options:0 metrics:nil views:views]];
+    
+    NSArray *headerConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[header]|" options:0 metrics:nil views:views];
+    
+    NSArray *headerTitleConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[headerTitle]|" options:0 metrics:nil views:headerViews];
+    headerTitleConstraints = [headerTitleConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[headerTitle(32)]" options:0 metrics:nil views:headerViews]];
+    
+    [self.header addConstraints:headerTitleConstraints];
+    [self.view addConstraints:headerConstraints];
+    [self.view addConstraints:feedConstraints];
 }
 
 @end

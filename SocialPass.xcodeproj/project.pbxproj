@@ -69,6 +69,10 @@
 		FACA987119993BC9001D0960 /* SPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA987019993BC9001D0960 /* SPUtility.m */; };
 		FACA9876199B00B8001D0960 /* SPProfileViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA9875199B00B8001D0960 /* SPProfileViewControllerTests.m */; };
 		FACA987C199C4B1E001D0960 /* SPInviteFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA987B199C4B1E001D0960 /* SPInviteFriends.m */; };
+		FACA9882199E86D7001D0960 /* MSCellAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA987F199E86D7001D0960 /* MSCellAccessory.m */; };
+		FACA9883199E86D7001D0960 /* UIView+AccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA9881199E86D7001D0960 /* UIView+AccessViewController.m */; };
+		FACA9886199E873A001D0960 /* SPInviteFriendsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA9885199E873A001D0960 /* SPInviteFriendsDataSource.m */; };
+		FACA988A199E88D6001D0960 /* SPInviteFriendsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA9889199E88D6001D0960 /* SPInviteFriendsTable.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,6 +183,14 @@
 		FACA9875199B00B8001D0960 /* SPProfileViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPProfileViewControllerTests.m; sourceTree = "<group>"; };
 		FACA987A199C4B1E001D0960 /* SPInviteFriends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPInviteFriends.h; sourceTree = "<group>"; };
 		FACA987B199C4B1E001D0960 /* SPInviteFriends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPInviteFriends.m; sourceTree = "<group>"; };
+		FACA987E199E86D7001D0960 /* MSCellAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSCellAccessory.h; sourceTree = "<group>"; };
+		FACA987F199E86D7001D0960 /* MSCellAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSCellAccessory.m; sourceTree = "<group>"; };
+		FACA9880199E86D7001D0960 /* UIView+AccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AccessViewController.h"; sourceTree = "<group>"; };
+		FACA9881199E86D7001D0960 /* UIView+AccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AccessViewController.m"; sourceTree = "<group>"; };
+		FACA9884199E873A001D0960 /* SPInviteFriendsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPInviteFriendsDataSource.h; sourceTree = "<group>"; };
+		FACA9885199E873A001D0960 /* SPInviteFriendsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPInviteFriendsDataSource.m; sourceTree = "<group>"; };
+		FACA9888199E88D6001D0960 /* SPInviteFriendsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPInviteFriendsTable.h; sourceTree = "<group>"; };
+		FACA9889199E88D6001D0960 /* SPInviteFriendsTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPInviteFriendsTable.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -399,6 +411,7 @@
 				FACA986D19993605001D0960 /* SPConstants.m */,
 				FACA986F19993BC9001D0960 /* SPUtility.h */,
 				FACA987019993BC9001D0960 /* SPUtility.m */,
+				FACA987D199E86D7001D0960 /* MSCellAccessory */,
 				FA0BF745195B7D4700CBE8AB /* Login */,
 				FAA8D9B219578C650090C4ED /* Home */,
 				FAA8D9BA1957951E0090C4ED /* Main Page */,
@@ -486,6 +499,7 @@
 				FAA8D9B419578D450090C4ED /* SPNewEventViewController.m */,
 				FACA987A199C4B1E001D0960 /* SPInviteFriends.h */,
 				FACA987B199C4B1E001D0960 /* SPInviteFriends.m */,
+				FACA9887199E873F001D0960 /* Invite Friends Table */,
 				FA6BD2961991CCA400043C1B /* DayMonthOnlyPicker */,
 				FA0929A11960A2170010DB1C /* New Event Views */,
 			);
@@ -530,6 +544,28 @@
 				FA3ADA0D196F1A6100E7795C /* Event Views */,
 			);
 			name = "Event Details";
+			sourceTree = "<group>";
+		};
+		FACA987D199E86D7001D0960 /* MSCellAccessory */ = {
+			isa = PBXGroup;
+			children = (
+				FACA987E199E86D7001D0960 /* MSCellAccessory.h */,
+				FACA987F199E86D7001D0960 /* MSCellAccessory.m */,
+				FACA9880199E86D7001D0960 /* UIView+AccessViewController.h */,
+				FACA9881199E86D7001D0960 /* UIView+AccessViewController.m */,
+			);
+			path = MSCellAccessory;
+			sourceTree = "<group>";
+		};
+		FACA9887199E873F001D0960 /* Invite Friends Table */ = {
+			isa = PBXGroup;
+			children = (
+				FACA9888199E88D6001D0960 /* SPInviteFriendsTable.h */,
+				FACA9889199E88D6001D0960 /* SPInviteFriendsTable.m */,
+				FACA9884199E873A001D0960 /* SPInviteFriendsDataSource.h */,
+				FACA9885199E873A001D0960 /* SPInviteFriendsDataSource.m */,
+			);
+			name = "Invite Friends Table";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -653,20 +689,24 @@
 				FAA8D9C0195797C30090C4ED /* SPEventCanvas.m in Sources */,
 				FA0BF744195B7D3F00CBE8AB /* SPLoginViewController.m in Sources */,
 				FAA8D9A619578B150090C4ED /* SPCoreDataStack.m in Sources */,
+				FACA9882199E86D7001D0960 /* MSCellAccessory.m in Sources */,
 				FACA986E19993605001D0960 /* SPConstants.m in Sources */,
 				FA6BD29F1992E35900043C1B /* SPDayMonth.m in Sources */,
 				FAA8D98519578AEF0090C4ED /* SocialPass.xcdatamodeld in Sources */,
 				FAA8D9C71957C3AE0090C4ED /* TPKeyboardAvoidingScrollView.m in Sources */,
 				FA284C54195CF4F500A09AF9 /* SPProfileFeedCellTableViewCell.m in Sources */,
+				FACA9883199E86D7001D0960 /* UIView+AccessViewController.m in Sources */,
 				FAC81B981960B591006C2904 /* SPUser.m in Sources */,
 				FAA8D9B519578D450090C4ED /* SPNewEventViewController.m in Sources */,
 				FA0BF753195C9F9B00CBE8AB /* SPFriendsListViewController.m in Sources */,
 				FA4A5A98195B6E6E00C016EC /* SPTransitionManager.m in Sources */,
 				FAA8D98219578AEF0090C4ED /* AppDelegate.m in Sources */,
+				FACA988A199E88D6001D0960 /* SPInviteFriendsTable.m in Sources */,
 				FAA8D97E19578AEF0090C4ED /* main.m in Sources */,
 				FA6BD28B198B38D500043C1B /* SPEmptyFeedLabel.m in Sources */,
 				FA0929AD1960ADCB0010DB1C /* SPFriendsTableDataSource.m in Sources */,
 				FA0BF742195B7D3F00CBE8AB /* SPSignUpViewController.m in Sources */,
+				FACA9886199E873A001D0960 /* SPInviteFriendsDataSource.m in Sources */,
 				FACA986A19993184001D0960 /* SPCache.m in Sources */,
 				FA1D7412197F397F005ADF36 /* SPAdvancedOptionsAttendeeTextField.m in Sources */,
 				FAC81B9B1960B592006C2904 /* SPEvent.m in Sources */,

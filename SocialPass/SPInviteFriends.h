@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SPInviteFriends : UITableViewController
+@interface SPInviteFriends : UIViewController
 
 @end

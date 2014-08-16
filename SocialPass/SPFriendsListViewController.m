@@ -38,8 +38,8 @@
     self.header = [UILabel new];
     self.headerTitle = [UILabel new];
     
-    self.friendsListDataSource = [SPFriendsTableDataSource new];
     self.friendsList = [SPFriendsTable new];
+    self.friendsListDataSource = [SPFriendsTableDataSource new];
     self.friendsList.dataSource = self.friendsListDataSource;
     
     [self.header addSubview:self.headerTitle];
@@ -49,10 +49,6 @@
     [self setupCharacteristics];
     [self setupConstraints];
     [self.friendsListDataSource fetchFeedForTable:self.friendsList];
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
 }
 
 -(void)setupCharacteristics{

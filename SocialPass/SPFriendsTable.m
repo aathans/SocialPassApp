@@ -7,7 +7,6 @@
 //
 
 #import "SPFriendsTable.h"
-#import "SPFriendsTableDataSource.h"
 #import "SPFriendsTableViewCell.h"
 
 @implementation SPFriendsTable
