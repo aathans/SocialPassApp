@@ -6,16 +6,11 @@
 //  Copyright (c) 2014 Dolo. All rights reserved.
 //
 
-#import "SPMainViewController.h"
+#import "SPFeedViewController.h"
 #import "SPEventCanvas.h"
-#import "SPCoreDataStack.h"
-#import "SPEvent.h"
-#import "SPTransitionManager.h"
 #import "SPNewEventViewController.h"
-#import <Parse/Parse.h>
-#import "SPLoginViewController.h"
 
-@interface SPMainViewController ()
+@interface SPFeedViewController ()
 
 @property (nonatomic) SPEventCanvas *eventCanvas;
 @property (nonatomic) UICollectionView *attendeePhotos;
@@ -24,11 +19,10 @@
 @property (nonatomic) UIButton *addEventbutton;
 @property (nonatomic) NSMutableArray *profiles;
 @property (nonatomic) NSUInteger indexCount;
-@property (nonatomic, strong) SPTransitionManager *transitionManager;
 
 @end
 
-@implementation SPMainViewController
+@implementation SPFeedViewController
 
 - (id)init{
     self = [super init];
@@ -50,8 +44,6 @@
     [self.view addSubview:self.addEventbutton];
     [self.header addSubview:self.headerTitle];
     [self.view addSubview:self.header];
-    
-    self.transitionManager = [SPTransitionManager new];
     
     [self setupCharacteristics];
     [self setupButtons];
@@ -151,11 +143,10 @@
 -(void)presentNewEventVC{
     SPNewEventViewController *newEventVC = [SPNewEventViewController new];
     newEventVC.modalPresentationStyle = UIModalPresentationCustom;
-    newEventVC.transitioningDelegate = self;
     
-    [self presentViewController:newEventVC animated:YES completion:^{
-        
-    }];
+    [UIView transitionWithView:self.navigationController.view duration:0.8 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
+        [self.navigationController pushViewController:newEventVC animated:NO];
+    } completion:nil];
 }
 
 - (void)skipButtonPressed:(id)sender {
@@ -169,7 +160,6 @@
         self.indexCount++;
         
         if(self.indexCount >= [self.events count]){
-            NSLog(@"Reached end of events");
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"!!!" message:@"End of events." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
             [self setupEvents];
@@ -270,22 +260,6 @@
             [alert show];
         }
     }
-}
-
-#pragma mark - UIViewControllerTransitioningDelegate
-
-- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
-                                                                   presentingController:(UIViewController *)presenting
-                                                                       sourceController:(UIViewController *)source{
-    NSLog(@"Transitioning to create an event");
-    self.transitionManager.transitionTo = MODAL; //Going from main to create event
-    return self.transitionManager;
-}
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
-    NSLog(@"Transitioning back to main page");
-    self.transitionManager.transitionTo = INITIAL; //Going from creating event back to main
-    return self.transitionManager;
 }
 
 @end

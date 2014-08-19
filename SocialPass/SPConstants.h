@@ -8,6 +8,7 @@
 
 #pragma mark - Friends
 extern NSString *const kSPFriendsList;
+extern NSString *const kSPInvitedFriends;
 
 #pragma mark - PFObject User Class
 extern NSString *const kSPUserProfile;

@@ -49,5 +49,14 @@
     return nil;
 }
 
+-(void)setInvitedFriends:(NSArray *)selectedFriends{
+    [self.cache setObject:selectedFriends forKey:kSPInvitedFriends];
+}
+
+-(NSArray *)invitedFriends{
+    if([self.cache objectForKey:kSPInvitedFriends])
+        return [self.cache objectForKey:kSPInvitedFriends];
+    return nil;
+}
 
 @end

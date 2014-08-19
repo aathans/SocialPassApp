@@ -7,7 +7,7 @@
 //
 
 #import "SPHomeViewController.h"
-#import "SPMainViewController.h"
+#import "SPFeedViewController.h"
 #import "SPProfileViewController.h"
 #import "SPLoginViewController.h"
 #import "SPFriendsListViewController.h"
@@ -55,11 +55,13 @@
 }
 
 - (void)setupPages {
-    SPMainViewController *mainVC = [SPMainViewController new];    
+    SPFeedViewController *feedVC = [SPFeedViewController new];
+    UINavigationController *mainController = [[UINavigationController alloc] initWithRootViewController:feedVC];
+    [mainController setNavigationBarHidden:YES];
     SPProfileViewController *profileVC = [SPProfileViewController new];
     SPFriendsListViewController *friendsVC = [SPFriendsListViewController new];
     
-    _pages = @[friendsVC, mainVC, profileVC];
+    _pages = @[friendsVC, mainController, profileVC];
 }
 
 

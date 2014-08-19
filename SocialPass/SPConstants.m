@@ -9,6 +9,7 @@
 #pragma mark - Cache
 
 NSString *const kSPFriendsList = @"friendsList";
+NSString *const kSPInvitedFriends = @"invitedFriends";
 
 #pragma mark - PFObject User Class
 NSString *const kSPUserProfile = @"profile";

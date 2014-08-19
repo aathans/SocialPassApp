@@ -13,6 +13,9 @@
 +(id)sharedCache;
 -(void)clear;
 -(void)setFacebookFriends:(NSArray *)friends;
+-(void)setInvitedFriends:(NSArray *)invitedFriends;
+
 -(NSArray *)facebookFriends;
+-(NSArray *)invitedFriends;
 
 @end

@@ -14,6 +14,7 @@
 
 @property (nonatomic) SPInviteFriendsTable *friends;
 @property (nonatomic) SPInviteFriendsDataSource *friendsData;
+@property (nonatomic) SPNewEvent *myEvent;
 
 @property (nonatomic) UILabel *header;
 @property (nonatomic) UILabel *headerTitle;
@@ -24,10 +25,11 @@
 
 @implementation SPInviteFriends
 
--(id)init{
+-(id)initWithEvent:(SPNewEvent *)myEvent{
     self = [super init];
     
     if(self){
+        self.myEvent = myEvent;
     }
     
     return self;
@@ -43,11 +45,15 @@
     
     self.done = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.done addTarget:self action:@selector(doneButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.back = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.back addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
 
     self.header = [UILabel new];
     self.headerTitle = [UILabel new];
+    [self.view addSubview:self.done];
+    [self.view addSubview:self.back];
     [self.header addSubview:self.headerTitle];
-    [self.header addSubview:self.done];
     [self.view addSubview:self.header];
     [self.view addSubview:self.friends];
     
@@ -57,16 +63,20 @@
 }
 
 -(void)doneButton:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:^{
-        [self.presentingViewController dismissViewControllerAnimated:NO completion:^{
-            
-        }];
-    }];
+    self.myEvent.eventAttendees = self.friends.selectedFriends;
+    [self.myEvent saveEvent];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(void)backButton:(id)sender{
+    //[[SPCache sharedCache] setInvitedFriends:self.friends.selectedFriends];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)setupCharacteristics{
     [self setupHeader];
-    [self setupButtonWithTitle:@"Done" andFont:[UIFont fontWithName:@"Avenir-Light" size:17.0f]];
+    [self setupButton:self.done withTitle:@"Done" andFont:[UIFont fontWithName:@"Avenir-Light" size:17.0f]];
+    [self setupButton:self.back withTitle:@"Back" andFont:[UIFont fontWithName:@"Avenir-Light" size:17.0f]];
     [self.friends setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.friends setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
@@ -82,21 +92,23 @@
     [self.headerTitle setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
--(void)setupButtonWithTitle:(NSString *)title andFont:(UIFont *)font{
-    [self.done setTitle:title forState:UIControlStateNormal];
-    [self.done.titleLabel setFont:font];
-    [self.done setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.done setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    self.done.titleLabel.textAlignment = NSTextAlignmentCenter;
+-(void)setupButton:(UIButton *)button withTitle:(NSString *)title andFont:(UIFont *)font{
+    [button setTitle:title forState:UIControlStateNormal];
+    [button.titleLabel setFont:font];
+    [button setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    button.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
 -(void)setupConstraints{
     UIView *feed = self.friends;
     UIView *header = self.header;
     UIView *headerTitle = self.headerTitle;
+    UIView *done = self.done;
+    UIView *back = self.back;
     
     NSDictionary *headerViews = NSDictionaryOfVariableBindings(headerTitle);
-    NSDictionary *views = NSDictionaryOfVariableBindings(feed, header);
+    NSDictionary *views = NSDictionaryOfVariableBindings(feed, header, done, back);
     
     NSArray *feedConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[feed]-|" options:0 metrics:nil views:views];
     
@@ -107,9 +119,18 @@
     NSArray *headerTitleConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[headerTitle]|" options:0 metrics:nil views:headerViews];
     headerTitleConstraints = [headerTitleConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[headerTitle(32)]" options:0 metrics:nil views:headerViews]];
     
+    NSArray *doneConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[done]-|" options:0 metrics:nil views:views];
+    doneConstraints = [doneConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[done(22)]" options:0 metrics:nil views:views]];
+    
+    NSArray *backConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[back]" options:0 metrics:nil views:views];
+    backConstraints = [backConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[back(22)]" options:0 metrics:nil views:views]];
+    
+    
     [self.header addConstraints:headerTitleConstraints];
     [self.view addConstraints:headerConstraints];
     [self.view addConstraints:feedConstraints];
+    [self.view addConstraints:doneConstraints];
+    [self.view addConstraints:backConstraints];
 }
 
 @end

@@ -7,11 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPMainViewController.h"
+#import "SPFeedViewController.h"
 
 @interface SPProfileViewControllerTests : XCTestCase
 
-@property (nonatomic) SPMainViewController *mainVC;
+@property (nonatomic) SPFeedViewController *mainVC;
 @property (nonatomic) PFUser *currentUser;
 
 @end
@@ -22,7 +22,7 @@
 {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    self.mainVC = [SPMainViewController new];
+    self.mainVC = [SPFeedViewController new];
     self.currentUser = [PFUser currentUser];
 }
 

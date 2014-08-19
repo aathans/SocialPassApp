@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SPMainViewController : UIViewController <UIViewControllerTransitioningDelegate>
+@interface SPFeedViewController : UIViewController 
 
 @property (nonatomic)NSMutableArray *events;
 

@@ -8,7 +8,7 @@
 
 #import "SPNewEventViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
-#import "SPEvent.h"
+#import "SPNewEvent.h"
 #import "SPCoreDataStack.h"
 #import "SPNewEventCanvas.h"
 #import "SPAdvancedOptionsCanvas.h"
@@ -28,6 +28,8 @@
 @property (nonatomic) NSDateComponents *endDateComps;
 @property (nonatomic) BOOL endTimeExists;
 
+@property (nonatomic) SPNewEvent *myEvent;
+
 @end
 
 @implementation SPNewEventViewController
@@ -43,6 +45,8 @@
 
 -(void)loadView{
     [super loadView];
+    
+    self.myEvent = [SPNewEvent new];
     
     self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
@@ -191,11 +195,7 @@
     
     [self.eventNewCanvas addConstraints:createEventConstraints];
     [self.view addConstraints:backgroundConstraints];
-    
-    //Event info constraints
-    
 }
-
 
 #pragma mark - text field delegate methods
 
@@ -217,88 +217,76 @@
 #pragma mark - cancel button
 
 - (void)cancelButton:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [UIView transitionWithView:self.navigationController.view duration:0.8 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    } completion:nil];
 }
 
 #pragma mark - create event button 
 
 - (void)createEventPressed:(id)sender {
-//    if((self.eventNewCanvas.descriptionTF.text.length == 0) || (self.eventNewCanvas.startTime.text.length == 0)){
-//        
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Make sure event has a description and start time" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        [alertView show];
-//        
-//    }else{
-//       
-//        NSNumberFormatter *numAttendeeFormatter = [NSNumberFormatter new];
-//        NSNumber *maxAttendees = [numAttendeeFormatter numberFromString:self.advancedOptions.numAttendees.text];
-//        NSNumber *isPublicNum = [NSNumber numberWithBool:[self.advancedOptions.publicSwitch isOn]];
-//        NSString *description = self.eventNewCanvas.descriptionTF.text;
-//        NSString *organizerName = [[PFUser currentUser] objectForKey:kSPUserProfile][@"name"];
-//        
-//        NSDateFormatter *dateFormatter = [NSDateFormatter new];
-//        [dateFormatter setDateFormat:@"hh:mm a"];
-//        
-//        NSCalendar *gregorian = [[NSCalendar alloc]
-//                                 initWithCalendarIdentifier:NSGregorianCalendar];
-//        
-//        NSDate *startTime = [gregorian dateFromComponents:_startDateComps];
-//        NSDate *endTime = [gregorian dateFromComponents:_endDateComps];
-//        
-//        if((_startDateComps.hour == _endDateComps.hour) && (_startDateComps.minute == _endDateComps.minute) && _endTimeExists){
-//            NSDateComponents *dayComponent = [NSDateComponents new];
-//            dayComponent.day = 1;
-//            
-//            endTime = [gregorian dateByAddingComponents:dayComponent toDate:endTime options:0];
-//        }
-//        
-//        NSData *eventPhotoData = UIImageJPEGRepresentation(self.pickedImage, 0.8f);
-//        PFFile *eventPhoto = [PFFile fileWithData:eventPhotoData];
-//        PFObject *event = [PFObject objectWithClassName:kSPEventClass];
-//        
-//        PFRelation *attendees = [event relationForKey:kSPEventAttendees];
-//        [attendees addObject:[PFUser currentUser]];
-//        
-//        PFRelation *invitees = [event relationForKey:kSPEventInvitees];
-//        
-//        if(isPublicNum){
-//            NSArray *friendsList = [[SPCache sharedCache] facebookFriends];
-//            for(PFUser *friend in friendsList){
-//                [invitees addObject:friend];
-//            }
-//        }else{
-//            //Present invite list
-//        }
-//    
-//        [event setObject:[PFUser currentUser].objectId forKey:kSPEventOrganizerID];
-//        [event setObject:description forKey:kSPEventDescription];
-//        [event setObject:startTime forKey:kSPEventStartTime];
-//        if(_endTimeExists){
-//            [event setObject:endTime forKey:kSPEventEndTime];
-//        } else {
-//            [event setObject:startTime forKey:kSPEventEndTime];
-//        }
-//        [event setObject:maxAttendees forKey:kSPEventMaxAttendees];
-//        [event setObject:eventPhoto forKey:kSPEventPhoto];
-//        [event setObject:organizerName forKey:@"organizerName"];
-//        
-//        PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
-//        [ACL setPublicReadAccess:YES];
-//        [ACL setPublicWriteAccess:YES];
-//        event.ACL = ACL;
-//        
-//        [event saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        }];
-//        
-//        [self dismissViewControllerAnimated:YES completion:^{
-//        }];
-//    }
+    if((self.eventNewCanvas.descriptionTF.text.length == 0) || (self.eventNewCanvas.startTime.text.length == 0)){
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Make sure event has a description and start time" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
+    }else{
+        self.myEvent.eventOrganizer = [[PFUser currentUser] objectForKey:kSPUserProfile][@"name"];
+        self.myEvent.eventDescription = self.eventNewCanvas.descriptionTF.text;
+        self.myEvent.eventStartTime = [self formattedDateFromDateComponents:_startDateComps];
+        
+        if(_endTimeExists == NO)
+            _endDateComps = _startDateComps;
+        
+        self.myEvent.eventEndTime = [self formattedDateFromDateComponents:_endDateComps];
+        self.myEvent.isPublic = [self.advancedOptions.publicSwitch isOn];
+        
+        NSNumberFormatter *numAttendeeFormatter = [NSNumberFormatter new];
+        NSString *maxAttendees = self.advancedOptions.numAttendees.text;
+        self.myEvent.maxAttendees = [numAttendeeFormatter numberFromString:maxAttendees];
+        
+        if(self.myEvent.isPublic)
+            [self savePublicEvent];
+        else
+            [self presentInviteFriends];
+    }
+}
+
+-(NSDate *)formattedDateFromDateComponents:(NSDateComponents *)dateComponents{
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+            [dateFormatter setDateFormat:@"hh:mm a"];
     
-    SPInviteFriends *inviteFriendsVC = [SPInviteFriends new];
-    [self presentViewController:inviteFriendsVC animated:YES completion:^{
-    }];
+    NSCalendar *gregorian = [[NSCalendar alloc]
+            initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    return [gregorian dateFromComponents:dateComponents];
+}
+
+-(BOOL)endTimeIsLessThanStartTime{
+    return ([self.myEvent.eventEndTime compare:self.myEvent.eventStartTime] == NSOrderedAscending);
+}
+
+-(NSDate *)addDayToDate:(NSDate *)date{
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                             initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *dayComponent = [NSDateComponents new];
+    dayComponent.day = 1;
+    
+    return [gregorian dateByAddingComponents:dayComponent toDate:date options:0];
+}
+
+-(void)savePublicEvent{
+    self.myEvent.eventAttendees = [self retrieveFriends];
+    [self.myEvent saveEvent];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(NSArray *)retrieveFriends{
+    return [[SPCache sharedCache] facebookFriends];
+}
+
+-(void)presentInviteFriends{
+    SPInviteFriends *inviteFriendsVC = [[SPInviteFriends alloc] initWithEvent:self.myEvent];
+    [self.navigationController pushViewController:inviteFriendsVC animated:YES];
 }
 
 #pragma mark - Cover photo helper methods

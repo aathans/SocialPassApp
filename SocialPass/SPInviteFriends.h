@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SPNewEvent.h"
 
 @interface SPInviteFriends : UIViewController
+
+-(id)initWithEvent:(SPNewEvent *)myEvent;
 
 @end

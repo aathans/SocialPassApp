@@ -43,7 +43,7 @@
     PFUser *user = [self.friends objectAtIndex:indexPath.row];
     cell.contentText.text = [user objectForKey:@"profile"][@"name"];
     cell.username = user.username;
-    
+
     return cell;
 }
 

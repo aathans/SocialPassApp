@@ -142,7 +142,7 @@
     constraints = [constraints arrayByAddingObject:[NSLayoutConstraint constraintWithItem:imageLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:keyboard attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
     
     //Vertical
-    constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[imageLabel]-5-[eventPhoto(180)]-[desc]-5-[day]-10-[to]-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
+    constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(-15)-[imageLabel]-5-[eventPhoto(180)]-[desc]-5-[day]-10-[to]-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
     
     constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[start]-5-[to]-5-[end(==start)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
     

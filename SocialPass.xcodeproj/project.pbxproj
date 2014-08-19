@@ -34,6 +34,7 @@
 		FA3ADA09196ED05700E7795C /* SocialPassAppIconV2.png in Resources */ = {isa = PBXBuildFile; fileRef = FA3ADA08196ED05700E7795C /* SocialPassAppIconV2.png */; };
 		FA3ADA0C196F1A5D00E7795C /* SPEventDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3ADA0B196F1A5D00E7795C /* SPEventDetailView.m */; };
 		FA3ADA0E196F254900E7795C /* SPEventDetailControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9CA1958DF0A0090C4ED /* SPEventDetailControllerViewController.m */; };
+		FA48D77119A29CCB002841EA /* SPNewEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FA48D77019A29CCB002841EA /* SPNewEvent.m */; };
 		FA4A5A94195AAAD900C016EC /* SPProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4A5A93195AAAD900C016EC /* SPProfileViewController.m */; };
 		FA4A5A98195B6E6E00C016EC /* SPTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4A5A97195B6E6E00C016EC /* SPTransitionManager.m */; };
 		FA6BD28B198B38D500043C1B /* SPEmptyFeedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6BD28A198B38D500043C1B /* SPEmptyFeedLabel.m */; };
@@ -56,7 +57,7 @@
 		FAA8D9A619578B150090C4ED /* SPCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9A519578B150090C4ED /* SPCoreDataStack.m */; };
 		FAA8D9A919578B900090C4ED /* SPHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9A819578B900090C4ED /* SPHomeViewController.m */; };
 		FAA8D9B519578D450090C4ED /* SPNewEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9B419578D450090C4ED /* SPNewEventViewController.m */; };
-		FAA8D9BD195795670090C4ED /* SPMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9BC195795670090C4ED /* SPMainViewController.m */; };
+		FAA8D9BD195795670090C4ED /* SPFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9BC195795670090C4ED /* SPFeedViewController.m */; };
 		FAA8D9C0195797C30090C4ED /* SPEventCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9BF195797C30090C4ED /* SPEventCanvas.m */; };
 		FAA8D9C61957C3AE0090C4ED /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9C21957C3AD0090C4ED /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		FAA8D9C71957C3AE0090C4ED /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8D9C41957C3AE0090C4ED /* TPKeyboardAvoidingScrollView.m */; };
@@ -125,6 +126,8 @@
 		FA3ADA08196ED05700E7795C /* SocialPassAppIconV2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialPassAppIconV2.png; sourceTree = "<group>"; };
 		FA3ADA0A196F1A5D00E7795C /* SPEventDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPEventDetailView.h; sourceTree = "<group>"; };
 		FA3ADA0B196F1A5D00E7795C /* SPEventDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPEventDetailView.m; sourceTree = "<group>"; };
+		FA48D76F19A29CCB002841EA /* SPNewEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPNewEvent.h; sourceTree = "<group>"; };
+		FA48D77019A29CCB002841EA /* SPNewEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPNewEvent.m; sourceTree = "<group>"; };
 		FA4A5A92195AAAD900C016EC /* SPProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPProfileViewController.h; sourceTree = "<group>"; };
 		FA4A5A93195AAAD900C016EC /* SPProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPProfileViewController.m; sourceTree = "<group>"; };
 		FA4A5A96195B6E6E00C016EC /* SPTransitionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTransitionManager.h; sourceTree = "<group>"; };
@@ -158,8 +161,8 @@
 		FAA8D9A819578B900090C4ED /* SPHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHomeViewController.m; sourceTree = "<group>"; };
 		FAA8D9B319578D450090C4ED /* SPNewEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPNewEventViewController.h; sourceTree = "<group>"; };
 		FAA8D9B419578D450090C4ED /* SPNewEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPNewEventViewController.m; sourceTree = "<group>"; };
-		FAA8D9BB195795670090C4ED /* SPMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMainViewController.h; sourceTree = "<group>"; };
-		FAA8D9BC195795670090C4ED /* SPMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMainViewController.m; sourceTree = "<group>"; };
+		FAA8D9BB195795670090C4ED /* SPFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFeedViewController.h; sourceTree = "<group>"; };
+		FAA8D9BC195795670090C4ED /* SPFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFeedViewController.m; sourceTree = "<group>"; };
 		FAA8D9BE195797C30090C4ED /* SPEventCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPEventCanvas.h; sourceTree = "<group>"; };
 		FAA8D9BF195797C30090C4ED /* SPEventCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPEventCanvas.m; sourceTree = "<group>"; };
 		FAA8D9C21957C3AD0090C4ED /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
@@ -411,10 +414,12 @@
 				FACA986D19993605001D0960 /* SPConstants.m */,
 				FACA986F19993BC9001D0960 /* SPUtility.h */,
 				FACA987019993BC9001D0960 /* SPUtility.m */,
+				FA48D76F19A29CCB002841EA /* SPNewEvent.h */,
+				FA48D77019A29CCB002841EA /* SPNewEvent.m */,
 				FACA987D199E86D7001D0960 /* MSCellAccessory */,
 				FA0BF745195B7D4700CBE8AB /* Login */,
 				FAA8D9B219578C650090C4ED /* Home */,
-				FAA8D9BA1957951E0090C4ED /* Main Page */,
+				FAA8D9BA1957951E0090C4ED /* Feed */,
 				FAA8D9B619578D510090C4ED /* New Event */,
 				FA284C42195CCADE00A09AF9 /* Friends */,
 				FA4A5A95195AAADE00C016EC /* Profile */,
@@ -506,23 +511,23 @@
 			name = "New Event";
 			sourceTree = "<group>";
 		};
-		FAA8D9BA1957951E0090C4ED /* Main Page */ = {
+		FAA8D9BA1957951E0090C4ED /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				FAA8D9BB195795670090C4ED /* SPMainViewController.h */,
-				FAA8D9BC195795670090C4ED /* SPMainViewController.m */,
-				FAA8D9C1195797C80090C4ED /* Main Views */,
+				FAA8D9BB195795670090C4ED /* SPFeedViewController.h */,
+				FAA8D9BC195795670090C4ED /* SPFeedViewController.m */,
+				FAA8D9C1195797C80090C4ED /* Feed Views */,
 			);
-			name = "Main Page";
+			name = Feed;
 			sourceTree = "<group>";
 		};
-		FAA8D9C1195797C80090C4ED /* Main Views */ = {
+		FAA8D9C1195797C80090C4ED /* Feed Views */ = {
 			isa = PBXGroup;
 			children = (
 				FAA8D9BE195797C30090C4ED /* SPEventCanvas.h */,
 				FAA8D9BF195797C30090C4ED /* SPEventCanvas.m */,
 			);
-			name = "Main Views";
+			name = "Feed Views";
 			sourceTree = "<group>";
 		};
 		FAA8D9C81957C3B50090C4ED /* Keyboard */ = {
@@ -673,7 +678,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAA8D9BD195795670090C4ED /* SPMainViewController.m in Sources */,
+				FAA8D9BD195795670090C4ED /* SPFeedViewController.m in Sources */,
 				FACA987119993BC9001D0960 /* SPUtility.m in Sources */,
 				FA3ADA0E196F254900E7795C /* SPEventDetailControllerViewController.m in Sources */,
 				FA284C46195CD8D400A09AF9 /* UIColor+themeColors.m in Sources */,
@@ -711,6 +716,7 @@
 				FA1D7412197F397F005ADF36 /* SPAdvancedOptionsAttendeeTextField.m in Sources */,
 				FAC81B9B1960B592006C2904 /* SPEvent.m in Sources */,
 				FA284C41195CCAD900A09AF9 /* SPFriendsTableViewCell.m in Sources */,
+				FA48D77119A29CCB002841EA /* SPNewEvent.m in Sources */,
 				FAA8D9C61957C3AE0090C4ED /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
