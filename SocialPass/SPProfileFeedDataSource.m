@@ -19,24 +19,14 @@
 
 @implementation SPProfileFeedDataSource
 
--(id)init
-{
-    self = [super init];
-    if (self) {
-        
-    }
-    return self;
-}
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger numberOfEvents = self.events.count;
     
-    if(numberOfEvents != 0){
+    if(numberOfEvents != 0)
         tableView.backgroundView.hidden = YES;
-    }else{
+    else
         tableView.backgroundView.hidden = NO;
-    }
     
     return self.events.count;
 }
@@ -52,8 +42,6 @@
     NSDate *endTime = [event objectForKey:kSPEventEndTime];
     NSString *eventID = [event objectId];
     cell.eventID = eventID;
-    
-    NSLog(@"%@", description);
     
     NSString *text = nil;
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
@@ -72,7 +60,7 @@
     }
     
     [cell.contentText setText:text];
-    NSLog(@"returning cell: %@", text);
+    
     return cell;
 }
 

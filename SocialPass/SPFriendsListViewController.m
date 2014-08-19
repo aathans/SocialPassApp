@@ -63,7 +63,7 @@
     [self.headerTitle setBackgroundColor:[UIColor clearColor]];
     [self.headerTitle setText:@"Friends"];
     [self.headerTitle setTextAlignment:NSTextAlignmentCenter];
-    [self.headerTitle setFont:[UIFont fontWithName:@"Avenir-Light" size:18]];
+    [self.headerTitle setFont:[UIFont fontWithName:kSPDefaultFont size:18]];
     [self.headerTitle setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 

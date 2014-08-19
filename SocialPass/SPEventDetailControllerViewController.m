@@ -47,7 +47,7 @@
     [self.eventView setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self setupCancelButton];
-    [self setupReturnButtonWithTitle:@"Return" andFont:[UIFont fontWithName:@"Avenir-Light" size:17.0f]];
+    [self setupReturnButtonWithTitle:@"Return" andFont:[UIFont fontWithName:kSPDefaultFont size:17.0f]];
 }
 
 -(void)setupReturnButtonWithTitle:(NSString *)title andFont:(UIFont *)font{
@@ -82,7 +82,6 @@
             numAttendees -= 1;
             [attendees removeObject:[PFUser currentUser]];
             [self.SPEvent saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                NSLog(@"Saving");
             }];
         }
     }
@@ -120,7 +119,7 @@
             _SPEvent = [self.events objectAtIndex:0];
             //_eventView.eventPhoto.image = [self getEventPhoto:self.SPEvent];
             _eventView.eventDesc.text = [self.SPEvent objectForKey:kSPEventDescription];
-            _eventView.eventOrganizer.text = [self.SPEvent objectForKey:@"organizerName"];
+            _eventView.eventOrganizer.text = [self.SPEvent objectForKey:kSPEventOrganizerName];
             _eventView.eventTime.text = [self getTimeText:self.SPEvent];
             _eventView.eventPhoto.image = [UIImage imageNamed:@"defaultEventPhoto.jpg"];
             _eventView.attendees.text = [NSString stringWithFormat:@"Attendees: 2"];

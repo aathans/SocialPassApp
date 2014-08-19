@@ -27,7 +27,6 @@
     return [self.friends count];
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -41,7 +40,7 @@
     }
     
     PFUser *user = [self.friends objectAtIndex:indexPath.row];
-    cell.contentText.text = [user objectForKey:@"profile"][@"name"];
+    cell.contentText.text = [user objectForKey:kSPUserProfile][kSPUserProfileName];
     cell.username = user.username;
 
     return cell;
@@ -52,6 +51,5 @@
     [table setFriendsListWithFriends:self.friends];
     [table reloadData];
 }
-
 
 @end

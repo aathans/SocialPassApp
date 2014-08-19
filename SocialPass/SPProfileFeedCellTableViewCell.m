@@ -14,9 +14,6 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
-        //self.eventID = [NSString new];
-        
         self.backgroundColor = [UIColor clearColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.contentView.backgroundColor = [UIColor clearColor];
@@ -31,7 +28,7 @@
         self.contentText.clipsToBounds = YES;
         self.contentText.backgroundColor = [UIColor clearColor];
 
-        [self.contentText setFont:[UIFont fontWithName:@"Avenir-Light" size:16.0f]];
+        [self.contentText setFont:[UIFont fontWithName:kSPDefaultFont size:16.0f]];
         [self.backgroundLayerView addSubview:self.contentText];
         // Creates second box to hold profile picture **IF WE WANT THEM SEPARATE**
         /*
@@ -42,19 +39,10 @@
          [cell.contentView addSubview:whiteRoundedProfileView];
          [cell.contentView sendSubviewToBack:whiteRoundedProfileView];
          */
-        
-        
         [self.contentView addSubview:self.backgroundLayerView];
         [self.contentView sendSubviewToBack:self.backgroundLayerView];
     }
     return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

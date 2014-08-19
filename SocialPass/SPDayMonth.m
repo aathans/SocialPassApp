@@ -20,7 +20,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
         self.delegate = self;
         
         NSDateFormatter * df = [[NSDateFormatter alloc] init];
@@ -29,7 +28,6 @@
         self.monthNames = [df monthSymbols];
 
         self.showsSelectionIndicator = YES;
-        
     }
     
     return self;
@@ -44,7 +42,7 @@
 {
     NSUInteger number = 0;
     if (component == 0) {
-        number = 6;
+        number = 6; //Able to pick up to six months ahead
     } else {
         NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
         
@@ -94,39 +92,24 @@
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     NSString *result;
-    
     NSDate *currentDate = [NSDate new];
-
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *comps = [cal components:NSMonthCalendarUnit | NSDayCalendarUnit fromDate:currentDate];
     
     if (component == 0) {
-
         NSInteger index = row + comps.month - 1;
         if(index > 11){
             index = index - 12;
         }
-        
         result = [self.monthNames objectAtIndex:index];
     } else {
         if ([pickerView selectedRowInComponent:0] == 0)
-            result = [NSString stringWithFormat:@"%d", comps.day+row];
+            result = [NSString stringWithFormat:@"%ld", comps.day+row];
         else
-            result = [NSString stringWithFormat:@"%d", row + 1];
+            result = [NSString stringWithFormat:@"%ld", row + 1];
     }
     
     return result;
 }
-
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

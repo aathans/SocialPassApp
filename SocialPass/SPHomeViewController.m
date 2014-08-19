@@ -156,7 +156,7 @@
             
             PFQuery *friendQuery = [PFUser query];
             [friendQuery setCachePolicy:kPFCachePolicyCacheElseNetwork];
-            [friendQuery whereKey:@"facebookId" containedIn:friendIds];
+            [friendQuery whereKey:kSPUserFacebookId containedIn:friendIds];
             
             [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 [[SPCache sharedCache] setFacebookFriends:objects];

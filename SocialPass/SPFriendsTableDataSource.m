@@ -37,7 +37,7 @@
     }
     
     PFUser *user = [self.friendUsers objectAtIndex:0];
-    cell.contentText.text = [user objectForKey:@"profile"][@"name"];
+    cell.contentText.text = [user objectForKey:kSPUserProfile][kSPUserProfileName];
     cell.username = [user objectForKey:@"username"];
 
     return cell;
@@ -65,7 +65,7 @@
             
             PFQuery *friendQuery = [PFUser query];
             [friendQuery setCachePolicy:kPFCachePolicyCacheElseNetwork];
-            [friendQuery whereKey:@"facebookId" containedIn:friendIds];
+            [friendQuery whereKey:kSPUserFacebookId containedIn:friendIds];
             [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 self.friendUsers = objects;
                 [[SPCache sharedCache] setFacebookFriends:self.friendUsers];

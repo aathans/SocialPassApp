@@ -29,7 +29,7 @@
         self.contentText = [[UILabel alloc] initWithFrame:CGRectMake(self.backgroundLayerView.frame.origin.x+10, self.backgroundLayerView.frame.origin.y, self.backgroundLayerView.frame.size.width-10, self.backgroundLayerView.frame.size.height)];
         self.contentText.backgroundColor = [UIColor clearColor];
         
-        [self.contentText setFont:[UIFont fontWithName:@"Avenir-Light" size:16.0f]];
+        [self.contentText setFont:[UIFont fontWithName:kSPDefaultFont size:16.0f]];
         [self.backgroundLayerView addSubview:self.contentText];
 
         //Future use for profile picture box

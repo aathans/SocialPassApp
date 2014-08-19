@@ -6,14 +6,18 @@
 //  Copyright (c) 2014 Dolo. All rights reserved.
 //
 
-#pragma mark - Cache
+#pragma mark - Fonts
+NSString *const kSPDefaultFont = @"Avenir-Light";
 
+#pragma mark - Cache
 NSString *const kSPFriendsList = @"friendsList";
 NSString *const kSPInvitedFriends = @"invitedFriends";
 
 #pragma mark - PFObject User Class
 NSString *const kSPUserProfile = @"profile";
 NSString *const kSPUserFacebookId = @"facebookId";
+NSString *const kSPUserProfileName = @"name";
+NSString *const kSPUserProfilePictureURL = @"pictureURL";
 
 #pragma mark - PFObject Event Class
 NSString *const kSPEventClass = @"Event";
@@ -25,3 +29,4 @@ NSString *const kSPEventStartTime = @"StartTime";
 NSString *const kSPEventEndTime = @"EndTime";
 NSString *const kSPEventAttendees = @"Attendees";
 NSString *const kSPEventInvitees = @"Invitees";
+NSString *const kSPEventOrganizerName = @"organizerName";

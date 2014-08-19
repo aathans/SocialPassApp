@@ -44,13 +44,17 @@
     checkmark.frame = CGRectMake(cell.frame.size.width-70, 0, 70, 50);
     checkmark.tag = 42;
 
-    if([_selectedFriends containsObject:user]){
+    if([self selectedFriendsAlreadyContainsUser:user]){
         [[cell.contentView viewWithTag:42] removeFromSuperview];
         [self.selectedFriends removeObject:user];
     }else{
         [self.selectedFriends addObject:user];
         [cell.contentView addSubview:checkmark];
     }
+}
+
+-(BOOL)selectedFriendsAlreadyContainsUser:(PFUser *)user{
+    return [_selectedFriends containsObject:user];
 }
 
 -(void)setFriendsListWithFriends:(NSArray *)friends{

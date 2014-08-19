@@ -65,11 +65,7 @@
     [self.view addSubview:self.name];
     [self.view addSubview:self.eventFeed];
     [self.view addSubview:self.logoutButton];
-    
-   // if([[PFUser currentUser] isNew]){
-        //[self getFacebookInfo];
-    //}
-    
+
     [self setupCharacteristics];
     [self setupConstraints];
 }
@@ -91,14 +87,12 @@
 #pragma mark - Facebook methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSLog(@"Appending Data");
     [self.imageData appendData:data];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     self.profilePicture.image = [UIImage imageWithData:self.imageData];
     self.profilePicture.layer.masksToBounds = YES;
-    NSLog(@"Retrieved profile picture");
 }
 
 -(void)setupCharacteristics{
@@ -112,14 +106,14 @@
 }
 
 -(void)retrieveUsername{
-    if ([[PFUser currentUser] objectForKey:kSPUserProfile][@"name"]) {
-        self.name.text = [[PFUser currentUser] objectForKey:kSPUserProfile][@"name"];
+    if ([[PFUser currentUser] objectForKey:kSPUserProfile][kSPUserProfileName]) {
+        self.name.text = [[PFUser currentUser] objectForKey:kSPUserProfile][kSPUserProfileName];
     }
 }
 
 -(void)retrieveProfilePicture{
-    if ([[PFUser currentUser] objectForKey:kSPUserProfile][@"pictureURL"]) {
-        NSURL *pictureURL = [NSURL URLWithString:[[PFUser currentUser] objectForKey:kSPUserProfile][@"pictureURL"]];
+    if ([[PFUser currentUser] objectForKey:kSPUserProfile][kSPUserProfilePictureURL]) {
+        NSURL *pictureURL = [NSURL URLWithString:[[PFUser currentUser] objectForKey:kSPUserProfile][kSPUserProfilePictureURL]];
         
         NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:pictureURL
                                                                   cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -150,7 +144,7 @@
     [self.eventFeed setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     SPEmptyFeedLabel *emptyLabel = [SPEmptyFeedLabel new];
-    emptyLabel.font = [UIFont fontWithName:@"Avenir-Light" size:17.0f];
+    emptyLabel.font = [UIFont fontWithName:kSPDefaultFont size:17.0f];
     emptyLabel.alpha = 0.5f;
     emptyLabel.textAlignment = NSTextAlignmentCenter;
     emptyLabel.text = @"No Upcoming Events";
@@ -173,9 +167,9 @@
     [self.header setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self.headerTitle setBackgroundColor:[UIColor clearColor]];
-    [self.headerTitle setText:@"Profile"];
+    [self.headerTitle setText:kSPUserProfile];
     [self.headerTitle setTextAlignment:NSTextAlignmentCenter];
-    [self.headerTitle setFont:[UIFont fontWithName:@"Avenir-Light" size:18]];
+    [self.headerTitle setFont:[UIFont fontWithName:kSPDefaultFont size:18]];
     [self.headerTitle setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
@@ -184,7 +178,7 @@
 -(void)setupLogout{
     [self.logoutButton addTarget:self action:@selector(logoutPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.logoutButton setTitle:@"Log Out" forState:UIControlStateNormal];
-    [self.logoutButton.titleLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:16.0f]];
+    [self.logoutButton.titleLabel setFont:[UIFont fontWithName:kSPDefaultFont size:16.0f]];
     [self.logoutButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.logoutButton.layer setBorderColor:[UIColor blackColor].CGColor];
     [self.logoutButton.layer setBorderWidth:0.5f];
@@ -259,7 +253,6 @@
     [self presentViewController:newEventVC animated:YES completion:^{
         
     }];
-
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate
@@ -267,14 +260,12 @@
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
                                                                    presentingController:(UIViewController *)presenting
                                                                        sourceController:(UIViewController *)source{
-    NSLog(@"Transitioning to create an event");
-    self.transitionManager.transitionTo = MODAL; //Going from main to create event
+    self.transitionManager.transitionTo = MODAL;
     return self.transitionManager;
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
-    NSLog(@"Transitioning back to main page");
-    self.transitionManager.transitionTo = INITIAL; //Going from creating event back to main
+    self.transitionManager.transitionTo = INITIAL;
     if(_didCancelEvent){
         [self.profileDataSource fetchFeedForTableInBackground:self.eventFeed];
         self.didCancelEvent = NO;

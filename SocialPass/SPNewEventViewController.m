@@ -84,7 +84,7 @@
 
     [self setupBackgroundWithColor:[UIColor whiteColor] andAlpha:1.0];
     [self setupImageButton];
-    [self setupCancelButtonWithTitle:@"Cancel" andFont:[UIFont fontWithName:@"Avenir-Light" size:17.0f]];
+    [self setupCancelButtonWithTitle:@"Cancel" andFont:[UIFont fontWithName:kSPDefaultFont size:17.0f]];
     
     UIToolbar *keyboardToolbar = [UIToolbar new];
     keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
@@ -225,30 +225,37 @@
 #pragma mark - create event button 
 
 - (void)createEventPressed:(id)sender {
-    if((self.eventNewCanvas.descriptionTF.text.length == 0) || (self.eventNewCanvas.startTime.text.length == 0)){
-        
+    if([self isMissingEventDetails]){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Make sure event has a description and start time" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
     }else{
-        self.myEvent.eventOrganizer = [[PFUser currentUser] objectForKey:kSPUserProfile][@"name"];
-        self.myEvent.eventDescription = self.eventNewCanvas.descriptionTF.text;
-        self.myEvent.eventStartTime = [self formattedDateFromDateComponents:_startDateComps];
-        
-        if(_endTimeExists == NO)
-            _endDateComps = _startDateComps;
-        
-        self.myEvent.eventEndTime = [self formattedDateFromDateComponents:_endDateComps];
-        self.myEvent.isPublic = [self.advancedOptions.publicSwitch isOn];
-        
-        NSNumberFormatter *numAttendeeFormatter = [NSNumberFormatter new];
-        NSString *maxAttendees = self.advancedOptions.numAttendees.text;
-        self.myEvent.maxAttendees = [numAttendeeFormatter numberFromString:maxAttendees];
-        
-        if(self.myEvent.isPublic)
-            [self savePublicEvent];
-        else
-            [self presentInviteFriends];
+        [self setupEventWithDetails];
     }
+}
+
+-(BOOL)isMissingEventDetails{
+    return (self.eventNewCanvas.descriptionTF.text.length == 0 || self.eventNewCanvas.startTime.text.length == 0);
+}
+
+-(void)setupEventWithDetails{
+    self.myEvent.eventOrganizer = [[PFUser currentUser] objectForKey:kSPUserProfile][kSPUserProfileName];
+    self.myEvent.eventDescription = self.eventNewCanvas.descriptionTF.text;
+    self.myEvent.eventStartTime = [self formattedDateFromDateComponents:_startDateComps];
+    
+    if(_endTimeExists == NO)
+        _endDateComps = _startDateComps;
+    
+    self.myEvent.eventEndTime = [self formattedDateFromDateComponents:_endDateComps];
+    self.myEvent.isPublic = [self.advancedOptions.publicSwitch isOn];
+    
+    NSNumberFormatter *numAttendeeFormatter = [NSNumberFormatter new];
+    NSString *maxAttendees = self.advancedOptions.numAttendees.text;
+    self.myEvent.maxAttendees = [numAttendeeFormatter numberFromString:maxAttendees];
+    
+    if(self.myEvent.isPublic)
+        [self savePublicEvent];
+    else
+        [self presentInviteFriends];
 }
 
 -(NSDate *)formattedDateFromDateComponents:(NSDateComponents *)dateComponents{

@@ -55,9 +55,9 @@
 }
 
 -(void)setupEvents{
-    PFQuery *eventQuery = [PFQuery queryWithClassName:@"Event"];
-    [eventQuery whereKey:@"Invitees" equalTo:[PFUser currentUser]];
-    [eventQuery orderByAscending:@"StartTime"];
+    PFQuery *eventQuery = [PFQuery queryWithClassName:kSPEventClass];
+    [eventQuery whereKey:kSPEventInvitees equalTo:[PFUser currentUser]];
+    [eventQuery orderByAscending:kSPEventStartTime];
     [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error){
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -95,7 +95,7 @@
     [self.headerTitle setBackgroundColor:[UIColor clearColor]];
     [self.headerTitle setText:@"SocialPass"];
     [self.headerTitle setTextAlignment:NSTextAlignmentCenter];
-    [self.headerTitle setFont:[UIFont fontWithName:@"Avenir-Light" size:18]];
+    [self.headerTitle setFont:[UIFont fontWithName:kSPDefaultFont size:18]];
     [self.headerTitle setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
@@ -186,7 +186,6 @@
     NSData *imageData = [NSData dataWithContentsOfURL:imageFileURL];
 
     if([imageData length] == 0){
-        NSLog(@"HERE");
         self.eventCanvas.eventPhoto.image = [UIImage imageNamed:@"defaultEventPhoto.jpg"];
     }
     else{
@@ -194,7 +193,7 @@
     }
     
     self.eventCanvas.eventDesc.text = [SPEvent objectForKey:kSPEventDescription];
-    self.eventCanvas.eventOrganizer.text = [NSString stringWithFormat:@"%@",[SPEvent objectForKey:@"organizerName"]];
+    self.eventCanvas.eventOrganizer.text = [NSString stringWithFormat:@"%@",[SPEvent objectForKey:kSPEventOrganizerName]];
     
     self.eventCanvas.attendees.text = [NSString stringWithFormat:@"Attendees: 2"];
     

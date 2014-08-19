@@ -60,29 +60,29 @@
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     self.coverPhotoHeader.text = @"Event Cover Photo";
-    [self.coverPhotoHeader setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
+    [self.coverPhotoHeader setFont:[UIFont fontWithName:kSPDefaultFont size:14.0]];
     self.coverPhotoHeader.textAlignment = NSTextAlignmentCenter;
     [self.coverPhotoHeader setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self.coverPhoto setTitle:@"Choose Photo" forState:UIControlStateNormal];
-    [self.coverPhoto.titleLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:16.0f]];
+    [self.coverPhoto.titleLabel setFont:[UIFont fontWithName:kSPDefaultFont size:16.0f]];
     [self.coverPhoto setBackgroundColor:[UIColor greenColor]];
     [self.coverPhoto setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self.descriptionTF setPlaceholder:@"Description"];
-    [self.descriptionTF setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
+    [self.descriptionTF setFont:[UIFont fontWithName:kSPDefaultFont size:14.0]];
     [self.descriptionTF setBackgroundColor:[UIColor whiteColor]];
     [self.descriptionTF setBorderStyle:UITextBorderStyleRoundedRect];
     [self.descriptionTF setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self.day setInputView:self.dayPicker];
     [self.day setPlaceholder:@"Date"];
-    [self.day setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
+    [self.day setFont:[UIFont fontWithName:kSPDefaultFont size:14.0]];
     [self.day setBorderStyle:UITextBorderStyleRoundedRect];
     [self.day setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self.startTime setPlaceholder:@"Start Time"];
-    [self.startTime setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
+    [self.startTime setFont:[UIFont fontWithName:kSPDefaultFont size:14.0]];
     [self.startTime setBorderStyle:UITextBorderStyleRoundedRect];
     [self.startTime setTranslatesAutoresizingMaskIntoConstraints:NO];
     
@@ -92,14 +92,14 @@
     [self.startTime.inputAccessoryView setHidden:NO];
     
     [self.endTime setPlaceholder:@"End Time"];
-    [self.endTime setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
+    [self.endTime setFont:[UIFont fontWithName:kSPDefaultFont size:14.0]];
     [self.endTime setBorderStyle:UITextBorderStyleRoundedRect];
     [self.endTime setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.endTime setInputView:datePicker];
     [self.endTime.inputAccessoryView setHidden:NO];
     
     self.toLabel.text = @"to";
-    [self.toLabel setFont:[UIFont fontWithName:@"Avenir-Light" size:14.0]];
+    [self.toLabel setFont:[UIFont fontWithName:kSPDefaultFont size:14.0]];
     self.toLabel.textAlignment = NSTextAlignmentCenter;
     [self.toLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     
