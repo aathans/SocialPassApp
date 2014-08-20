@@ -61,6 +61,8 @@
     [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error){
             NSLog(@"Error: %@ %@", error, [error userInfo]);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No network connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
         }else{
             self.events = [[NSMutableArray alloc] initWithArray:objects];
             NSLog(@"Retrieved %lu", (unsigned long)[self.events count]);
@@ -106,7 +108,7 @@
     
     [self.addEventbutton addTarget:self action:@selector(addEventPushed:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.addEventbutton setImage:[UIImage imageNamed:@"icon_eventPlus"] forState:UIControlStateNormal];
+    [self.addEventbutton setImage:[UIImage imageNamed:kSPAddEventIcon] forState:UIControlStateNormal];
     [self.addEventbutton setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
@@ -160,7 +162,7 @@
         self.indexCount++;
         
         if(self.indexCount >= [self.events count]){
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"!!!" message:@"End of events." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"End of events." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
             [self setupEvents];
             self.indexCount = 0;
@@ -186,7 +188,7 @@
     NSData *imageData = [NSData dataWithContentsOfURL:imageFileURL];
 
     if([imageData length] == 0){
-        self.eventCanvas.eventPhoto.image = [UIImage imageNamed:@"defaultEventPhoto.jpg"];
+        self.eventCanvas.eventPhoto.image = [UIImage imageNamed:kSPDefaultEventPhoto];
     }
     else{
         self.eventCanvas.eventPhoto.image = [UIImage imageWithData:imageData];
@@ -203,13 +205,13 @@
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     
     if([startTime isEqualToDate:endTime]){
-        [dateFormatter setDateFormat:@"MMM d' at 'hh:mm a"];
+        [dateFormatter setDateFormat:kSPNoEndTimeFormat];
         self.eventCanvas.eventTime.text = [dateFormatter stringFromDate:startTime];
     }else{
-        [dateFormatter setDateFormat:@"MMM d hh:mm a"];
+        [dateFormatter setDateFormat:kSPHasEndTimeFormat];
         
         NSDateFormatter *endDateFormatter = [NSDateFormatter new];
-        [endDateFormatter setDateFormat:@"hh:mm a"];
+        [endDateFormatter setDateFormat:kSPTimeFormat];
         
         self.eventCanvas.eventTime.text = [NSString stringWithFormat:@"%@ to %@", [dateFormatter stringFromDate:startTime], [endDateFormatter stringFromDate:endTime]];
     }

@@ -30,3 +30,12 @@ NSString *const kSPEventEndTime = @"EndTime";
 NSString *const kSPEventAttendees = @"Attendees";
 NSString *const kSPEventInvitees = @"Invitees";
 NSString *const kSPEventOrganizerName = @"organizerName";
+
+#pragma mark - Time format
+NSString *const kSPTimeFormat = @"hh:mm a";
+NSString *const kSPNoEndTimeFormat = @"MMM d' at 'hh:mm a";
+NSString *const kSPHasEndTimeFormat = @"MMM d hh:mm a";
+
+#pragma mark - Images
+NSString *const kSPDefaultEventPhoto = @"defaultEventPhoto.jpg";
+NSString *const kSPAddEventIcon = @"icon_eventPlus";

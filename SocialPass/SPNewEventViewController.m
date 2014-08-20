@@ -137,7 +137,7 @@
     
         self.currentTextField.text = [dateFormatter stringFromDate:date];
     }else{
-        [dateFormatter setDateFormat:@"h:mm a"];
+        [dateFormatter setDateFormat:kSPTimeFormat];
         UIDatePicker *datePicker = (UIDatePicker *)self.currentTextField.inputView;
         NSDateComponents *timeComponents = [gregorian components:NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:datePicker.date];
         
@@ -260,7 +260,7 @@
 
 -(NSDate *)formattedDateFromDateComponents:(NSDateComponents *)dateComponents{
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
-            [dateFormatter setDateFormat:@"hh:mm a"];
+            [dateFormatter setDateFormat:kSPTimeFormat];
     
     NSCalendar *gregorian = [[NSCalendar alloc]
             initWithCalendarIdentifier:NSGregorianCalendar];

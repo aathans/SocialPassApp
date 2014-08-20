@@ -47,13 +47,13 @@
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     
     if([startTime isEqualToDate:endTime]){
-        [dateFormatter setDateFormat:@"MMM d' at 'hh:mm a"];
+        [dateFormatter setDateFormat:kSPNoEndTimeFormat];
         text = [NSString stringWithFormat:@"%@ on %@", description, [dateFormatter stringFromDate:startTime]];
     }else{
-        [dateFormatter setDateFormat:@"MMM d hh:mm a"];
+        [dateFormatter setDateFormat:kSPHasEndTimeFormat];
         
         NSDateFormatter *endDateFormatter = [NSDateFormatter new];
-        [endDateFormatter setDateFormat:@"hh:mm a"];
+        [endDateFormatter setDateFormat:kSPTimeFormat];
         
         text = [NSString stringWithFormat:@"%@ from %@ to %@", description, [dateFormatter stringFromDate:startTime], [endDateFormatter stringFromDate:endTime]];
 

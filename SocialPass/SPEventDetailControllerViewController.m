@@ -117,33 +117,25 @@
             NSLog(@"Retrieved %lu", (unsigned long)[self.events count]);
             
             _SPEvent = [self.events objectAtIndex:0];
-            //_eventView.eventPhoto.image = [self getEventPhoto:self.SPEvent];
             _eventView.eventDesc.text = [self.SPEvent objectForKey:kSPEventDescription];
             _eventView.eventOrganizer.text = [self.SPEvent objectForKey:kSPEventOrganizerName];
             _eventView.eventTime.text = [self getTimeText:self.SPEvent];
-            _eventView.eventPhoto.image = [UIImage imageNamed:@"defaultEventPhoto.jpg"];
+            [self getEventPhotoForEvent:self.SPEvent];
             _eventView.attendees.text = [NSString stringWithFormat:@"Attendees: 2"];
         }
     }];
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    _eventView.eventPhoto.image = [self getEventPhoto:self.SPEvent];
-}
-
--(UIImage *)getEventPhoto:(PFObject *)SPEvent{
+-(void)getEventPhotoForEvent:(PFObject *)SPEvent{
     PFFile *eventPhoto = [SPEvent objectForKey:kSPEventPhoto];
-    NSURL *imageFileURL = [[NSURL alloc] initWithString:eventPhoto.url];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageFileURL];
-    
-    if([imageData length] == 0)
-        return [UIImage imageNamed:@"defaultEventPhoto.jpg"];
-    
-    UIImage *eventImage;
-    eventImage = [UIImage imageWithData:imageData];
-    
-    return eventImage;
+    [eventPhoto getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        NSData *imageData = [NSData dataWithData:data];
+        if([imageData length] == 0){
+            _eventView.eventPhoto.image = [UIImage imageNamed:kSPDefaultEventPhoto];
+        }else{
+            _eventView.eventPhoto.image = [UIImage imageWithData:imageData];
+        }
+    }];
 }
 
 -(NSString *)getTimeText:(PFObject *)SPEvent{
@@ -154,13 +146,13 @@
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     
     if([startTime isEqualToDate:endTime]){
-        [dateFormatter setDateFormat:@"MMM d' at 'hh:mm a"];
+        [dateFormatter setDateFormat:kSPNoEndTimeFormat];
         timeText = [dateFormatter stringFromDate:startTime];
     }else{
-        [dateFormatter setDateFormat:@"MMM d hh:mm a"];
+        [dateFormatter setDateFormat:kSPHasEndTimeFormat];
         
         NSDateFormatter *endDateFormatter = [NSDateFormatter new];
-        [endDateFormatter setDateFormat:@"hh:mm a"];
+        [endDateFormatter setDateFormat:kSPTimeFormat];
         
         timeText = [NSString stringWithFormat:@"%@ to %@", [dateFormatter stringFromDate:startTime], [endDateFormatter stringFromDate:endTime]];
     }

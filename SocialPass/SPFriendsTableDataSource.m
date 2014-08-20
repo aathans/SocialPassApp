@@ -6,23 +6,25 @@
 //  Copyright (c) 2014 Dolo. All rights reserved.
 //
 
+#import "SPFriendsTable.h"
 #import "SPFriendsTableDataSource.h"
 #import "SPFriendsTableViewCell.h"
 
+@interface SPFriendsTableDataSource()
+
+@property (nonatomic) UITableView *tableView;
+
+@end
+
 @implementation SPFriendsTableDataSource
 
-
--(id)init{
-    self = [super init];
-    if (self) {
-    }
-    return self;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return [self.friendUsers count];
 }
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [self.friendUsers[section] count];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -36,7 +38,7 @@
         cell = [[SPFriendsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID1];
     }
     
-    PFUser *user = [self.friendUsers objectAtIndex:0];
+    PFUser *user =  self.friendUsers[indexPath.section][indexPath.row];
     cell.contentText.text = [user objectForKey:kSPUserProfile][kSPUserProfileName];
     cell.username = [user objectForKey:@"username"];
 
@@ -45,6 +47,7 @@
 
 - (void)fetchFeedForTable:(UITableView *)table{
     self.friendUsers = [[SPCache sharedCache] facebookFriends];
+    self.tableView = table;
     
     if(self.friendUsers == nil){
         [self reloadFriendsForTable:table];
@@ -67,12 +70,89 @@
             [friendQuery setCachePolicy:kPFCachePolicyCacheElseNetwork];
             [friendQuery whereKey:kSPUserFacebookId containedIn:friendIds];
             [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                self.friendUsers = objects;
+                NSSortDescriptor *alphaDesc = [[NSSortDescriptor alloc] initWithKey:@"profile.name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+                self.friendUsers = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObjects:alphaDesc, nil]];
                 [[SPCache sharedCache] setFacebookFriends:self.friendUsers];
+                
                 [table reloadData];
             }];
         }
     }];
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return self.indexList[section];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    return self.indexList;
+}
+
+-(void)setFriendUsers:(NSArray *)friendUsers{
+    _friendUsers = [self arrayForSections:friendUsers];
+}
+
+- (NSArray *)arrayForSections:(NSArray *)objects {
+    if(objects == nil){
+        return nil;
+    }
+    
+    SEL selector = @selector(self);
+    UILocalizedIndexedCollation *collation = [UILocalizedIndexedCollation currentCollation];
+
+    NSInteger sectionTitlesCount = [[collation sectionTitles] count];
+    
+    NSMutableArray *mutableSections = [[NSMutableArray alloc] initWithCapacity:sectionTitlesCount];
+    for (NSUInteger idx = 0; idx < sectionTitlesCount; idx++) {
+        [mutableSections addObject:[NSMutableArray array]];
+    }
+    
+    for (id object in objects) {
+        NSInteger sectionNumber = [collation sectionForObject:[object objectForKey:kSPUserProfile][kSPUserProfileName] collationStringSelector:selector];
+        [[mutableSections objectAtIndex:sectionNumber] addObject:object];
+    }
+    
+    for (unsigned int i = 1; i < 27; i++){
+        PFUser *newuser = [objects objectAtIndex:0];
+        [[mutableSections objectAtIndex:i] addObject:newuser];
+    }
+    
+    for (unsigned int i = 0; i < 10; i++){
+        PFUser *newuser = [objects objectAtIndex:0];
+        [[mutableSections objectAtIndex:0] addObject:newuser];
+    }
+    
+    for (NSUInteger idx = 0; idx < sectionTitlesCount; idx++) {
+        NSArray *objectsForSection = [mutableSections objectAtIndex:idx];
+        NSSortDescriptor *alphaDesc = [[NSSortDescriptor alloc] initWithKey:@"profile.name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+
+        [mutableSections replaceObjectAtIndex:idx withObject:[objectsForSection sortedArrayUsingDescriptors:[NSArray arrayWithObjects:alphaDesc, nil]]];
+    }
+    
+    NSMutableArray *existTitleSections = [NSMutableArray array];
+    
+    for (NSArray *section in mutableSections) {
+        if ([section count] > 0) {
+            [existTitleSections addObject:section];
+        }
+    }
+    
+    NSMutableArray *existTitles = [NSMutableArray array];
+    NSArray *allSections = [collation sectionIndexTitles];
+    
+    for (NSUInteger i = 0; i < [allSections count]; i++) {
+        if ([mutableSections[ i ] count] > 0) {
+            [existTitles addObject:allSections[ i ]];
+        }
+    }
+    
+    self.indexList = existTitles;
+    
+    return existTitleSections;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
+    return index;
 }
 
 

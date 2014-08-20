@@ -19,7 +19,7 @@
         
         self.contentView.backgroundColor = [UIColor clearColor];
         
-        self.backgroundLayerView = [[UIView alloc] initWithFrame:CGRectMake(3,0,270,65)];
+        self.backgroundLayerView = [[UIView alloc] initWithFrame:CGRectMake(3,0,250,65)];
         self.backgroundLayerView.backgroundColor = [UIColor SPGray];
         self.backgroundLayerView.layer.borderColor = [UIColor grayColor].CGColor;
         self.backgroundLayerView.layer.borderWidth = 0.1f;

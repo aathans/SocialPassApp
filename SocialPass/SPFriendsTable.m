@@ -16,6 +16,9 @@
     if (self) {
         self.delegate = self;
         self.backgroundColor = [UIColor clearColor];
+        self.sectionIndexColor = [UIColor SPGraySelected];
+        self.sectionIndexMinimumDisplayRowCount = 10;
+        self.sectionIndexBackgroundColor = [UIColor clearColor];
     }
     return self;
 }
@@ -44,5 +47,11 @@
     }
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section{
+    view.tintColor = [UIColor whiteColor];
+    
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    header.textLabel.font = [UIFont fontWithName:kSPDefaultFont size:17.0f];
+}
 
 @end

@@ -167,7 +167,7 @@
     [self.header setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self.headerTitle setBackgroundColor:[UIColor clearColor]];
-    [self.headerTitle setText:kSPUserProfile];
+    [self.headerTitle setText:@"Profile"];
     [self.headerTitle setTextAlignment:NSTextAlignmentCenter];
     [self.headerTitle setFont:[UIFont fontWithName:kSPDefaultFont size:18]];
     [self.headerTitle setTranslatesAutoresizingMaskIntoConstraints:NO];

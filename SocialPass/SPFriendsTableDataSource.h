@@ -11,6 +11,7 @@
 @interface SPFriendsTableDataSource : NSObject <UITableViewDataSource>
 
 @property (nonatomic) NSArray *friendUsers;
+@property (nonatomic) NSArray *indexList;
 
 - (void)fetchFeedForTable:(UITableView *)table;
 -(void)reloadFriendsForTable:(UITableView *)table;

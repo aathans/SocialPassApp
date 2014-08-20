@@ -29,3 +29,12 @@ extern NSString *const kSPEventEndTime;
 extern NSString *const kSPEventAttendees;
 extern NSString *const kSPEventInvitees;
 extern NSString *const kSPEventOrganizerName;
+
+#pragma mark - Time format
+extern NSString *const kSPTimeFormat;
+extern NSString *const kSPNoEndTimeFormat;
+extern NSString *const kSPHasEndTimeFormat;
+
+#pragma mark - Images
+extern NSString *const kSPDefaultEventPhoto;
+extern NSString *const kSPAddEventIcon;

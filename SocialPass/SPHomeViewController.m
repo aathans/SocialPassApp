@@ -159,6 +159,9 @@
             [friendQuery whereKey:kSPUserFacebookId containedIn:friendIds];
             
             [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                NSSortDescriptor *alphaDesc = [[NSSortDescriptor alloc] initWithKey:@"profile.name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+                objects = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObjects:alphaDesc, nil]];
+
                 [[SPCache sharedCache] setFacebookFriends:objects];
             }];
         }
