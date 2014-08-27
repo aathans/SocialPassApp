@@ -51,7 +51,7 @@
     [self.advancedLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self.maxAttendeesLabel setFrame:CGRectMake(10, 60, 165, 40)];
-    [self.maxAttendeesLabel setFont:[UIFont fontWithName:kSPDefaultFont size:16.0]];
+    [self.maxAttendeesLabel setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultLabelFontSize]];
     [self.maxAttendeesLabel setText:@"Max Attendees(2-500):"];
     [self.maxAttendeesLabel setTextAlignment:NSTextAlignmentRight];
     [self.maxAttendeesLabel setTextColor:[UIColor blackColor]];
@@ -59,7 +59,7 @@
     
     
     [self.numAttendees setFrame:CGRectMake(180, 65, 60, 30)];
-    [self.numAttendees setFont:[UIFont fontWithName:kSPDefaultFont size:14.0]];
+    [self.numAttendees setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultLabelFontSize]];
     [self.numAttendees setBorderStyle:UITextBorderStyleRoundedRect];
     [self.numAttendees setBackgroundColor:[UIColor whiteColor]];
     [self.numAttendees setText:@"25"];
@@ -67,12 +67,12 @@
     [self.publicLabel setFrame:CGRectMake(10, 105, 165, 40)];
     [self.publicLabel setText:@"Public:"];
     [self.publicLabel setTextAlignment:NSTextAlignmentRight];
-    [self.publicLabel setFont:[UIFont fontWithName:kSPDefaultFont size:16.0]];
+    [self.publicLabel setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultLabelFontSize]];
     
     [self.locationLabel setFrame:CGRectMake(10, 155, 80, 40)];
     [self.locationLabel setText:@"Location:"];
     [self.locationLabel setTextAlignment:NSTextAlignmentLeft];
-    [self.locationLabel setFont:[UIFont fontWithName:kSPDefaultFont size:16.0]];
+    [self.locationLabel setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultLabelFontSize]];
     
     [self.location setFrame:CGRectMake(80, 160, 155, 30)];
     [self.location setFont:[UIFont fontWithName:kSPDefaultFont size:14.0]];

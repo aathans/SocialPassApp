@@ -6,7 +6,11 @@
 //  Copyright (c) 2014 Dolo. All rights reserved.
 //
 #pragma mark - Fonts
-NSString *const kSPDefaultFont;
+extern NSString *const kSPDefaultFont;
+extern float const kSPDefaultHeaderFontSize;
+extern float const kSPDefaultEventFontSize;
+extern float const kSPDefaultNavButtonFontSize;
+extern float const kSPDefaultLabelFontSize;
 
 #pragma mark - Friends
 extern NSString *const kSPFriendsList;
@@ -29,6 +33,7 @@ extern NSString *const kSPEventEndTime;
 extern NSString *const kSPEventAttendees;
 extern NSString *const kSPEventInvitees;
 extern NSString *const kSPEventOrganizerName;
+extern NSString *const kSPEventNumAttendees;
 
 #pragma mark - Time format
 extern NSString *const kSPTimeFormat;

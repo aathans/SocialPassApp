@@ -23,7 +23,7 @@
         self.contentText = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.origin.x+10, self.frame.origin.y, self.frame.size.width-60, self.frame.size.height)];
         [self.contentText setLineBreakMode:NSLineBreakByTruncatingTail];
         [self.contentText setNumberOfLines:2];
-        [self.contentText setFont:[UIFont fontWithName:kSPDefaultFont size:16.0f]];
+        [self.contentText setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultLabelFontSize]];
 
         // Creates second box to hold profile picture **IF WE WANT THEM SEPARATE**
         /*

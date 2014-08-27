@@ -84,7 +84,7 @@
 
     [self setupBackgroundWithColor:[UIColor whiteColor] andAlpha:1.0];
     [self setupImageButton];
-    [self setupCancelButtonWithTitle:@"Cancel" andFont:[UIFont fontWithName:kSPDefaultFont size:17.0f]];
+    [self setupCancelButtonWithTitle:@"Cancel" andFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultNavButtonFontSize]];
     
     UIToolbar *keyboardToolbar = [UIToolbar new];
     keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
@@ -241,7 +241,7 @@
     self.myEvent.eventOrganizer = [[PFUser currentUser] objectForKey:kSPUserProfile][kSPUserProfileName];
     self.myEvent.eventDescription = self.eventNewCanvas.descriptionTF.text;
     self.myEvent.eventStartTime = [self formattedDateFromDateComponents:_startDateComps];
-    
+    self.myEvent.numAttendees = [NSNumber numberWithInt:1];
     if(_endTimeExists == NO)
         _endDateComps = _startDateComps;
     
@@ -298,7 +298,6 @@
 
 #pragma mark - Cover photo helper methods
 
-//********COVER PHOTO PICKER****************
 -(void)promptForSource{
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Image Source" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Roll", nil];
     [actionSheet showInView:self.eventNewCanvas];
@@ -332,13 +331,9 @@
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    
-    
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     self.pickedImage = image;
     [self dismissViewControllerAnimated:YES completion:nil];
-    
-    
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
@@ -368,7 +363,7 @@
         [self.advancedOptions setBackgroundColor:[UIColor SPAdvancedOptionsExpandedGray]];
         [self.advancedOptions.maxAttendeesLabel setAlpha:1.0];
         } completion:^(BOOL finished) {
-        }];
+    }];
 }
 
 -(void)collapseAdvancedOptions{
@@ -377,7 +372,7 @@
         [self.advancedOptions setBackgroundColor:[UIColor SPAdvancedOptionsCollapsedGray]];
         [self.advancedOptions.maxAttendeesLabel setAlpha:0.9f];
         } completion:^(BOOL finished) {
-        }];
+    }];
 }
 
 -(void)advancedOptionsTapped:(id)sender{

@@ -8,6 +8,10 @@
 
 #pragma mark - Fonts
 NSString *const kSPDefaultFont = @"Avenir-Light";
+float const kSPDefaultHeaderFontSize = 18.0;
+float const kSPDefaultEventFontSize = 17.0;
+float const kSPDefaultNavButtonFontSize = 16.0;
+float const kSPDefaultLabelFontSize = 16.0;
 
 #pragma mark - Cache
 NSString *const kSPFriendsList = @"friendsList";
@@ -21,15 +25,16 @@ NSString *const kSPUserProfilePictureURL = @"pictureURL";
 
 #pragma mark - PFObject Event Class
 NSString *const kSPEventClass = @"Event";
-NSString *const kSPEventDescription = @"Description";
-NSString *const kSPEventPhoto = @"EventPhoto";
-NSString *const kSPEventMaxAttendees = @"MaxAttendees";
-NSString *const kSPEventOrganizerID = @"OrganizerID";
-NSString *const kSPEventStartTime = @"StartTime";
-NSString *const kSPEventEndTime = @"EndTime";
-NSString *const kSPEventAttendees = @"Attendees";
-NSString *const kSPEventInvitees = @"Invitees";
+NSString *const kSPEventDescription = @"description";
+NSString *const kSPEventPhoto = @"eventPhoto";
+NSString *const kSPEventMaxAttendees = @"maxAttendees";
+NSString *const kSPEventOrganizerID = @"organizerID";
+NSString *const kSPEventStartTime = @"startTime";
+NSString *const kSPEventEndTime = @"endTime";
+NSString *const kSPEventAttendees = @"attendees";
+NSString *const kSPEventInvitees = @"invitees";
 NSString *const kSPEventOrganizerName = @"organizerName";
+NSString *const kSPEventNumAttendees = @"numAttendees";
 
 #pragma mark - Time format
 NSString *const kSPTimeFormat = @"hh:mma";

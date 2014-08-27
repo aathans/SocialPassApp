@@ -78,8 +78,8 @@
 
 -(void)setupCharacteristics{
     [self setupHeader];
-    [self setupButton:self.done withTitle:@"Done" andFont:[UIFont fontWithName:kSPDefaultFont size:17.0f]];
-    [self setupButton:self.back withTitle:@"Back" andFont:[UIFont fontWithName:kSPDefaultFont size:17.0f]];
+    [self setupButton:self.done withTitle:@"Done" andFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultNavButtonFontSize]];
+    [self setupButton:self.back withTitle:@"Back" andFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultNavButtonFontSize]];
     [self.friends setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.friends setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
@@ -91,7 +91,7 @@
     [self.headerTitle setBackgroundColor:[UIColor clearColor]];
     [self.headerTitle setText:@"Invite Friends"];
     [self.headerTitle setTextAlignment:NSTextAlignmentCenter];
-    [self.headerTitle setFont:[UIFont fontWithName:kSPDefaultFont size:18]];
+    [self.headerTitle setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultHeaderFontSize]];
     [self.headerTitle setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 

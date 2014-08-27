@@ -47,7 +47,7 @@
     [self.eventView setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self setupCancelButton];
-    [self setupReturnButtonWithTitle:@"Return" andFont:[UIFont fontWithName:kSPDefaultFont size:17.0f]];
+    [self setupReturnButtonWithTitle:@"Return" andFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultNavButtonFontSize]];
 }
 
 -(void)setupReturnButtonWithTitle:(NSString *)title andFont:(UIFont *)font{
@@ -72,14 +72,15 @@
 -(void)cancelButton:(id)sender{
     
     PFRelation *attendees = [self.SPEvent relationForKey:kSPEventAttendees];
-    NSUInteger numAttendees = 2;//[attendees count];
-    
+    NSInteger numAttendees = [[self.SPEvent objectForKey:kSPEventNumAttendees] intValue];
+
     if(self.SPEvent != nil){
         
         if(numAttendees == 1){
             [self.SPEvent deleteEventually];
         }else{
             numAttendees -= 1;
+            [self.SPEvent setObject:[NSNumber numberWithInteger:numAttendees] forKey:kSPEventNumAttendees];
             [attendees removeObject:[PFUser currentUser]];
             [self.SPEvent saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             }];
@@ -121,7 +122,7 @@
             _eventView.eventOrganizer.text = [self.SPEvent objectForKey:kSPEventOrganizerName];
             _eventView.eventTime.text = [self getTimeText:self.SPEvent];
             [self getEventPhotoForEvent:self.SPEvent];
-            _eventView.attendees.text = [NSString stringWithFormat:@"Attendees: 2"];
+            _eventView.attendees.text = [NSString stringWithFormat:@"Attendees: %@", [self.SPEvent objectForKey:kSPEventNumAttendees]];
         }
     }];
 }

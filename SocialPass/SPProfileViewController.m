@@ -127,7 +127,7 @@
 }
 
 -(void)setupUsername{
-    [self.name setFont:[UIFont fontWithName:@"Avenir-Medium" size:18.0f]];
+    [self.name setFont:[UIFont fontWithName:@"Avenir-Medium" size:kSPDefaultHeaderFontSize]];
     [self.name setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
@@ -148,7 +148,7 @@
     [self.eventFeed setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     SPEmptyFeedLabel *emptyLabel = [SPEmptyFeedLabel new];
-    emptyLabel.font = [UIFont fontWithName:kSPDefaultFont size:17.0f];
+    emptyLabel.font = [UIFont fontWithName:kSPDefaultFont size:kSPDefaultEventFontSize];
     emptyLabel.alpha = 0.5f;
     emptyLabel.textAlignment = NSTextAlignmentCenter;
     emptyLabel.text = @"No Upcoming Events";
@@ -173,7 +173,7 @@
     [self.headerTitle setBackgroundColor:[UIColor clearColor]];
     [self.headerTitle setText:@"Profile"];
     [self.headerTitle setTextAlignment:NSTextAlignmentCenter];
-    [self.headerTitle setFont:[UIFont fontWithName:kSPDefaultFont size:18]];
+    [self.headerTitle setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultHeaderFontSize]];
     [self.headerTitle setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
@@ -182,7 +182,7 @@
 -(void)setupLogout{
     [self.logoutButton addTarget:self action:@selector(logoutPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.logoutButton setTitle:@"Log Out" forState:UIControlStateNormal];
-    [self.logoutButton.titleLabel setFont:[UIFont fontWithName:kSPDefaultFont size:16.0f]];
+    [self.logoutButton.titleLabel setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultNavButtonFontSize]];
     [self.logoutButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.logoutButton.layer setBorderColor:[UIColor blackColor].CGColor];
     [self.logoutButton.layer setBorderWidth:0.5f];

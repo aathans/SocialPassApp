@@ -12,7 +12,6 @@
 
 @interface SPInviteFriendsTable()
 
-@property (nonatomic) UIColor *disclosureColor;
 @property (nonatomic) NSArray *friendsList;
 
 @end
@@ -22,7 +21,6 @@
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        _disclosureColor = [UIColor blackColor];
         self.selectedFriends = [NSMutableArray new];
     }
     return self;

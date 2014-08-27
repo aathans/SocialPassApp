@@ -97,7 +97,7 @@
     [self.headerTitle setBackgroundColor:[UIColor clearColor]];
     [self.headerTitle setText:@"SocialPass"];
     [self.headerTitle setTextAlignment:NSTextAlignmentCenter];
-    [self.headerTitle setFont:[UIFont fontWithName:kSPDefaultFont size:18]];
+    [self.headerTitle setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultHeaderFontSize]];
     [self.headerTitle setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
@@ -246,13 +246,14 @@
 
 -(void)joinEvent{
     PFObject *event = [self.events objectAtIndex:self.indexCount];
-    NSNumber *maxAttendees = [event objectForKey:kSPEventMaxAttendees];
+    NSInteger maxAttendees = [[event objectForKey:kSPEventMaxAttendees] intValue];
     PFRelation *attendees = [event relationForKey:kSPEventAttendees];
-    NSNumber *numAttendees = [NSNumber numberWithLong:2];
+    NSInteger numAttendees = [[event objectForKey:kSPEventNumAttendees] intValue];
     
     if(event != nil){
-        if(numAttendees.intValue < maxAttendees.intValue){
+        if(numAttendees < maxAttendees){
             [attendees addObject:[PFUser currentUser]];
+            [event setObject:[NSNumber numberWithInteger:numAttendees] forKey:kSPEventNumAttendees];
             [event saveEventually];
             [self.events removeObjectAtIndex:self.indexCount];
             self.indexCount--;

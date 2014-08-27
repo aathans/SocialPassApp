@@ -70,7 +70,7 @@
     
     [self.coverPhoto setTitle:@"Choose Photo" forState:UIControlStateNormal];
     [self.coverPhoto setClipsToBounds:YES];
-    [self.coverPhoto.titleLabel setFont:[UIFont fontWithName:kSPDefaultFont size:16.0f]];
+    [self.coverPhoto.titleLabel setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultLabelFontSize]];
     [self.coverPhoto.layer setBorderWidth:0.1f];
     [self.coverPhoto.layer setCornerRadius:3];
     [self.coverPhoto.layer setBorderColor:[UIColor grayColor].CGColor];

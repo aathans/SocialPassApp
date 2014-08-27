@@ -29,8 +29,9 @@
     [event setObject:_eventEndTime forKey:kSPEventEndTime];
     [event setObject:_maxAttendees forKey:kSPEventMaxAttendees];
     [event setObject:eventPhoto forKey:kSPEventPhoto];
-    [event setObject:_eventOrganizer forKey:@"organizerName"];
-
+    [event setObject:_eventOrganizer forKey:kSPEventOrganizerName];
+    [event setObject:_numAttendees forKey:kSPEventNumAttendees];
+    
     PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
     [ACL setPublicReadAccess:YES];
     [ACL setPublicWriteAccess:YES];
