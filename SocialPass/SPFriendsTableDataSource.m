@@ -113,15 +113,15 @@
         [[mutableSections objectAtIndex:sectionNumber] addObject:object];
     }
     
-    for (unsigned int i = 1; i < 27; i++){
-        PFUser *newuser = [objects objectAtIndex:0];
-        [[mutableSections objectAtIndex:i] addObject:newuser];
-    }
-    
-    for (unsigned int i = 0; i < 10; i++){
-        PFUser *newuser = [objects objectAtIndex:0];
-        [[mutableSections objectAtIndex:0] addObject:newuser];
-    }
+//    for (unsigned int i = 1; i < 27; i++){
+//        PFUser *newuser = [objects objectAtIndex:0];
+//        [[mutableSections objectAtIndex:i] addObject:newuser];
+//    }
+//    
+//    for (unsigned int i = 0; i < 10; i++){
+//        PFUser *newuser = [objects objectAtIndex:0];
+//        [[mutableSections objectAtIndex:0] addObject:newuser];
+//    }
     
     for (NSUInteger idx = 0; idx < sectionTitlesCount; idx++) {
         NSArray *objectsForSection = [mutableSections objectAtIndex:idx];
