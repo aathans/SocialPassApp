@@ -39,6 +39,7 @@
     self.headerTitle = [UILabel new];
     
     self.friendsList = [SPFriendsTable new];
+    [self.friendsList registerClass:[SPFriendsTableViewCell class] forCellReuseIdentifier:@"Cell"];
     self.friendsListDataSource = [SPFriendsTableDataSource new];
     self.friendsList.dataSource = self.friendsListDataSource;
     

@@ -10,8 +10,4 @@
 
 @interface SPAdvancedOptionsAttendeeTextField : UITextField <UITextFieldDelegate>
 
-@property(nonatomic)NSNumberFormatter *numAttendeeFormatter;
-@property (nonatomic)NSNumber *minAttendees;
-@property (nonatomic)NSNumber *maxAttendees;
-
 @end

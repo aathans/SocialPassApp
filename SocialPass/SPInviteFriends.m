@@ -7,6 +7,7 @@
 //
 
 #import "SPInviteFriends.h"
+#import "SPFriendsTableViewCell.h"
 #import "SPInviteFriendsTable.h"
 #import "SPInviteFriendsDataSource.h"
 
@@ -30,6 +31,7 @@
     
     if(self){
         self.myEvent = myEvent;
+        self.view.backgroundColor = [UIColor whiteColor];
     }
     
     return self;
@@ -40,6 +42,7 @@
     [super loadView];
     
     self.friends = [SPInviteFriendsTable new];
+    [self.friends registerClass:[SPFriendsTableViewCell class] forCellReuseIdentifier:@"Cell"];
     self.friendsData = [SPInviteFriendsDataSource new];
     self.friends.dataSource = self.friendsData;
     
@@ -51,11 +54,11 @@
 
     self.header = [UILabel new];
     self.headerTitle = [UILabel new];
-    [self.view addSubview:self.done];
-    [self.view addSubview:self.back];
     [self.header addSubview:self.headerTitle];
     [self.view addSubview:self.header];
     [self.view addSubview:self.friends];
+    [self.view addSubview:self.done];
+    [self.view addSubview:self.back];
     
     [self setupCharacteristics];
     [self setupConstraints];

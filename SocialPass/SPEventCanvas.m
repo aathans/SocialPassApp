@@ -80,7 +80,10 @@
 -(void)setupEventPhoto{
     self.eventPhoto.backgroundColor = [UIColor whiteColor];
     self.eventPhoto.alpha = 1.0;
+    [self.eventPhoto setClipsToBounds:YES];
     [self.eventPhoto.layer setCornerRadius:3];
+    [self.eventPhoto.layer setBorderWidth:0.1f];
+    [self.eventPhoto.layer setBorderColor:[UIColor grayColor].CGColor];
     [self.eventPhoto setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 

@@ -133,6 +133,10 @@
 
 -(void)setupProfilePicture{
     self.profilePicture.backgroundColor = [UIColor SPGray];
+    [self.profilePicture.layer setCornerRadius:3];
+    [self.profilePicture setClipsToBounds:YES];
+    [self.profilePicture.layer setBorderWidth:0.1f];
+    [self.profilePicture.layer setBorderColor:[UIColor grayColor].CGColor];
     [self.profilePicture setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 

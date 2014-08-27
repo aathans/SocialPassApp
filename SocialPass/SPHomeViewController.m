@@ -125,7 +125,6 @@
             }
             if ([pictureURL absoluteString]) {
                 userProfile[@"pictureURL"] = [pictureURL absoluteString];
-                NSLog(@"%@", [pictureURL absoluteString]);
             }
             
             [[PFUser currentUser] setObject:[result objectForKey:@"id"]
@@ -137,7 +136,6 @@
         } else if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"]
                     isEqualToString: @"OAuthException"]) {
             NSLog(@"The facebook session was invalidated");
-            //[self logoutButtonTouchHandler:nil];
         } else {
             NSLog(@"Some other error: %@", error);
         }

@@ -28,14 +28,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString *cellID1=@"CellOne";
+    static NSString *cellIdentifier=@"Cell";
     
     SPFriendsTableViewCell *cell = nil;
-    cell = [tableView dequeueReusableCellWithIdentifier:cellID1];
+    cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (cell == nil)
     {
-        cell = [[SPFriendsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID1];
+        cell = [[SPFriendsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
     PFUser *user =  self.friendUsers[indexPath.section][indexPath.row];
@@ -71,8 +71,9 @@
             [friendQuery whereKey:kSPUserFacebookId containedIn:friendIds];
             [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 NSSortDescriptor *alphaDesc = [[NSSortDescriptor alloc] initWithKey:@"profile.name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
-                self.friendUsers = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObjects:alphaDesc, nil]];
-                [[SPCache sharedCache] setFacebookFriends:self.friendUsers];
+                NSArray *facebookFriends = [objects sortedArrayUsingDescriptors:[NSArray arrayWithObjects:alphaDesc, nil]];
+                self.friendUsers = facebookFriends;
+                [[SPCache sharedCache] setFacebookFriends:facebookFriends];
                 
                 [table reloadData];
             }];

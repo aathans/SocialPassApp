@@ -15,11 +15,15 @@
 }
 
 +(UIColor *)SPLightGray{
-    return [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:0.13];
+    return [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:0.2];
 }
 
 +(UIColor *)SPGraySelected{
     return [UIColor colorWithRed:50.0/255.0 green:50.0/255.0 blue:50.0/255.0 alpha:0.2];
+}
+
++(UIColor *)SPDarkGray{
+    return [UIColor colorWithRed:50.0/255.0 green:50.0/255.0 blue:50.0/255.0 alpha:0.4];
 }
 
 +(UIColor *)SPSkipRed{
@@ -29,4 +33,17 @@
 +(UIColor *)SPJoinGreen{
     return [UIColor colorWithRed:34.0/255.0 green:255.0/255.0 blue:0 alpha:1.0];
 }
+
++(UIColor *)SPAdvancedOptionsLabelGray{
+    return [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0];
+}
+
++(UIColor *)SPAdvancedOptionsExpandedGray{
+    return [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:0.95f];
+}
+
++(UIColor *)SPAdvancedOptionsCollapsedGray{
+    return [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:0.9f];
+}
+
 @end

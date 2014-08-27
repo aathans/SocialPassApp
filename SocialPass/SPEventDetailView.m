@@ -47,6 +47,8 @@
 
 -(void)setupBackground{
     self.backgroundColor = [UIColor SPGray];
+    self.layer.borderWidth = 0.1f;
+    self.layer.borderColor = [UIColor grayColor].CGColor;
     self.clipsToBounds = YES;
     [self.layer setCornerRadius:3];
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -66,6 +68,9 @@
     self.eventPhoto.backgroundColor = [UIColor whiteColor];
     self.eventPhoto.alpha = 1.0;
     [self.eventPhoto.layer setCornerRadius:3];
+    [self.eventPhoto.layer setBorderColor:[UIColor grayColor].CGColor];
+    [self.eventPhoto.layer setBorderWidth:0.1f];
+    [self.eventPhoto setClipsToBounds:YES];
     [self.eventPhoto setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 

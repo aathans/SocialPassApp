@@ -12,8 +12,13 @@
 
 +(UIColor *)SPGray;
 +(UIColor *)SPLightGray;
++(UIColor *)SPDarkGray;
 +(UIColor *)SPGraySelected;
 +(UIColor *)SPSkipRed;
 +(UIColor *)SPJoinGreen;
++(UIColor *)SPAdvancedOptionsLabelGray;
++(UIColor *)SPAdvancedOptionsExpandedGray;
++(UIColor *)SPAdvancedOptionsCollapsedGray;
 
+    
 @end

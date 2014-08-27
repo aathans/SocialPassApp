@@ -15,9 +15,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.delegate = self;
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor whiteColor];
         self.sectionIndexColor = [UIColor SPGraySelected];
         self.sectionIndexMinimumDisplayRowCount = 10;
+        self.sectionIndexTrackingBackgroundColor = [UIColor SPLightGray];
         self.sectionIndexBackgroundColor = [UIColor clearColor];
     }
     return self;
@@ -26,7 +27,6 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 80.0f;
 }
-
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     SPFriendsTableViewCell *cell = (SPFriendsTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];

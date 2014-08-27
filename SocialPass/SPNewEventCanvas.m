@@ -57,6 +57,10 @@
 
 -(void)setupCharacteristics{
     self.backgroundColor = [UIColor SPGray];
+    self.layer.borderWidth = 0.1f;
+    self.layer.borderColor = [UIColor grayColor].CGColor;
+    [self.layer setCornerRadius:3];
+    
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     self.coverPhotoHeader.text = @"Event Cover Photo";
@@ -65,8 +69,13 @@
     [self.coverPhotoHeader setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self.coverPhoto setTitle:@"Choose Photo" forState:UIControlStateNormal];
+    [self.coverPhoto setClipsToBounds:YES];
     [self.coverPhoto.titleLabel setFont:[UIFont fontWithName:kSPDefaultFont size:16.0f]];
-    [self.coverPhoto setBackgroundColor:[UIColor greenColor]];
+    [self.coverPhoto.layer setBorderWidth:0.1f];
+    [self.coverPhoto.layer setCornerRadius:3];
+    [self.coverPhoto.layer setBorderColor:[UIColor grayColor].CGColor];
+    [self.coverPhoto setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [self.coverPhoto setBackgroundColor:[UIColor whiteColor]];
     [self.coverPhoto setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self.descriptionTF setPlaceholder:@"Description"];
@@ -132,16 +141,14 @@
     
     NSArray *createEventConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[createEvent]|" options:0 metrics:nil views:views];
 
-    createEventConstraints = [createEventConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[createEvent(55)]|" options:0 metrics:nil views:views]];
+    createEventConstraints = [createEventConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[createEvent(55)]" options:0 metrics:nil views:views]];
     createEventConstraints = [createEventConstraints arrayByAddingObject:[NSLayoutConstraint constraintWithItem:createEvent attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
     
-    //Horizontal
     NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[eventPhoto]-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views];
     constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[desc]-|" options:0 metrics:nil views:views]];
     constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[day]-|" options:0 metrics:nil views:views]];
     constraints = [constraints arrayByAddingObject:[NSLayoutConstraint constraintWithItem:imageLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:keyboard attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
     
-    //Vertical
     constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(-15)-[imageLabel]-5-[eventPhoto(180)]-[desc]-5-[day]-10-[to]-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
     
     constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[start]-5-[to]-5-[end(==start)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];

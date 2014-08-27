@@ -187,11 +187,11 @@
     //Constraints on Background, for self.view
     NSArray *backgroundConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[background]-|" options:0 metrics:nil views:views];
     
-    backgroundConstraints = [backgroundConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[cancel(22)]-5-[background]-|" options:0 metrics:nil views:views]];
-    backgroundConstraints = [backgroundConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[cancel]-20-|" options:0 metrics:nil views:views]];
+    backgroundConstraints = [backgroundConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[cancel(22)]-5-[background]-|" options:0 metrics:nil views:views]];
+    backgroundConstraints = [backgroundConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[cancel]-|" options:0 metrics:nil views:views]];
     
     NSArray *createEventConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[advanced]|" options:0 metrics:nil views:views];
-    createEventConstraints = [createEventConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[advanced(30)][createEvent(55)]" options:0 metrics:nil views:views]];
+    createEventConstraints = [createEventConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[advanced(30)][createEvent]" options:0 metrics:nil views:views]];
     
     [self.eventNewCanvas addConstraints:createEventConstraints];
     [self.view addConstraints:backgroundConstraints];
@@ -365,8 +365,7 @@
 -(void)expandAdvancedOptions{
     [UIView animateWithDuration:0.8f animations:^{
         [self.advancedOptions setFrame:CGRectMake(0, 0, self.eventNewCanvas.frame.size.width, (self.eventNewCanvas.frame.size.height-self.eventNewCanvas.createEvent.frame.size.height))];
-        //[self.advancedOptions setFrame:CGRectMake(0, self.imageButton.frame.origin.y+self.imageButton.frame.size.height+5, self.background.frame.size.width, self.createEventButton.frame.origin.y - (self.imageButton.frame.origin.y+self.imageButton.frame.size.height))];
-        [self.advancedOptions setBackgroundColor:[UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:0.98f]];
+        [self.advancedOptions setBackgroundColor:[UIColor SPAdvancedOptionsExpandedGray]];
         [self.advancedOptions.maxAttendeesLabel setAlpha:1.0];
         } completion:^(BOOL finished) {
         }];
@@ -375,7 +374,7 @@
 -(void)collapseAdvancedOptions{
     [UIView animateWithDuration:0.8f animations:^{
         [self.advancedOptions setFrame:CGRectMake(0, self.eventNewCanvas.createEvent.frame.origin.y-30, self.eventNewCanvas.frame.size.width, 30)];
-        [self.advancedOptions setBackgroundColor:[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:0.9f]];
+        [self.advancedOptions setBackgroundColor:[UIColor SPAdvancedOptionsCollapsedGray]];
         [self.advancedOptions.maxAttendeesLabel setAlpha:0.9f];
         } completion:^(BOOL finished) {
         }];

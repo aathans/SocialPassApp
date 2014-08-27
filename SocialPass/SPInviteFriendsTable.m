@@ -22,38 +22,30 @@
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        self.delegate = self;
         _disclosureColor = [UIColor blackColor];
         self.selectedFriends = [NSMutableArray new];
     }
     return self;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80.0f;
-}
-
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     SPFriendsTableViewCell *cell = (SPFriendsTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     
-    PFUser *user = [_friendsList objectAtIndex:indexPath.row];
-    
-    UIView* checkmark = [MSCellAccessory accessoryWithType:FLAT_CHECKMARK color:_disclosureColor];
-    checkmark.frame = CGRectMake(cell.frame.size.width-70, 0, 70, 50);
-    checkmark.tag = 42;
+    PFUser *user = [_friendsList objectAtIndex:indexPath.section][indexPath.row];
 
-    if([self selectedFriendsAlreadyContainsUser:user]){
-        [[cell.contentView viewWithTag:42] removeFromSuperview];
+    NSLog(@"Selected Friends: %@", _selectedFriends);
+    
+    if([self selectedFriendsContainsUser:user]){
+        cell.accessoryType = UITableViewCellAccessoryNone;
         [self.selectedFriends removeObject:user];
     }else{
         [self.selectedFriends addObject:user];
-        [cell.contentView addSubview:checkmark];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
 }
 
--(BOOL)selectedFriendsAlreadyContainsUser:(PFUser *)user{
+-(BOOL)selectedFriendsContainsUser:(PFUser *)user{
     return [_selectedFriends containsObject:user];
 }
 

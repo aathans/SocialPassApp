@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SPFriendsTableDataSource.h"
+#import "SPInviteFriendsTable.h"
 
-@interface SPInviteFriendsDataSource : NSObject <UITableViewDataSource>
+@interface SPInviteFriendsDataSource : SPFriendsTableDataSource
 
-@property(nonatomic, strong) NSArray *friends;
-
-- (void)fetchFeedForTable:(UITableView *)table;
-
+- (void)fetchFeedForTable:(SPInviteFriendsTable *)table;
 
 @end

@@ -72,8 +72,8 @@
 		FACA987C199C4B1E001D0960 /* SPInviteFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA987B199C4B1E001D0960 /* SPInviteFriends.m */; };
 		FACA9882199E86D7001D0960 /* MSCellAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA987F199E86D7001D0960 /* MSCellAccessory.m */; };
 		FACA9883199E86D7001D0960 /* UIView+AccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA9881199E86D7001D0960 /* UIView+AccessViewController.m */; };
-		FACA9886199E873A001D0960 /* SPInviteFriendsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA9885199E873A001D0960 /* SPInviteFriendsDataSource.m */; };
 		FACA988A199E88D6001D0960 /* SPInviteFriendsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = FACA9889199E88D6001D0960 /* SPInviteFriendsTable.m */; };
+		FAF74C0319AE5A9C00EB8B03 /* SPInviteFriendsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF74C0119AE5A9C00EB8B03 /* SPInviteFriendsDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,10 +190,10 @@
 		FACA987F199E86D7001D0960 /* MSCellAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSCellAccessory.m; sourceTree = "<group>"; };
 		FACA9880199E86D7001D0960 /* UIView+AccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AccessViewController.h"; sourceTree = "<group>"; };
 		FACA9881199E86D7001D0960 /* UIView+AccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AccessViewController.m"; sourceTree = "<group>"; };
-		FACA9884199E873A001D0960 /* SPInviteFriendsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPInviteFriendsDataSource.h; sourceTree = "<group>"; };
-		FACA9885199E873A001D0960 /* SPInviteFriendsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPInviteFriendsDataSource.m; sourceTree = "<group>"; };
 		FACA9888199E88D6001D0960 /* SPInviteFriendsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPInviteFriendsTable.h; sourceTree = "<group>"; };
 		FACA9889199E88D6001D0960 /* SPInviteFriendsTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPInviteFriendsTable.m; sourceTree = "<group>"; };
+		FAF74C0119AE5A9C00EB8B03 /* SPInviteFriendsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPInviteFriendsDataSource.m; sourceTree = "<group>"; };
+		FAF74C0219AE5A9C00EB8B03 /* SPInviteFriendsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPInviteFriendsDataSource.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -567,8 +567,8 @@
 			children = (
 				FACA9888199E88D6001D0960 /* SPInviteFriendsTable.h */,
 				FACA9889199E88D6001D0960 /* SPInviteFriendsTable.m */,
-				FACA9884199E873A001D0960 /* SPInviteFriendsDataSource.h */,
-				FACA9885199E873A001D0960 /* SPInviteFriendsDataSource.m */,
+				FAF74C0219AE5A9C00EB8B03 /* SPInviteFriendsDataSource.h */,
+				FAF74C0119AE5A9C00EB8B03 /* SPInviteFriendsDataSource.m */,
 			);
 			name = "Invite Friends Table";
 			sourceTree = "<group>";
@@ -684,6 +684,7 @@
 				FA284C46195CD8D400A09AF9 /* UIColor+themeColors.m in Sources */,
 				FA284C51195CF36D00A09AF9 /* SPProfileFeedDataSource.m in Sources */,
 				FA3ADA0C196F1A5D00E7795C /* SPEventDetailView.m in Sources */,
+				FAF74C0319AE5A9C00EB8B03 /* SPInviteFriendsDataSource.m in Sources */,
 				FA4A5A94195AAAD900C016EC /* SPProfileViewController.m in Sources */,
 				FACA987C199C4B1E001D0960 /* SPInviteFriends.m in Sources */,
 				FA0929A41960A5420010DB1C /* SPAdvancedOptionsCanvas.m in Sources */,
@@ -711,7 +712,6 @@
 				FA6BD28B198B38D500043C1B /* SPEmptyFeedLabel.m in Sources */,
 				FA0929AD1960ADCB0010DB1C /* SPFriendsTableDataSource.m in Sources */,
 				FA0BF742195B7D3F00CBE8AB /* SPSignUpViewController.m in Sources */,
-				FACA9886199E873A001D0960 /* SPInviteFriendsDataSource.m in Sources */,
 				FACA986A19993184001D0960 /* SPCache.m in Sources */,
 				FA1D7412197F397F005ADF36 /* SPAdvancedOptionsAttendeeTextField.m in Sources */,
 				FAC81B9B1960B592006C2904 /* SPEvent.m in Sources */,

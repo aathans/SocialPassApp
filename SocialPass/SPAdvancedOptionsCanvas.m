@@ -40,12 +40,12 @@
 }
 
 -(void)setupCharacteristics{
-    [self setBackgroundColor:[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:0.9]];
+    [self setBackgroundColor:[UIColor SPAdvancedOptionsCollapsedGray]];
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self.advancedLabel setText:@"Advanced Options"];
     [self.advancedLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.advancedLabel setBackgroundColor:[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0]];
+    [self.advancedLabel setBackgroundColor:[UIColor SPAdvancedOptionsLabelGray]];
     [self.advancedLabel setTextColor:[UIColor blackColor]];
     [self.advancedLabel setFont:[UIFont fontWithName:kSPDefaultFont size:14.0]];
     [self.advancedLabel setTranslatesAutoresizingMaskIntoConstraints:NO];

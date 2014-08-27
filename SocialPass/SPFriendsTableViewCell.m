@@ -14,30 +14,26 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.username = [NSString new];
-        self.backgroundColor = [UIColor clearColor];
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.backgroundColor = [UIColor SPLightGray];
+        self.tintColor = [UIColor blackColor];
         
-        self.contentView.backgroundColor = [UIColor clearColor];
+        self.layer.borderColor = [UIColor grayColor].CGColor;
+        self.layer.cornerRadius = 3;
+        self.layer.borderWidth = 0.1f;
         
-        self.backgroundLayerView = [[UIView alloc] initWithFrame:CGRectMake(3,0,250,65)];
-        self.backgroundLayerView.backgroundColor = [UIColor SPGray];
-        self.backgroundLayerView.layer.borderColor = [UIColor grayColor].CGColor;
-        self.backgroundLayerView.layer.borderWidth = 0.1f;
-        [self.backgroundLayerView.layer setCornerRadius:3];
-        
-        
-        self.contentText = [[UILabel alloc] initWithFrame:CGRectMake(self.backgroundLayerView.frame.origin.x+10, self.backgroundLayerView.frame.origin.y, self.backgroundLayerView.frame.size.width-10, self.backgroundLayerView.frame.size.height)];
+        self.contentText = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.origin.x+10, self.frame.origin.y, self.frame.size.width-10, self.frame.size.height)];
         self.contentText.backgroundColor = [UIColor clearColor];
         
         [self.contentText setFont:[UIFont fontWithName:kSPDefaultFont size:16.0f]];
-        [self.backgroundLayerView addSubview:self.contentText];
+        [self addSubview:self.contentText];
+        //[self.backgroundLayerView addSubview:self.contentText];
 
         //Future use for profile picture box
         //UIView *profilePictureBox = [self createProfilePictureBox];
         //[self addProfilePictureBoxToBack:profilePictureBox];
         
-        [self.contentView addSubview:self.backgroundLayerView];
-        [self.contentView sendSubviewToBack:self.backgroundLayerView];
+        //[self.contentView addSubview:self.backgroundLayerView];
+        //[self.contentView sendSubviewToBack:self.backgroundLayerView];
     }
     return self;
 }
@@ -57,6 +53,13 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated{
     [super setSelected:selected animated:animated];
+}
+
+- (void)setFrame:(CGRect)frame {
+    frame.origin.x += 3;
+    frame.size.width -= 50;
+    frame.size.height = 65;
+    [super setFrame:frame];
 }
 
 @end

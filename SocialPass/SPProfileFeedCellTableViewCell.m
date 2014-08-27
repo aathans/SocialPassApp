@@ -16,20 +16,15 @@
     if (self) {
         self.backgroundColor = [UIColor clearColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.contentView.backgroundColor = [UIColor clearColor];
-        
-        self.backgroundLayerView = [[UIView alloc] initWithFrame:CGRectMake(3,0,270,65)];
-        self.backgroundLayerView.backgroundColor = [UIColor SPGray];
-        self.backgroundLayerView.layer.borderColor = [UIColor grayColor].CGColor;
-        self.backgroundLayerView.layer.borderWidth = 0.1f;
-        [self.backgroundLayerView.layer setCornerRadius:3];
-        
-        self.contentText = [[UILabel alloc] initWithFrame:CGRectMake(self.backgroundLayerView.frame.origin.x+10, self.backgroundLayerView.frame.origin.y, self.backgroundLayerView.frame.size.width-10, self.backgroundLayerView.frame.size.height)];
-        self.contentText.clipsToBounds = YES;
-        self.contentText.backgroundColor = [UIColor clearColor];
-
+        self.contentView.backgroundColor = [UIColor SPGray];
+        self.layer.borderColor = [UIColor grayColor].CGColor;
+        self.layer.cornerRadius = 3;
+        self.layer.borderWidth = 0.1f;
+        self.contentText = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.origin.x+10, self.frame.origin.y, self.frame.size.width-60, self.frame.size.height)];
+        [self.contentText setLineBreakMode:NSLineBreakByTruncatingTail];
+        [self.contentText setNumberOfLines:2];
         [self.contentText setFont:[UIFont fontWithName:kSPDefaultFont size:16.0f]];
-        [self.backgroundLayerView addSubview:self.contentText];
+
         // Creates second box to hold profile picture **IF WE WANT THEM SEPARATE**
         /*
          UIView *whiteRoundedProfileView = [[UIView alloc] initWithFrame:CGRectMake(210, 0, 65, 65)];
@@ -39,10 +34,16 @@
          [cell.contentView addSubview:whiteRoundedProfileView];
          [cell.contentView sendSubviewToBack:whiteRoundedProfileView];
          */
-        [self.contentView addSubview:self.backgroundLayerView];
-        [self.contentView sendSubviewToBack:self.backgroundLayerView];
+        //[self.contentView addSubview:self.backgroundLayerView];
+        //[self.contentView sendSubviewToBack:self.backgroundLayerView];
+        [self addSubview:self.contentText];
     }
     return self;
+}
+
+- (void)setFrame:(CGRect)frame {
+    frame.size.height = 65;
+    [super setFrame:frame];
 }
 
 @end

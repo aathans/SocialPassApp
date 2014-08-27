@@ -13,43 +13,61 @@
 
 @interface SPInviteFriendsDataSource()
 
+@property (nonatomic) SPInviteFriendsTable *tableView;
+
 @end
 
 @implementation SPInviteFriendsDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.friends count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
+- (void)fetchFeedForTable:(SPInviteFriendsTable *)table{
+    self.friendUsers = [[SPCache sharedCache] facebookFriends];
+    self.tableView = table;
     
-    SPFriendsTableViewCell *cell = nil;
-    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil)
-    {
-        cell = [[SPFriendsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if(self.friendUsers == nil){
+        [self reloadFriendsForTable:table];
+    }else{
+        [table setFriendsListWithFriends:self.friendUsers];
+        [table reloadData];
     }
+}
+
+-(void)reloadFriendsForTable:(SPInviteFriendsTable *)table{
+    [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if (!error) {
+            NSArray *friendObjects = [result objectForKey:@"data"];
+            NSMutableArray *friendIds = [NSMutableArray arrayWithCapacity:friendObjects.count];
+            
+            for (NSDictionary *friendObject in friendObjects) {
+                [friendIds addObject:[friendObject objectForKey:@"id"]];
+            }
+            
+            PFQuery *friendQuery = [PFUser query];
+            [friendQuery setCachePolicy:kPFCachePolicyCacheElseNetwork];
+            [friendQuery whereKey:kSPUserFacebookId containedIn:friendIds];
+            [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                NSSortDescriptor *alphaDesc = [[NSSortDescriptor alloc] initWithKey:@"profile.name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+                NSArray *facebookFriends = [NSArray arrayWithArray:[objects sortedArrayUsingDescriptors:[NSArray arrayWithObjects:alphaDesc, nil]]];
+                self.friendUsers = [NSArray arrayWithArray:facebookFriends];
+                [[SPCache sharedCache] setFacebookFriends:facebookFriends];
+                [table setFriendsListWithFriends:self.friendUsers];
+                [table reloadData];
+            }];
+        }
+    }];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    SPFriendsTableViewCell *cell = (SPFriendsTableViewCell *)[super tableView:tableView cellForRowAtIndexPath:indexPath];
     
-    PFUser *user = [self.friends objectAtIndex:indexPath.row];
-    cell.contentText.text = [user objectForKey:kSPUserProfile][kSPUserProfileName];
-    cell.username = user.username;
+    PFUser *user = [self.friendUsers objectAtIndex:indexPath.section][indexPath.row];
+    
+    if([self.tableView selectedFriendsContainsUser:user]){
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }else{
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
 
     return cell;
-}
-
-- (void)fetchFeedForTable:(SPInviteFriendsTable *)table{
-    self.friends = [[SPCache sharedCache] facebookFriends];
-    [table setFriendsListWithFriends:self.friends];
-    [table reloadData];
 }
 
 @end

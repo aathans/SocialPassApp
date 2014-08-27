@@ -8,17 +8,27 @@
 
 #import "SPAdvancedOptionsAttendeeTextField.h"
 
+@interface SPAdvancedOptionsAttendeeTextField()
+
+@property(nonatomic)NSNumberFormatter *numAttendeeFormatter;
+@property (nonatomic)NSNumber *minAttendees;
+@property (nonatomic)NSNumber *maxAttendees;
+
+@end
+
 @implementation SPAdvancedOptionsAttendeeTextField
 
 #define NUMBERS_ONLY @"1234567890"
 #define CHARACTER_LIMIT 3
+#define MAXATTENDEES 500
+#define MINATTENDEES 2
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
         self.numAttendeeFormatter = [NSNumberFormatter new];
-        self.minAttendees = [NSNumber numberWithInt:2];
-        self.maxAttendees = [NSNumber numberWithInt:500];
+        self.minAttendees = [NSNumber numberWithInt:MINATTENDEES];
+        self.maxAttendees = [NSNumber numberWithInt:MAXATTENDEES];
         self.delegate = self;
     }
     return self;
@@ -33,7 +43,6 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  {
     
-    NSLog(@"shouldChange!");
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS_ONLY] invertedSet];
     NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
@@ -49,7 +58,6 @@
 
 -(void)changeTextToDefault{
     NSNumber *numAttendees = [self.numAttendeeFormatter numberFromString:self.text];
-    NSLog(@"Number of max attendees: %@", numAttendees);
     
     if([numAttendees intValue] > [self.maxAttendees intValue]){
         self.text = [self.maxAttendees stringValue];

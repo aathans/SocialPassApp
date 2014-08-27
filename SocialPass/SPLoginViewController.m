@@ -13,6 +13,7 @@
 #import "SPForgotPasswordViewController.h"
 
 @interface SPLoginViewController () <UIAlertViewDelegate, FBLoginViewDelegate>
+
 @property (nonatomic)UITextField *username;
 @property (nonatomic)UITextField *password;
 @property (nonatomic)UILabel *registerNow;
@@ -20,26 +21,14 @@
 @property (nonatomic)UIButton *signupButton;
 @property (nonatomic)TPKeyboardAvoidingScrollView *keyboardView;
 
-
 @end
 
 @implementation SPLoginViewController
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 
 -(void)loadView{
     [super loadView];
 
     double offset = (self.view.frame.size.width-200)/2;
-    
     
     self.loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.loginButton.frame = CGRectMake(offset, 250, 200, 40);

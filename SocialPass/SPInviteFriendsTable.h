@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SPFriendsTable.h"
 
-@interface SPInviteFriendsTable : UITableView <UITableViewDelegate>
+@interface SPInviteFriendsTable : SPFriendsTable
 
 -(void)setFriendsListWithFriends:(NSArray *)friends;
+-(BOOL)selectedFriendsContainsUser:(PFUser *)user;
+
 @property (nonatomic) NSMutableArray *selectedFriends;
 
 @end
