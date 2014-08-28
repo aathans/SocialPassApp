@@ -31,8 +31,6 @@
     SPFriendsTableViewCell *cell = (SPFriendsTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     
     PFUser *user = [_friendsList objectAtIndex:indexPath.section][indexPath.row];
-
-    NSLog(@"Selected Friends: %@", _selectedFriends);
     
     if([self selectedFriendsContainsUser:user]){
         cell.accessoryType = UITableViewCellAccessoryNone;

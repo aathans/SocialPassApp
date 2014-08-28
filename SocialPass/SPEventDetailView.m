@@ -11,7 +11,7 @@
 @implementation SPEventDetailView
 
 -(id)init{
-    self = [super initWithFrame:CGRectZero];
+    self = [super init];
     [self setupSubviews];
     [self setupCharacteristics];
     [self setupConstraints];
@@ -75,7 +75,6 @@
 }
 
 -(void)setupEventDescr{
-    //self.eventDesc.text = @"Drinks at Treehouse";
     [self.eventDesc setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultEventFontSize]];
     self.eventDesc.textColor = [UIColor blackColor];
     self.eventDesc.textAlignment = NSTextAlignmentCenter;
@@ -83,7 +82,6 @@
 }
 
 -(void)setupEventOrganizer{
-    //self.eventOrganizer.text = @"Alex Athan";
     [self.eventOrganizer setFont:[UIFont fontWithName:@"Avenir-LightOblique" size:14.0]];
     self.eventOrganizer.textColor = [UIColor blackColor];
     self.eventOrganizer.textAlignment = NSTextAlignmentCenter;
@@ -91,7 +89,6 @@
 }
 
 -(void)setupEventTime{
-    //self.eventTime.text = @"Today from 4:00PM to 11:00PM";
     [self.eventTime setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultEventFontSize]];
     self.eventTime.textColor = [UIColor blackColor];
     self.eventTime.textAlignment = NSTextAlignmentCenter;
