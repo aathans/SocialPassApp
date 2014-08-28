@@ -14,9 +14,9 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor SPLightGray];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.contentView.backgroundColor = [UIColor SPGray];
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         self.layer.borderColor = [UIColor grayColor].CGColor;
         self.layer.cornerRadius = 3;
         self.layer.borderWidth = 0.1f;

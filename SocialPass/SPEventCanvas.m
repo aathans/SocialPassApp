@@ -88,7 +88,6 @@
 }
 
 -(void)setupEventDescr{
-    //self.eventDesc.text = @"Drinks at Treehouse";
     [self.eventDesc setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultEventFontSize]];
     self.eventDesc.textColor = [UIColor blackColor];
     self.eventDesc.textAlignment = NSTextAlignmentCenter;
@@ -96,7 +95,6 @@
 }
 
 -(void)setupEventOrganizer{
-    //self.eventOrganizer.text = @"Alex Athan";
     [self.eventOrganizer setFont:[UIFont fontWithName:@"Avenir-LightOblique" size:14.0]];
     self.eventOrganizer.textColor = [UIColor blackColor];
     self.eventOrganizer.textAlignment = NSTextAlignmentCenter;
@@ -104,7 +102,6 @@
 }
 
 -(void)setupEventTime{
-    //self.eventTime.text = @"Today from 4:00PM to 11:00PM";
     [self.eventTime setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultEventFontSize]];
     self.eventTime.textColor = [UIColor blackColor];
     self.eventTime.textAlignment = NSTextAlignmentCenter;
@@ -112,7 +109,6 @@
 }
 
 -(void)setupEventAttendees{
-    //self.attendees.text = @"Attendees: 25 (20 Mutual)";
     [self.attendees setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultEventFontSize]];
     self.attendees.textColor = [UIColor blackColor];
     self.attendees.textAlignment = NSTextAlignmentCenter;

@@ -38,6 +38,17 @@
     self = [super init];
     self.startDateComps = [NSDateComponents new];
     self.endDateComps = [NSDateComponents new];
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *timeComponents = [gregorian components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+    
+    [_startDateComps setDay:[timeComponents day]];
+    [_startDateComps setMonth:[timeComponents month]];
+    [_startDateComps setYear:[timeComponents year]];
+    [_endDateComps setDay:[timeComponents day]];
+    [_endDateComps setMonth:[timeComponents month]];
+    [_endDateComps setYear:[timeComponents year]];
+    
     _endTimeExists = NO;
     
     return self;

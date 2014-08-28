@@ -197,7 +197,7 @@
     self.eventCanvas.eventDesc.text = [SPEvent objectForKey:kSPEventDescription];
     self.eventCanvas.eventOrganizer.text = [NSString stringWithFormat:@"%@",[SPEvent objectForKey:kSPEventOrganizerName]];
     
-    self.eventCanvas.attendees.text = [NSString stringWithFormat:@"Attendees: 2"];
+    self.eventCanvas.attendees.text = [NSString stringWithFormat:@"Attendees: %@", [SPEvent objectForKey:@"numAttendees"]];
     
     NSDate *startTime = [SPEvent objectForKey:kSPEventStartTime];
     NSDate *endTime = [SPEvent objectForKey:kSPEventEndTime];
@@ -248,11 +248,14 @@
     PFObject *event = [self.events objectAtIndex:self.indexCount];
     NSInteger maxAttendees = [[event objectForKey:kSPEventMaxAttendees] intValue];
     PFRelation *attendees = [event relationForKey:kSPEventAttendees];
+    PFRelation *invitees = [event relationForKey:kSPEventInvitees];
     NSInteger numAttendees = [[event objectForKey:kSPEventNumAttendees] intValue];
     
     if(event != nil){
         if(numAttendees < maxAttendees){
             [attendees addObject:[PFUser currentUser]];
+            [invitees removeObject:[PFUser currentUser]];
+            numAttendees++;
             [event setObject:[NSNumber numberWithInteger:numAttendees] forKey:kSPEventNumAttendees];
             [event saveEventually];
             [self.events removeObjectAtIndex:self.indexCount];
