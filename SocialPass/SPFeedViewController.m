@@ -50,11 +50,11 @@
     [self setConstraints];
     
     if([PFUser currentUser]){
-        [self setupEvents];
+        [self retrieveEvents];
     }
 }
 
--(void)setupEvents{
+-(void)retrieveEvents{
     PFQuery *eventQuery = [PFQuery queryWithClassName:kSPEventClass];
     [eventQuery whereKey:kSPEventInvitees equalTo:[PFUser currentUser]];
     [eventQuery orderByAscending:kSPEventStartTime];
@@ -72,9 +72,6 @@
             if([self areEvents]){
                 PFObject *SPEvent = [self.events objectAtIndex:self.indexCount];
                 [self setupEvent:SPEvent];
-            }else{
-                NSLog(@"Retrieved none");
-                return;
             }
         }
     }];
@@ -156,15 +153,12 @@
 }
 
 -(void)moveToNextEvent{
-    
     if([self areEvents]){
-        
         self.indexCount++;
-        
         if(self.indexCount >= [self.events count]){
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"End of events." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertView show];
-            [self setupEvents];
+            [self retrieveEvents];
             self.indexCount = 0;
             if([self.events count] == 1){
                 return;
@@ -173,16 +167,17 @@
         
         PFObject *SPEvent = [self.events objectAtIndex:self.indexCount];
         
-        if(SPEvent != nil){
-            [self setupEvent:SPEvent];
-        }
+        [self setupEvent:SPEvent];
     } else {
         [self makeEventVariablesNil];
-        [self setupEvents];
+        [self retrieveEvents];
     }
 }
 
 -(void)setupEvent:(PFObject *)SPEvent{
+    if(SPEvent == nil)
+        return;
+    
     PFFile *eventPhoto = [SPEvent objectForKey:kSPEventPhoto];
     NSURL *imageFileURL = [[NSURL alloc] initWithString:eventPhoto.url];
     NSData *imageData = [NSData dataWithContentsOfURL:imageFileURL];
@@ -219,12 +214,12 @@
 }
 
 -(void)joinButtonPressed:(id)sender{
-    if([self areEvents] == NO){
-        [self makeEventVariablesNil];
-        [self setupEvents];
-    } else {
+    if([self areEvents]){
         [self joinEvent];
         [self moveToNextEvent];
+    } else {
+        [self makeEventVariablesNil];
+        [self retrieveEvents];
     }
 }
 

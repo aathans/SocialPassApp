@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SPProfileFeed.h"
 
 @interface SPProfileViewController : UIViewController <UIViewControllerTransitioningDelegate>
 
-@property (nonatomic) UITableView *eventFeed;
+@property (nonatomic) SPProfileFeed *eventFeed;
 @property (nonatomic) BOOL didCancelEvent;
 
 @end

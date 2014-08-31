@@ -8,6 +8,7 @@
 
 #import "SPProfileViewController.h"
 #import "SPProfileFeedDataSource.h"
+#import "SPProfilePicture.h"
 #import "SPProfileFeedCellTableViewCell.h"
 #import "SPLoginViewController.h"
 #import "SPTransitionManager.h"
@@ -16,8 +17,7 @@
 
 @interface SPProfileViewController () <UITableViewDelegate,UINavigationControllerDelegate, NSURLConnectionDelegate>
 
-@property (nonatomic) UIView *background;
-@property (nonatomic) UIImageView *profilePicture;
+@property (nonatomic) SPProfilePicture *profilePicture;
 @property (nonatomic) UILabel *name;
 @property (nonatomic) UILabel *header;
 @property (nonatomic) UILabel *headerTitle;
@@ -43,18 +43,16 @@
 - (void)loadView{
     [super loadView];
     
-    self.transitionManager = [SPTransitionManager new];;
-    self.background = [UIView new];
-    self.profilePicture = [UIImageView new];
+    self.transitionManager = [SPTransitionManager new];
+    self.profilePicture = [SPProfilePicture new];
     self.name = [UILabel new];
     self.header = [UILabel new];
     self.headerTitle = [UILabel new];
     self.logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    self.eventFeed = [UITableView new];
+    self.eventFeed = [SPProfileFeed new];
     self.eventFeed.delegate = self;
     self.eventFeed.dataSource = self.profileDataSource;
-    [self.eventFeed setRowHeight:75];
     [self.eventFeed registerClass:[SPProfileFeedCellTableViewCell class] forCellReuseIdentifier:@"Cell"];
     
     self.imageData = [NSMutableData new];
@@ -92,7 +90,6 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     self.profilePicture.image = [UIImage imageWithData:self.imageData];
-    self.profilePicture.layer.masksToBounds = YES;
 }
 
 -(void)setupCharacteristics{
@@ -132,30 +129,15 @@
 }
 
 -(void)setupProfilePicture{
-    self.profilePicture.backgroundColor = [UIColor SPGray];
-    [self.profilePicture.layer setCornerRadius:3];
-    [self.profilePicture setClipsToBounds:YES];
-    [self.profilePicture.layer setBorderWidth:0.1f];
-    [self.profilePicture.layer setBorderColor:[UIColor grayColor].CGColor];
     [self.profilePicture setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
 #pragma mark - Event information
 
 -(void)setupEventFeed{
-    self.eventFeed.backgroundColor = [UIColor clearColor];
-    [self.eventFeed setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.eventFeed setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-    SPEmptyFeedLabel *emptyLabel = [SPEmptyFeedLabel new];
-    emptyLabel.font = [UIFont fontWithName:kSPDefaultFont size:kSPDefaultEventFontSize];
-    emptyLabel.alpha = 0.5f;
-    emptyLabel.textAlignment = NSTextAlignmentCenter;
-    emptyLabel.text = @"No Upcoming Events";
-    self.eventFeed.backgroundView = emptyLabel;
-    
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc]
-                                        init];
+    UIRefreshControl *refreshControl = [UIRefreshControl new];
     [refreshControl addTarget:self action:@selector(updateTable:) forControlEvents:UIControlEventValueChanged];
     
     self.refreshControl = refreshControl;
@@ -201,10 +183,7 @@
 
 #pragma mark - Constraints
 
-
 -(void)setupConstraints{
-    
-    UIView *background = self.background;
     UIView *eventFeed = self.eventFeed;
     UIView *profilePicture = self.profilePicture;
     UIView *name = self.name;
@@ -212,7 +191,7 @@
     UIView *logout = self.logoutButton;
     UIView *headerTitle = self.headerTitle;
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(background, eventFeed, profilePicture, name, header, logout);
+    NSDictionary *views = NSDictionaryOfVariableBindings(eventFeed, profilePicture, name, header, logout);
     
     NSDictionary *headerViews = NSDictionaryOfVariableBindings(headerTitle);
     
@@ -233,9 +212,7 @@
     
     [self.header addConstraints:headerConstraints];
     [self.view addConstraints:profileConstraints];
-    
 }
-
 
 #pragma mark - Table view delegate methods
 
@@ -255,7 +232,6 @@
     newEventVC.eventID = eventID;
     
     [self presentViewController:newEventVC animated:YES completion:^{
-        
     }];
 }
 

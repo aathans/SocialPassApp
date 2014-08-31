@@ -20,7 +20,7 @@
         self.layer.borderColor = [UIColor grayColor].CGColor;
         self.layer.cornerRadius = 3;
         self.layer.borderWidth = 0.1f;
-        self.contentText = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.origin.x+10, self.frame.origin.y, self.frame.size.width-60, self.frame.size.height)];
+        self.contentText = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.origin.x+10, self.frame.origin.y, self.frame.size.width-80, self.frame.size.height)];
         [self.contentText setLineBreakMode:NSLineBreakByTruncatingTail];
         [self.contentText setNumberOfLines:2];
         [self.contentText setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultLabelFontSize]];

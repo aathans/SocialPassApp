@@ -38,8 +38,8 @@ NSString *const kSPEventNumAttendees = @"numAttendees";
 
 #pragma mark - Time format
 NSString *const kSPTimeFormat = @"h:mma";
-NSString *const kSPNoEndTimeFormat = @"MMM d' at 'h:mma";
-NSString *const kSPHasEndTimeFormat = @"MMM d h:mma";
+NSString *const kSPNoEndTimeFormat = @"MMM. d' at 'h:mma";
+NSString *const kSPHasEndTimeFormat = @"MMM. d h:mma";
 
 #pragma mark - Images
 NSString *const kSPDefaultEventPhoto = @"defaultEventPhoto.jpg";

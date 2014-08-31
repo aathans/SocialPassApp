@@ -12,9 +12,13 @@
 
 -(id)init{
     self = [super init];
-    [self setupSubviews];
-    [self setupCharacteristics];
-    [self setupConstraints];
+    
+    if(self){
+        [self setupSubviews];
+        [self setupCharacteristics];
+        [self setupConstraints];
+    }
+    
     return self;
 }
 
@@ -76,8 +80,9 @@
 
 -(void)setupEventDescr{
     [self.eventDesc setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultEventFontSize]];
-    self.eventDesc.textColor = [UIColor blackColor];
     self.eventDesc.textAlignment = NSTextAlignmentCenter;
+    self.eventDesc.numberOfLines = 2;
+    [self.eventDesc setLineBreakMode:NSLineBreakByTruncatingTail];
     [self.eventDesc setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
@@ -96,10 +101,9 @@
 }
 
 -(void)setupEventAttendees{
-    //self.attendees.text = @"Attendees: 25 (20 Mutual)";
     [self.attendees setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultEventFontSize]];
     self.attendees.textColor = [UIColor blackColor];
-    self.attendees.textAlignment = NSTextAlignmentCenter;
+    self.attendees.textAlignment = NSTextAlignmentJustified;
     [self.attendees setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 -(void)setupConstraints{
@@ -119,6 +123,8 @@
     constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[cancelButton(50)]-10-|" options:0 metrics:nil views:views]];
     
     constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[cancelButton]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
+    
+    constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[eventDesc]|" options:0 metrics:nil views:views]];
     
     [self addConstraints:constraints];
     

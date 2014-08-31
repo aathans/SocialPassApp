@@ -91,6 +91,7 @@
     [self.eventDesc setFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultEventFontSize]];
     self.eventDesc.textColor = [UIColor blackColor];
     self.eventDesc.textAlignment = NSTextAlignmentCenter;
+    self.eventDesc.numberOfLines = 2;
     [self.eventDesc setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
 
@@ -134,6 +135,8 @@
     constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[joinButton(==skipButton)]" options:0 metrics:nil views:views]];
     
     constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[skipButton]-[joinButton(==skipButton)]-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:views]];
+    
+    constraints = [constraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[eventDesc]|" options:0 metrics:nil views:views]];
     
     [self addConstraints:constraints];
 

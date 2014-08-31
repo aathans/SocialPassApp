@@ -22,14 +22,6 @@
 
 @implementation SPEventDetailControllerViewController
 
-- (id)init{
-    self = [super init];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 -(void)loadView{
     [super loadView];
     self.eventView = [SPEventDetailView new];
@@ -45,7 +37,6 @@
 
 -(void)setupCharacteristics{
     [self.eventView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
     [self setupCancelButton];
     [self setupReturnButtonWithTitle:@"Return" andFont:[UIFont fontWithName:kSPDefaultFont size:kSPDefaultNavButtonFontSize]];
 }
@@ -58,7 +49,6 @@
     [self.returnButton addTarget:self action:@selector(returnButton:) forControlEvents:UIControlEventTouchUpInside];
     self.returnButton.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
-
 
 -(void)returnButton:(id)sender{
     [self dismissViewControllerAnimated:YES completion:^{

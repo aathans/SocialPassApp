@@ -9,13 +9,9 @@
 #import "SPLoginViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "UIScrollView+TPKeyboardAvoidingAdditions.h"
-#import "SPSignUpViewController.h"
-#import "SPForgotPasswordViewController.h"
 
 @interface SPLoginViewController () <UIAlertViewDelegate, FBLoginViewDelegate>
 
-@property (nonatomic)UITextField *username;
-@property (nonatomic)UITextField *password;
 @property (nonatomic)UILabel *registerNow;
 @property (nonatomic)UIButton *loginButton;
 @property (nonatomic)UIButton *signupButton;
@@ -43,8 +39,8 @@
     [_loginButton addTarget:self action:@selector(loginClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_loginButton setTitle:@"Login With Facebook" forState:UIControlStateNormal];
     [_loginButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    _loginButton.layer.borderWidth = 0.5f;
-    _loginButton.layer.cornerRadius = 3.0f;
+    [_loginButton.layer setBorderWidth:0.5f];
+    [_loginButton.layer setCornerRadius:3.0f];
 }
 
 #pragma mark - Helper methods
@@ -76,13 +72,5 @@
     }];
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex == [alertView firstOtherButtonIndex]){
-        SPForgotPasswordViewController *forgotPassword = [[SPForgotPasswordViewController alloc] init];
-        [self presentViewController:forgotPassword animated:NO completion:^{
-            
-        }];
-    }
-}
 
 @end

@@ -25,7 +25,7 @@
                   clientKey:@"R9ArkDtV3UPzpuMIsFQujs82sZ2mdW6NGrzUZK4n"];
     
     [PFFacebookUtils initializeFacebook];
-    // Override point for customization after application launch.
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     self.window.rootViewController = [SPHomeViewController new];
@@ -40,7 +40,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Saves changes in the application's managed object context before the application terminates.
     [[PFFacebookUtils session] close];
 }
 

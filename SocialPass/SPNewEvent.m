@@ -38,7 +38,6 @@
     event.ACL = ACL;
     
     [event saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        NSLog(@"Saved Event");
     }];
 };
 

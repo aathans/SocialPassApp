@@ -11,8 +11,6 @@
 		FA0929A41960A5420010DB1C /* SPAdvancedOptionsCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0929A31960A5420010DB1C /* SPAdvancedOptionsCanvas.m */; };
 		FA0929A71960ACAC0010DB1C /* SPFriendsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0929A61960ACAC0010DB1C /* SPFriendsTable.m */; };
 		FA0929AD1960ADCB0010DB1C /* SPFriendsTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0929AC1960ADCB0010DB1C /* SPFriendsTableDataSource.m */; };
-		FA0BF742195B7D3F00CBE8AB /* SPSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0BF73C195B7D3F00CBE8AB /* SPSignUpViewController.m */; };
-		FA0BF743195B7D3F00CBE8AB /* SPForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0BF73D195B7D3F00CBE8AB /* SPForgotPasswordViewController.m */; };
 		FA0BF744195B7D3F00CBE8AB /* SPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0BF73E195B7D3F00CBE8AB /* SPLoginViewController.m */; };
 		FA0BF74A195B844300CBE8AB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0BF749195B844300CBE8AB /* Social.framework */; };
 		FA0BF74C195B846000CBE8AB /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0BF74B195B846000CBE8AB /* Accounts.framework */; };
@@ -39,6 +37,8 @@
 		FA4A5A98195B6E6E00C016EC /* SPTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4A5A97195B6E6E00C016EC /* SPTransitionManager.m */; };
 		FA6BD28B198B38D500043C1B /* SPEmptyFeedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6BD28A198B38D500043C1B /* SPEmptyFeedLabel.m */; };
 		FA6BD29F1992E35900043C1B /* SPDayMonth.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6BD29E1992E35900043C1B /* SPDayMonth.m */; };
+		FAA1847719B38A36005ABEE2 /* SPProfilePicture.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA1847619B38A36005ABEE2 /* SPProfilePicture.m */; };
+		FAA1847A19B38B63005ABEE2 /* SPProfileFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA1847919B38B63005ABEE2 /* SPProfileFeed.m */; };
 		FAA8D97019578AEE0090C4ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D96F19578AEE0090C4ED /* Foundation.framework */; };
 		FAA8D97219578AEE0090C4ED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D97119578AEE0090C4ED /* CoreGraphics.framework */; };
 		FAA8D97419578AEE0090C4ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA8D97319578AEE0090C4ED /* UIKit.framework */; };
@@ -95,12 +95,8 @@
 		FA0929A61960ACAC0010DB1C /* SPFriendsTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFriendsTable.m; sourceTree = "<group>"; };
 		FA0929AB1960ADCB0010DB1C /* SPFriendsTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFriendsTableDataSource.h; sourceTree = "<group>"; };
 		FA0929AC1960ADCB0010DB1C /* SPFriendsTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFriendsTableDataSource.m; sourceTree = "<group>"; };
-		FA0BF73C195B7D3F00CBE8AB /* SPSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSignUpViewController.m; sourceTree = "<group>"; };
-		FA0BF73D195B7D3F00CBE8AB /* SPForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPForgotPasswordViewController.m; sourceTree = "<group>"; };
 		FA0BF73E195B7D3F00CBE8AB /* SPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLoginViewController.m; sourceTree = "<group>"; };
-		FA0BF73F195B7D3F00CBE8AB /* SPForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPForgotPasswordViewController.h; sourceTree = "<group>"; };
 		FA0BF740195B7D3F00CBE8AB /* SPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLoginViewController.h; sourceTree = "<group>"; };
-		FA0BF741195B7D3F00CBE8AB /* SPSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSignUpViewController.h; sourceTree = "<group>"; };
 		FA0BF749195B844300CBE8AB /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		FA0BF74B195B846000CBE8AB /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		FA0BF74D195B847600CBE8AB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -137,6 +133,10 @@
 		FA6BD29D1992E35900043C1B /* SPDayMonth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDayMonth.h; sourceTree = "<group>"; };
 		FA6BD29E1992E35900043C1B /* SPDayMonth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDayMonth.m; sourceTree = "<group>"; };
 		FA941A1B197DC7A40093479C /* SPMainViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMainViewControllerTests.m; sourceTree = "<group>"; };
+		FAA1847519B38A36005ABEE2 /* SPProfilePicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPProfilePicture.h; sourceTree = "<group>"; };
+		FAA1847619B38A36005ABEE2 /* SPProfilePicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPProfilePicture.m; sourceTree = "<group>"; };
+		FAA1847819B38B63005ABEE2 /* SPProfileFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPProfileFeed.h; sourceTree = "<group>"; };
+		FAA1847919B38B63005ABEE2 /* SPProfileFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPProfileFeed.m; sourceTree = "<group>"; };
 		FAA8D96C19578AEE0090C4ED /* SocialPass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialPass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA8D96F19578AEE0090C4ED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FAA8D97119578AEE0090C4ED /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -246,20 +246,8 @@
 			children = (
 				FA0BF740195B7D3F00CBE8AB /* SPLoginViewController.h */,
 				FA0BF73E195B7D3F00CBE8AB /* SPLoginViewController.m */,
-				FA0BF73F195B7D3F00CBE8AB /* SPForgotPasswordViewController.h */,
-				FA0BF73D195B7D3F00CBE8AB /* SPForgotPasswordViewController.m */,
-				FA0BF746195B7D5B00CBE8AB /* Signup */,
 			);
 			name = Login;
-			sourceTree = "<group>";
-		};
-		FA0BF746195B7D5B00CBE8AB /* Signup */ = {
-			isa = PBXGroup;
-			children = (
-				FA0BF741195B7D3F00CBE8AB /* SPSignUpViewController.h */,
-				FA0BF73C195B7D3F00CBE8AB /* SPSignUpViewController.m */,
-			);
-			name = Signup;
 			sourceTree = "<group>";
 		};
 		FA284C42195CCADE00A09AF9 /* Friends */ = {
@@ -301,6 +289,8 @@
 				FA284C50195CF36D00A09AF9 /* SPProfileFeedDataSource.m */,
 				FA284C52195CF4F500A09AF9 /* SPProfileFeedCellTableViewCell.h */,
 				FA284C53195CF4F500A09AF9 /* SPProfileFeedCellTableViewCell.m */,
+				FAA1847819B38B63005ABEE2 /* SPProfileFeed.h */,
+				FAA1847919B38B63005ABEE2 /* SPProfileFeed.m */,
 			);
 			name = Feed;
 			sourceTree = "<group>";
@@ -319,6 +309,8 @@
 			children = (
 				FA4A5A92195AAAD900C016EC /* SPProfileViewController.h */,
 				FA4A5A93195AAAD900C016EC /* SPProfileViewController.m */,
+				FAA1847519B38A36005ABEE2 /* SPProfilePicture.h */,
+				FAA1847619B38A36005ABEE2 /* SPProfilePicture.m */,
 				FA6BD28C198B3ADE00043C1B /* Empty Label */,
 				FA284C4B195CEFB000A09AF9 /* Feed */,
 			);
@@ -684,12 +676,13 @@
 				FA284C46195CD8D400A09AF9 /* UIColor+themeColors.m in Sources */,
 				FA284C51195CF36D00A09AF9 /* SPProfileFeedDataSource.m in Sources */,
 				FA3ADA0C196F1A5D00E7795C /* SPEventDetailView.m in Sources */,
+				FAA1847719B38A36005ABEE2 /* SPProfilePicture.m in Sources */,
 				FAF74C0319AE5A9C00EB8B03 /* SPInviteFriendsDataSource.m in Sources */,
 				FA4A5A94195AAAD900C016EC /* SPProfileViewController.m in Sources */,
 				FACA987C199C4B1E001D0960 /* SPInviteFriends.m in Sources */,
+				FAA1847A19B38B63005ABEE2 /* SPProfileFeed.m in Sources */,
 				FA0929A41960A5420010DB1C /* SPAdvancedOptionsCanvas.m in Sources */,
 				FAA8D9A919578B900090C4ED /* SPHomeViewController.m in Sources */,
-				FA0BF743195B7D3F00CBE8AB /* SPForgotPasswordViewController.m in Sources */,
 				FA0929A01960A2140010DB1C /* SPNewEventCanvas.m in Sources */,
 				FA0929A71960ACAC0010DB1C /* SPFriendsTable.m in Sources */,
 				FAA8D9C0195797C30090C4ED /* SPEventCanvas.m in Sources */,
@@ -711,7 +704,6 @@
 				FAA8D97E19578AEF0090C4ED /* main.m in Sources */,
 				FA6BD28B198B38D500043C1B /* SPEmptyFeedLabel.m in Sources */,
 				FA0929AD1960ADCB0010DB1C /* SPFriendsTableDataSource.m in Sources */,
-				FA0BF742195B7D3F00CBE8AB /* SPSignUpViewController.m in Sources */,
 				FACA986A19993184001D0960 /* SPCache.m in Sources */,
 				FA1D7412197F397F005ADF36 /* SPAdvancedOptionsAttendeeTextField.m in Sources */,
 				FAC81B9B1960B592006C2904 /* SPEvent.m in Sources */,
