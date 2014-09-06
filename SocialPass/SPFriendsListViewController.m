@@ -19,19 +19,9 @@
 @property (nonatomic) UILabel *headerTitle;
 @property (nonatomic) UIRefreshControl *refreshControl;
 
--(void)setupConstraints;
--(void)setupCharacteristics;
-
 @end
 
 @implementation SPFriendsListViewController
-
-- (id)init{
-    self = [super init];
-    if (self) {
-    }
-    return self;
-}
 
 - (void)loadView{
     [super loadView];

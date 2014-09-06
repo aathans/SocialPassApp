@@ -17,6 +17,7 @@
 @property (nonatomic) UILabel *eventTime;
 @property (nonatomic) UILabel *attendees;
 @property (nonatomic) UIImageView *eventPhoto;
-@property (nonatomic) UICollectionView *attendeePhotos;
+
+-(void)resetCanvas;
 
 @end

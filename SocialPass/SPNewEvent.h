@@ -20,6 +20,7 @@
 @property (nonatomic) NSData *eventImage;
 @property (nonatomic) NSArray *eventAttendees;
 @property (nonatomic) NSNumber *numAttendees;
+//@property (nonatomic) NSString *eventLocation;
 
 -(void)saveEvent;
 

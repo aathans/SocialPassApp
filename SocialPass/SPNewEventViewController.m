@@ -255,9 +255,9 @@
     self.myEvent.numAttendees = [NSNumber numberWithInt:1];
     if(_endTimeExists == NO)
         _endDateComps = _startDateComps;
-    
     self.myEvent.eventEndTime = [self formattedDateFromDateComponents:_endDateComps];
     self.myEvent.isPublic = [self.advancedOptions.publicSwitch isOn];
+    self.myEvent.eventImage = UIImageJPEGRepresentation(self.pickedImage, 0.8);
     
     NSNumberFormatter *numAttendeeFormatter = [NSNumberFormatter new];
     NSString *maxAttendees = self.advancedOptions.numAttendees.text;

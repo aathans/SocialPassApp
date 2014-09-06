@@ -186,6 +186,7 @@
         self.eventCanvas.eventPhoto.image = [UIImage imageNamed:kSPDefaultEventPhoto];
     }
     else{
+        NSLog(@"EH!");
         self.eventCanvas.eventPhoto.image = [UIImage imageWithData:imageData];
     }
     
@@ -232,11 +233,7 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No more events." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alertView show];
     self.indexCount = 0;
-    self.eventCanvas.eventPhoto.image = nil;
-    self.eventCanvas.eventDesc.text = nil;
-    self.eventCanvas.eventOrganizer.text = nil;
-    self.eventCanvas.eventTime.text = nil;
-    self.eventCanvas.attendees.text = nil;
+    [self.eventCanvas resetCanvas];
 }
 
 -(void)joinEvent{

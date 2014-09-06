@@ -142,4 +142,12 @@
 
 }
 
+-(void)resetCanvas{
+    self.eventPhoto.image = nil;
+    self.eventDesc.text = nil;
+    self.eventOrganizer.text = nil;
+    self.eventTime.text = nil;
+    self.attendees.text = nil;
+}
+
 @end

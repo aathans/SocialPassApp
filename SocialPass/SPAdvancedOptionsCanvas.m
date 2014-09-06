@@ -80,7 +80,6 @@
     [self.location setBackgroundColor:[UIColor whiteColor]];
     
     [self.publicSwitch setFrame:CGRectMake(185, 110, 60, 30)];
-    //self.publicSwitch.transform = CGAffineTransformMakeScale(1.25, 1.25);
     self.publicSwitch.backgroundColor = [UIColor whiteColor];
     self.publicSwitch.layer.cornerRadius = 16.0;
     [self.publicSwitch setOn:NO];

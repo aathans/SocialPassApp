@@ -8,7 +8,6 @@
 
 #import "SPInviteFriendsTable.h"
 #import "SPFriendsTableViewCell.h"
-#import "MSCellAccessory.h"
 
 @interface SPInviteFriendsTable()
 
@@ -42,7 +41,7 @@
 }
 
 -(BOOL)selectedFriendsContainsUser:(PFUser *)user{
-    return [_selectedFriends containsObject:user];
+    return [self.selectedFriends containsObject:user];
 }
 
 -(void)setFriendsListWithFriends:(NSArray *)friends{

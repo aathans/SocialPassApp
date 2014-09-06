@@ -18,5 +18,4 @@
 @property (nonatomic) UIImageView *eventPhoto;
 @property (nonatomic) UICollectionView *attendeePhotos;
 
-
 @end

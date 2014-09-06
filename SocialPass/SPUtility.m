@@ -17,6 +17,7 @@
 + (BOOL)userHasValidFacebookData:(PFUser *)user{
     return YES;
 }
+
 + (BOOL)userHasProfilePictures:(PFUser *)user{
     return YES;
 }

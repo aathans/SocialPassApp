@@ -9,7 +9,6 @@
 #import "SPInviteFriendsDataSource.h"
 #import "SPInviteFriendsTable.h"
 #import "SPFriendsTableViewCell.h"
-#import "MSCellAccessory.h"
 
 @interface SPInviteFriendsDataSource()
 
