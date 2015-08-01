@@ -198,7 +198,7 @@
     //Constraints on Background, for self.view
     NSArray *backgroundConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[background]-|" options:0 metrics:nil views:views];
     
-    backgroundConstraints = [backgroundConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[cancel(22)]-5-[background]-|" options:0 metrics:nil views:views]];
+    backgroundConstraints = [backgroundConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[cancel(22)]-5-[background]-|" options:0 metrics:nil views:views]];
     backgroundConstraints = [backgroundConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[cancel]-|" options:0 metrics:nil views:views]];
     
     NSArray *createEventConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[advanced]|" options:0 metrics:nil views:views];

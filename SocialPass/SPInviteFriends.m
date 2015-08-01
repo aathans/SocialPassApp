@@ -123,7 +123,7 @@
     headerTitleConstraints = [headerTitleConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[headerTitle(32)]" options:0 metrics:nil views:headerViews]];
     
     NSArray *doneConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[done]-|" options:0 metrics:nil views:views];
-    doneConstraints = [doneConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[done(22)]" options:0 metrics:nil views:views]];
+    doneConstraints = [doneConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[done(22)]" options:0 metrics:nil views:views]];
     
     NSArray *backConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[back]" options:0 metrics:nil views:views];
     backConstraints = [backConstraints arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[back(22)]" options:0 metrics:nil views:views]];
